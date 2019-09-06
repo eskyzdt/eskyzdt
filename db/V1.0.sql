@@ -1,0 +1,10 @@
+-- drop table if exists `user`;
+CREATE TABLE `user`(
+	 `id` int(20) NOT NULL AUTO_INCREMENT,
+	 `username` VARCHAR(20) NOT NULL COMMENT '用户名',
+	 `password` VARCHAR(20) DEFAULT NULL COMMENT '密码',
+	 `phone` VARCHAR(20) DEFAULT NULL COMMENT '电话',
+	 `email` VARCHAR(20) DEFAULT NULL COMMENT '邮箱',
+	 `create_time` TIMESTAMP DEFAULT CURRENT_TIMESTAMP COMMENT '用户创建时间',
+	 PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC COMMENT='用户表';
