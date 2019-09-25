@@ -1,8 +1,7 @@
-package cn.eskyzdt.modules.service.impl;
+package com.eskyzdt.modules.service;
 
-import cn.eskyzdt.modules.service.UserService;
-import cn.eskyzdt.modules.dao.UserDao;
-import cn.eskyzdt.modules.pojo.User;
+import com.eskyzdt.modules.dao.UserDao;
+import com.eskyzdt.modules.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

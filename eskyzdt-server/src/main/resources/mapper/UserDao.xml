@@ -3,9 +3,9 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="cn.eskyzdt.modules.dao.UserDao">
+<mapper namespace="com.eskyzdt.modules.dao.UserDao">
 
-    <select id="findById" resultType="cn.eskyzdt.modules.pojo.User">
+    <select id="findById" resultType="com.eskyzdt.modules.entity.User">
         select * from user
         <where>
             <if test="id!=null">

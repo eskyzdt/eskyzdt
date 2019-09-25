@@ -1,9 +1,7 @@
-package cn.eskyzdt.modules.controller;
+package com.eskyzdt.modules.controller;
 
-import cn.eskyzdt.modules.pojo.User;
-import cn.eskyzdt.modules.service.UserService;
+import com.eskyzdt.modules.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

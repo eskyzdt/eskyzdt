@@ -1,10 +1,9 @@
-package cn.eskyzdt.modules.dao;
+package com.eskyzdt.modules.dao;
 
 
-import cn.eskyzdt.modules.pojo.User;
+import com.eskyzdt.modules.entity.User;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.PathVariable;
 
 @Repository
 public interface UserDao {

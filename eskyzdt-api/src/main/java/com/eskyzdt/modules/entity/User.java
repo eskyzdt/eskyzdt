@@ -1,4 +1,4 @@
-package cn.eskyzdt.modules.pojo;
+package com.eskyzdt.modules.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
