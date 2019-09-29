@@ -14,5 +14,5 @@ spring:
       max-wait: 60000
       username: root
       password: root
-#  profiles:
+#    profiles:
 #    active: dev
