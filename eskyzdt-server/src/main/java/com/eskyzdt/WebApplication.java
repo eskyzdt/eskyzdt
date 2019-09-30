@@ -6,7 +6,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@MapperScan(basePackages = {"com.eskyzdt.modules.dao"})
+@MapperScan(basePackages = {"com.eskyzdt.modules.*.dao"})
 public class WebApplication {
     public static void main(String[] args) {
         SpringApplication.run(WebApplication.class);

@@ -1,3 +1,5 @@
+-- CREATE DATABASE timber;
+-- USE timber;
 -- drop table if exists `user`;
 CREATE TABLE `user`(
 	 `id` int(20) NOT NULL AUTO_INCREMENT,

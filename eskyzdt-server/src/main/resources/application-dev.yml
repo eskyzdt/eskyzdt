@@ -1,0 +1,6 @@
+mybatis:
+  ## 这里不知道为啥,不能用通配符
+  type-aliases-package: com.eskyzdt.modules.user.entity, com.eskyzdt.modules.pic.entity
+  mapper-locations: classpath*:mapper/*Dao.xml
+
+
