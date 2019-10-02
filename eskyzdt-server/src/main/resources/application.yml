@@ -10,6 +10,6 @@ spring:
       min-idle: 10
       max-wait: 60000
       username: root
-      password: root
+      password: roottoor
   profiles:
     active: dev
