@@ -1,7 +1,7 @@
-package com.eskyzdt.modules.controller;
+package cn.eskyzdt.modules.controller;
 
-import com.eskyzdt.modules.user.entity.User;
-import com.eskyzdt.modules.user.service.UserService;
+import cn.eskyzdt.modules.user.entity.User;
+import cn.eskyzdt.modules.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

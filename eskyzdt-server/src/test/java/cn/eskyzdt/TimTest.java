@@ -1,8 +1,8 @@
-package com.eskyzdt;
+package cn.eskyzdt;
 
-import com.eskyzdt.modules.pic.entity.Pic;
-import com.eskyzdt.modules.user.dao.UserDao;
-import com.eskyzdt.modules.user.service.UserService;
+import cn.eskyzdt.modules.user.dao.UserDao;
+import cn.eskyzdt.modules.user.service.UserService;
+import cn.eskyzdt.modules.pic.entity.Pic;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;

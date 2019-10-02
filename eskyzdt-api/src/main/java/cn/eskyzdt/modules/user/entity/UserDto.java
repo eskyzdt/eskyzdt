@@ -1,11 +1,11 @@
-package com.eskyzdt.modules.pic.entity;
+package cn.eskyzdt.modules.user.entity;
 
 import lombok.Data;
 
 import java.util.Date;
 
 @Data
-public class Pic {
+public class UserDto {
     private Integer id;
     private String username;
     private String password;

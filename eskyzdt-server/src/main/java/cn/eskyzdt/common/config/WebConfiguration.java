@@ -1,4 +1,4 @@
-package com.eskyzdt.common.config;
+package cn.eskyzdt.common.config;
 
 import org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration;
 import org.springframework.context.annotation.Configuration;
