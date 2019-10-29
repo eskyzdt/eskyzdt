@@ -19,13 +19,16 @@ public class WebConfiguration implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/**")
+                //添加资源目录
                 .addResourceLocations("classpath:/static/")
                 .addResourceLocations("classpath:/public/")
-                .addResourceLocations("classpath:/resources/");
+                .addResourceLocations("classpath:/resources/")
+                .addResourceLocations("classpath:/webapp/");
     }
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
+        //添加主页,如果用了themlef模板引擎,则index.html要放在templates中,现在没用,所以不用放
         registry.addViewController("/").setViewName("index");
         registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
         WebMvcConfigurer.super.addViewControllers(registry);

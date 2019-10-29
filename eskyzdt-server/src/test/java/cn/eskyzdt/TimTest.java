@@ -1,6 +1,7 @@
 package cn.eskyzdt;
 
 import cn.eskyzdt.modules.user.dao.UserDao;
+import cn.eskyzdt.modules.user.entity.User;
 import cn.eskyzdt.modules.user.service.UserService;
 import cn.eskyzdt.modules.pic.entity.Pic;
 import lombok.extern.slf4j.Slf4j;
@@ -10,15 +11,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.sound.midi.Soundbank;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
+import java.time.*;
+import java.time.chrono.JapaneseChronology;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
+//@RunWith(SpringRunner.class)
+//@SpringBootTest
 @Slf4j
 public class TimTest {
 
@@ -148,4 +149,56 @@ public class TimTest {
     }
 
 
+    @Test
+    public void Test1028(){
+        User user = new User();
+        user.setUsername("sss");
+        user.setPassword("ddd");
+        user.setPhone("15155555555");
+        user.setEmail("xcv@sdgsd");
+
+        User user2 = new User();
+        user2.setUsername("sss");
+        user2.setPassword("ddd");
+        user2.setPhone("15155555555");
+        user2.setEmail("xcv@sdgsd");
+        List<User> users = new ArrayList<>();
+        users.add(user);
+        users.add(user2);
+        boolean b = userService.batchInsertUser(users);
+        System.out.println(b);
+
+    }
+
+    @Test
+    public void test1029 (){
+        Map<String, Object> params = new HashMap<>();
+        String[] pa = new String[]{"1","2"};
+        params.put("id", pa);
+        List<User> users = userService.queryUser(params);
+        System.out.println(users);
+    }
+
+    @Test
+    public void test1029a(){
+        LocalDateTime birth = LocalDateTime.of(1994, 12, 13, 20, 10, 0);
+        System.out.println(birth);
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String format = dtf.format(birth);
+        System.out.println(format);
+
+        System.out.println(LocalDateTime.MIN);
+        System.out.println(LocalDateTime.MAX);
+
+        ZoneId zone = ZoneId.systemDefault();
+        System.out.println(zone);
+        ZonedDateTime zonedDateTime = birth.atZone(zone);
+        System.out.println(zonedDateTime);
+        Instant instant = birth.atZone(zone).toInstant();
+        System.out.println(instant);
+        System.out.println(instant.toEpochMilli());
+
+        Year s = Year.now();
+        System.out.println(s);
+    }
 }
