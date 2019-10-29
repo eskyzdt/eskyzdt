@@ -6,10 +6,20 @@ import cn.eskyzdt.modules.user.entity.User;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+import java.util.Map;
+
 @Repository
 public interface UserDao {
 
+   //这里的dao层用了别名,所以这里有红线
    User findById(@Param("id") Integer id);
 
    Pic findById2(@Param("id") Integer id);
+
+   boolean insertUser(User user);
+
+   boolean batchInsertUser(List<User> userList);
+
+   List<User> queryUser(Map<String, Object> params);
 }

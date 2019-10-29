@@ -2,10 +2,11 @@ package cn.eskyzdt.modules.user.entity;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.Date;
 
 @Data
-public class UserDto {
+public class UserDto implements Serializable {
     private Integer id;
     private String username;
     private String password;

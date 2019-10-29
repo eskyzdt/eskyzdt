@@ -2,10 +2,32 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
 <mapper namespace="cn.eskyzdt.modules.user.dao.UserDao">
 
-    <select id="findById"  resultType="User">
+    <sql id="Base_Column">
+        username, password, phone, email
+    </sql>
+
+    <insert id="insertUser">
+        INSERT INTO user ( username, `password`, phone, email )
+        VALUES
+            ( #{username}, #{password}, #{phone}, #{email} );
+    </insert>
+    <insert id="batchInsertUser">
+        INSERT INTO user ( username, `password`, phone, email )
+        VALUES
+        <foreach collection="list" item="user" index="index" separator=",">
+            (
+            #{user.username},
+            #{user.password},
+            #{user.phone},
+            #{user.email}
+            )
+        </foreach>
+
+    </insert>
+
+    <select id="findById"  resultType="user">
         select * from user
         <where>
             <if test="id!=null">
@@ -14,12 +36,23 @@
         </where>
     </select>
 
-    <select id="findById2"  resultType="Pic">
+    <select id="findById2"  resultType="pic">
         select * from user
         <where>
             <if test="id!=null">
                 id = #{id}
             </if>
+        </where>
+    </select>
+    <select id="queryUser" resultType="cn.eskyzdt.modules.user.entity.User">
+        select <include refid="Base_Column"/>
+        from user
+        <where>
+            id in
+            -- 这里的collection中的id,意思是传入的map参数的key就是id
+            <foreach collection="id" item="param" separator="or" open="(" close=")">
+                #{param}
+            </foreach>
         </where>
     </select>
 </mapper>

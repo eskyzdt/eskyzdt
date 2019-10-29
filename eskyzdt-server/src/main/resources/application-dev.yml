@@ -1,5 +1,6 @@
 mybatis:
   ## 这里不知道为啥,不能用通配符
+  ## 这里alias别名可以是User,也可以是user,也就是说第一个字母不区分大小写
   type-aliases-package: cn.eskyzdt.modules.user.entity, cn.eskyzdt.modules.pic.entity
   mapper-locations: classpath*:mapper/*Dao.xml
 

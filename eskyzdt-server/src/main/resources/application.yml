@@ -1,4 +1,3 @@
-
 spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
@@ -13,3 +12,8 @@ spring:
       password: roottoor
   profiles:
     active: dev
+  mvc:
+    view:
+      suffix: .html
+server:
+  port: 80

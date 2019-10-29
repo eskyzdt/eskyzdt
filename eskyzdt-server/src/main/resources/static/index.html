@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <!-- 引入样式 -->
+
+    <!-- import Vue before Element -->
+    <style>
+        .head {
+            color: blue;
+            text-align: center;
+        }
+        .footer {
+            color: red;
+            size: A4;
+            text-align: center;
+        }
+    </style>
+
+</head>
+<body>
+<div id="app">
+    <div class="head"> {{head}}</div>
+
+    <div class="head">
+        <img :src="url"/>
+    </div>
+
+    <div class="footer">
+       {{foot}}
+    </div>
+</div>
+</body>
+<script src="vue.js"></script>
+
+<script>
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            head: "张栋天的网站",
+            foot: "皖ICP备19017745号-1",
+            url: "./aa.jpg"
+        }
+    })
+
+
+</script>
+
+
+</html>
+
