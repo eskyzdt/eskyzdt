@@ -5,7 +5,7 @@
 <mapper namespace="cn.eskyzdt.modules.user.dao.UserDao">
 
     <sql id="Base_Column">
-        username, password, phone, email
+        id, username, password, phone, email, create_time
     </sql>
 
     <insert id="insertUser">
@@ -44,13 +44,15 @@
             </if>
         </where>
     </select>
+<!--
+     这里的collection中的id,意思是传入的map参数的key就是id,但是id的value需要是一个能循环的,不然报错
+-->
     <select id="queryUser" resultType="cn.eskyzdt.modules.user.entity.User">
         select <include refid="Base_Column"/>
         from user
         <where>
             id in
-            -- 这里的collection中的id,意思是传入的map参数的key就是id
-            <foreach collection="id" item="param" separator="or" open="(" close=")">
+            <foreach collection="id" item="param" separator="," open="(" close=")">
                 #{param}
             </foreach>
         </where>
