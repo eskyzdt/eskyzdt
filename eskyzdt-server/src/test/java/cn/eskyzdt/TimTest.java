@@ -2,6 +2,7 @@ package cn.eskyzdt;
 
 import cn.eskyzdt.modules.user.dao.UserDao;
 import cn.eskyzdt.modules.user.entity.User;
+import cn.eskyzdt.modules.user.entity.UserDto;
 import cn.eskyzdt.modules.user.service.UserService;
 import cn.eskyzdt.modules.pic.entity.Pic;
 import lombok.extern.slf4j.Slf4j;
@@ -18,8 +19,8 @@ import java.time.chrono.JapaneseChronology;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
-//@RunWith(SpringRunner.class)
-//@SpringBootTest
+@RunWith(SpringRunner.class)
+@SpringBootTest
 @Slf4j
 public class TimTest {
 
@@ -200,5 +201,15 @@ public class TimTest {
 
         Year s = Year.now();
         System.out.println(s);
+    }
+
+
+    @Test
+    public void test1031() {
+        UserDto u = new UserDto();
+        u.setId(1);
+        UserDto user = userService.findUser(u);
+        Date createTime = user.getCreateTime();
+
     }
 }

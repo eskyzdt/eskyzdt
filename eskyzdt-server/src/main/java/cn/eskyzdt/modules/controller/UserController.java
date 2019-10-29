@@ -1,12 +1,10 @@
 package cn.eskyzdt.modules.controller;
 
 import cn.eskyzdt.modules.user.entity.User;
+import cn.eskyzdt.modules.user.entity.UserDto;
 import cn.eskyzdt.modules.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 
 @RestController
@@ -27,7 +25,14 @@ public class UserController {
         return userService.findById(id);
     }
 
-
+    @RequestMapping(value = "/annoTest",method = RequestMethod.GET)
+    public UserDto annoTest( UserDto userDto){
+        UserDto u = new UserDto();
+        u.setId(5);
+        UserDto user = userService.findUser(u);
+        boolean b = userService.insertUser(userDto);
+        return user;
+    }
 
 
 }

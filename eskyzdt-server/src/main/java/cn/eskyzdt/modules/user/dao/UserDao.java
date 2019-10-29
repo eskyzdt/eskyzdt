@@ -3,6 +3,7 @@ package cn.eskyzdt.modules.user.dao;
 
 import cn.eskyzdt.modules.pic.entity.Pic;
 import cn.eskyzdt.modules.user.entity.User;
+import cn.eskyzdt.modules.user.entity.UserDto;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -22,4 +23,8 @@ public interface UserDao {
    boolean batchInsertUser(List<User> userList);
 
    List<User> queryUser(Map<String, Object> params);
+
+    UserDto findUser(UserDto userDto);
+
+   boolean insertUserDto(UserDto user);
 }
