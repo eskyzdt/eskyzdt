@@ -5,7 +5,6 @@ import cn.eskyzdt.modules.user.entity.User;
 import cn.eskyzdt.modules.user.entity.UserDto;
 import cn.eskyzdt.modules.user.service.UserService;
 import cn.eskyzdt.modules.pic.entity.Pic;
-import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +20,6 @@ import java.util.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@Slf4j
 public class TimTest {
 
     @Autowired
@@ -35,10 +33,7 @@ public class TimTest {
         Pic byId = userDao.findById2(1);
         //   User byId = userService.findById(1);
         System.out.println(byId);
-        log.info("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-        log.error("bbbbbbbbbbbbbbbbb");
-        log.debug("cccccccccccccccccccc");
-        log.warn("eeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+
     }
 
     @Test
@@ -174,7 +169,7 @@ public class TimTest {
     @Test
     public void test1029 (){
         Map<String, Object> params = new HashMap<>();
-        String[] pa = new String[]{"1","2"};
+        String[] pa = new String[]{"1","2","3"};
         params.put("id", pa);
         List<User> users = userService.queryUser(params);
         System.out.println(users);
