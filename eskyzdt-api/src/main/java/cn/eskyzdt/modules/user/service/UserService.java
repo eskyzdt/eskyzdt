@@ -14,6 +14,8 @@ public interface UserService {
 
     boolean insertUser (User user);
 
+    boolean insertUser (UserDto user);
+
     boolean batchInsertUser (List<User> userList);
 
     List<User> queryUser(Map<String, Object> params);

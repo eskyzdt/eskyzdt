@@ -26,6 +26,11 @@
         </foreach>
 
     </insert>
+    <insert id="insertUserDto">
+         INSERT INTO user ( <include refid="Base_Column"/> )
+        VALUES
+            (#{id}, #{username}, #{password}, #{phone}, #{email},#{createTime} );
+    </insert>
 
     <select id="findById"  resultType="user">
         select * from user
@@ -55,6 +60,13 @@
             <foreach collection="id" item="param" separator="," open="(" close=")">
                 #{param}
             </foreach>
+        </where>
+    </select>
+    <select id="findUser" resultType="cn.eskyzdt.modules.user.entity.UserDto">
+        select <include refid="Base_Column"/>
+        from user
+        <where>
+            id = #{id}
         </where>
     </select>
 </mapper>

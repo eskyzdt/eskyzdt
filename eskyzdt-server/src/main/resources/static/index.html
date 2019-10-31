@@ -15,10 +15,15 @@
             size: A4;
             text-align: center;
         }
+
+        #formA {
+            text-align: center;
+        }
     </style>
 
 </head>
 <body>
+<!--vue-->
 <div id="app">
     <div class="head"> {{head}}</div>
 
@@ -26,10 +31,24 @@
         <img :src="url"/>
     </div>
 
+
+
+    <form action="/user/annoTest" enctype="text/plain" id="formA">
+        <p>用户名:<input type="text" name="username" /></p>
+         <p>&emsp;密码:<input type="text" name="password" /></p>
+         <p>时间测试:<input type="text" name="createTime" /></p>
+        <input type="submit" value="登陆" />
+    </form>
+
+
     <div class="footer">
-       {{foot}}
+        {{foot}}
     </div>
 </div>
+<!--vue结束-->
+
+
+
 </body>
 <script src="vue.js"></script>
 

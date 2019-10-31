@@ -27,18 +27,17 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto findUser(UserDto userDto) {
-        Date createTime = userDto.getCreateTime();
-        try {
-            Class.forName("cn.eskyzdt.modules.user.service.UserServiceImpl");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        return null;
+        return userDao.findUser(userDto);
     }
 
     @Override
     public boolean insertUser(User user) {
         return userDao.insertUser(user);
+    }
+
+    @Override
+    public boolean insertUser(UserDto user) {
+        return userDao.insertUserDto(user);
     }
 
     @Override
