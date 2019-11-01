@@ -7,11 +7,11 @@
     <!-- import Vue before Element -->
     <style>
         .head {
-            color: blue;
+            color: #66CCFF;
             text-align: center;
         }
         .footer {
-            color: red;
+            color: #999;
             size: A4;
             text-align: center;
         }
@@ -37,6 +37,7 @@
         <p>用户名:<input type="text" name="username" /></p>
          <p>&emsp;密码:<input type="text" name="password" /></p>
          <p>时间测试:<input type="text" name="createTime" /></p>
+        <input type="submit" value="注册" />
         <input type="submit" value="登陆" />
     </form>
 
@@ -56,9 +57,9 @@
     var vm = new Vue({
         el: "#app",
         data: {
-            head: "张栋天的网站",
+            head: "网站测试",
             foot: "皖ICP备19017745号-1",
-            url: "./aa.jpg"
+            url: "../static/aa.jpg"
         }
     })
 
