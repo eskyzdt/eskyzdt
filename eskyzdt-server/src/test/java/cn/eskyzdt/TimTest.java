@@ -1,24 +1,23 @@
 package cn.eskyzdt;
 
+import cn.eskyzdt.modules.pic.entity.Pic;
 import cn.eskyzdt.modules.user.dao.UserDao;
 import cn.eskyzdt.modules.user.entity.User;
 import cn.eskyzdt.modules.user.entity.UserDto;
 import cn.eskyzdt.modules.user.service.UserService;
-import cn.eskyzdt.modules.pic.entity.Pic;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import javax.sound.midi.Soundbank;
 import java.text.SimpleDateFormat;
 import java.time.*;
-import java.time.chrono.JapaneseChronology;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 @RunWith(SpringRunner.class)
+
 @SpringBootTest
 public class TimTest {
 
@@ -207,4 +206,5 @@ public class TimTest {
         Date createTime = user.getCreateTime();
 
     }
+
 }
