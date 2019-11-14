@@ -67,10 +67,10 @@
 
     var show1 = Vue.extend({
         template: '<h1>创建的第一个组件</h1>'
-    })
+    });
 
     //下面定义了一个组件com1
-    Vue.component('com', show1)
+    Vue.component('com', show1);
 
     //第二种方式,一步完成
     Vue.component('com1', Vue.extend({template: '<h2>创建的第二个组件</h2>'}))
@@ -92,7 +92,7 @@
                     component: regist2           //表示如果匹配到了,那么就展示component属性对应的那个组件
                     //注意component 里面的这个regist必须是一个直接的模板对象
                 }]
-    })
+    });
 
     var vm = new Vue({
         el: "#app",

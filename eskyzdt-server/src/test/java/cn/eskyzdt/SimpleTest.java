@@ -1,10 +1,31 @@
 package cn.eskyzdt;
 
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+import java.time.Instant;
+import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
 
 public class SimpleTest {
+
+    @Test
+    public void test1114() {
+        Instant now = Instant.now();
+        System.out.println(now);
+        OffsetDateTime offsetDateTime = now.atOffset(ZoneOffset.of("+8"));
+        System.out.println(offsetDateTime);
+        int hour = offsetDateTime.getHour();
+        System.out.println(hour);
+        long t1 = now.getEpochSecond();
+        ZoneOffset offset = offsetDateTime.getOffset();
+        System.out.println(t1);
+        System.out.println(offset);
+
+        long t2 = offsetDateTime.toEpochSecond();
+        System.out.println(t2);
+        System.out.println("两个时间相减为: " + (t2-t1));
+        System.out.println("不同时区的时间转换为epochsecond时,这两个数是相等的");
+    }
 
     @Test
     public void test1111() {

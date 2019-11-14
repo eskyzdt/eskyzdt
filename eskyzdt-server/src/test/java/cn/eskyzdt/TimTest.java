@@ -141,6 +141,8 @@ public class TimTest {
         System.out.println(LocalDateTime.parse("20111123 00:00:00", dateTimeFormatter));
         System.out.println(LocalDateTime.MIN);//支持的最小时间
         System.out.println(LocalDateTime.MAX);//支持的最大时间
+        System.out.println(  LocalDateTime.now().toEpochSecond(ZoneOffset.of("+8")));//把时间转为秒
+
     }
 
 
@@ -206,5 +208,6 @@ public class TimTest {
         Date createTime = user.getCreateTime();
 
     }
+
 
 }
