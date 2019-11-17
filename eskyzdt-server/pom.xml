@@ -10,16 +10,33 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>eskyzdt-server</artifactId>
-
     <dependencies>
         <dependency>
             <groupId>cn.timber</groupId>
             <artifactId>eskyzdt-api</artifactId>
             <version>1.0</version>
         </dependency>
-    </dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <version>2.0.1.RELEASE</version>
+            <scope>compile</scope>
+        </dependency>
 
-    <!--打包插件-->
+        <!--测试包-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!--amqp依赖,集成了rabbitMQ-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
+            <version>1.5.2.RELEASE</version>
+        </dependency>
+    </dependencies>
     <build>
         <plugins>
             <plugin>

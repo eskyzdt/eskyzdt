@@ -1,27 +1,24 @@
 package cn.eskyzdt;
 
+import cn.eskyzdt.modules.pic.entity.Pic;
 import cn.eskyzdt.modules.user.dao.UserDao;
 import cn.eskyzdt.modules.user.entity.User;
 import cn.eskyzdt.modules.user.entity.UserDto;
 import cn.eskyzdt.modules.user.service.UserService;
-import cn.eskyzdt.modules.pic.entity.Pic;
-import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import javax.sound.midi.Soundbank;
 import java.text.SimpleDateFormat;
 import java.time.*;
-import java.time.chrono.JapaneseChronology;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 @RunWith(SpringRunner.class)
+
 @SpringBootTest
-@Slf4j
 public class TimTest {
 
     @Autowired
@@ -35,10 +32,7 @@ public class TimTest {
         Pic byId = userDao.findById2(1);
         //   User byId = userService.findById(1);
         System.out.println(byId);
-        log.info("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-        log.error("bbbbbbbbbbbbbbbbb");
-        log.debug("cccccccccccccccccccc");
-        log.warn("eeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+
     }
 
     @Test
@@ -147,6 +141,8 @@ public class TimTest {
         System.out.println(LocalDateTime.parse("20111123 00:00:00", dateTimeFormatter));
         System.out.println(LocalDateTime.MIN);//支持的最小时间
         System.out.println(LocalDateTime.MAX);//支持的最大时间
+        System.out.println(  LocalDateTime.now().toEpochSecond(ZoneOffset.of("+8")));//把时间转为秒
+
     }
 
 
@@ -174,7 +170,7 @@ public class TimTest {
     @Test
     public void test1029 (){
         Map<String, Object> params = new HashMap<>();
-        String[] pa = new String[]{"1","2"};
+        String[] pa = new String[]{"1","2","3"};
         params.put("id", pa);
         List<User> users = userService.queryUser(params);
         System.out.println(users);
@@ -212,4 +208,6 @@ public class TimTest {
         Date createTime = user.getCreateTime();
 
     }
+
+
 }

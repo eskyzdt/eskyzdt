@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<html>
 <head>
     <meta charset="UTF-8">
     <!-- 引入样式 -->
@@ -7,11 +6,12 @@
     <!-- import Vue before Element -->
     <style>
         .head {
-            color: blue;
+            color: #66CCFF;
             text-align: center;
         }
+
         .footer {
-            color: red;
+            color: #999;
             size: A4;
             text-align: center;
         }
@@ -23,44 +23,87 @@
 
 </head>
 <body>
+
 <!--vue-->
 <div id="app">
     <div class="head"> {{head}}</div>
-
     <div class="head">
         <img :src="url"/>
     </div>
 
-
-
     <form action="/user/annoTest" enctype="text/plain" id="formA">
-        <p>用户名:<input type="text" name="username" /></p>
-         <p>&emsp;密码:<input type="text" name="password" /></p>
-         <p>时间测试:<input type="text" name="createTime" /></p>
-        <input type="submit" value="登陆" />
+        <p>用户名:<input type="text" name="username"/></p>
+        <p>&emsp;密码:<input type="text" name="password"/></p>
+        <p>时间测试:<input type="text" name="createTime"/></p>
+
+        <a href="#/regist" style="color: #999999">注册</a>
+        <router-link to="/login" tag="button">二号注册按钮</router-link>
+        <input type="submit" value="登陆"/>
     </form>
 
-
+    <com></com>
+    <router-view></router-view>
+    <com1></com1>
     <div class="footer">
         {{foot}}
     </div>
 </div>
 <!--vue结束-->
 
-
-
 </body>
 <script src="vue.js"></script>
+<script src="vue-router.js"></script>
 
 <script>
+    //组件的模板对象
+    var regist = {
+        template: '<h1>注册组件</h1> '
+    };
+
+    var regist2 = {
+        template: '<h1>注册组件2</h1> '
+    };
+
+
+    var show1 = Vue.extend({
+        template: '<h1>创建的第一个组件</h1>'
+    });
+
+    //下面定义了一个组件com1
+    Vue.component('com', show1);
+
+    //第二种方式,一步完成
+    Vue.component('com1', Vue.extend({template: '<h2>创建的第二个组件</h2>'}))
+
+    //注意这个也需要放在new Vue的前面
+    var routerObj = new VueRouter({
+        routes:
+            [
+                {
+                    path: '/',
+                    redirect: '/login'
+                }, {
+                path: '/regist',        //这个表示监听哪个路由的链接地址
+                component: regist           //表示如果匹配到了,那么就展示component属性对应的那个组件
+                //注意component 里面的这个regist必须是一个直接的模板对象
+            },
+                {
+                    path: '/login',        //这个表示监听哪个路由的链接地址
+                    component: regist2           //表示如果匹配到了,那么就展示component属性对应的那个组件
+                    //注意component 里面的这个regist必须是一个直接的模板对象
+                }]
+    });
+
     var vm = new Vue({
         el: "#app",
         data: {
-            head: "张栋天的网站",
+            head: "网站测试",
             foot: "皖ICP备19017745号-1",
             url: "./aa.jpg"
-        }
-    })
+        },
+        methods: {},
+        router: routerObj
+    });
 
 
 </script>
