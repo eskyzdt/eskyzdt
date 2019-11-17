@@ -64,3 +64,51 @@ INSERT INTO `item`(`id`, `item_name`, `serial`, `item_type`, `item_price`, `ad`,
 INSERT INTO `item`(`id`, `item_name`, `serial`, `item_type`, `item_price`, `ad`, `ap`, `ad_def`, `ap_def`, `speed`) VALUES (34, '真蓝龙', 0, 8, 9980, 10000, 10000, 7500, 7500, 3000);
 INSERT INTO `item`(`id`, `item_name`, `serial`, `item_type`, `item_price`, `ad`, `ap`, `ad_def`, `ap_def`, `speed`) VALUES (35, '真帝龙', 0, 8, 17980, 20000, 20000, 10000, 10000, 5000);
 INSERT INTO `item`(`id`, `item_name`, `serial`, `item_type`, `item_price`, `ad`, `ap`, `ad_def`, `ap_def`, `speed`) VALUES (36, '水晶圣龙', 0, 8, 39980, 40000, 40000, 20000, 20000, 10000);
+
+
+-- 角色表
+CREATE TABLE `hero` (
+	`id` INT ( 20 ) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`serial` BIGINT ( 20 ) UNSIGNED NOT NULL DEFAULT '0' COMMENT '序列号',
+	`name` VARCHAR ( 12 ) CHARACTER
+	SET utf8 NOT NULL DEFAULT '' COMMENT '姓名',
+	`level` VARCHAR ( 20 ) NOT NULL COMMENT '等级',
+	`class` INT ( 3 ) UNSIGNED NOT NULL DEFAULT '0' COMMENT '种族',
+	`hero_type` INT ( 3 ) UNSIGNED NOT NULL DEFAULT '0' COMMENT '0:战士 1:法师 2:盗贼',
+	`profession` INT ( 3 ) UNSIGNED NOT NULL DEFAULT '0' COMMENT '职业',
+	`guild` VARCHAR ( 12 ) CHARACTER
+	SET utf8 NOT NULL DEFAULT '' COMMENT '公会',
+	`now_zone_idx` SMALLINT ( 5 ) UNSIGNED NOT NULL DEFAULT '0' COMMENT '所在位置',
+	`now_zone_x` TINYINT ( 3 ) UNSIGNED NOT NULL DEFAULT '0' COMMENT '所在x坐标',
+	`now_zone_y` TINYINT ( 3 ) UNSIGNED NOT NULL DEFAULT '0' COMMENT '所在y坐标',
+	`gold` INT ( 10 ) UNSIGNED NOT NULL DEFAULT '0' COMMENT '金钱',
+	`exp` BIGINT ( 20 ) UNSIGNED NOT NULL DEFAULT '0' COMMENT '经验',
+	`speed_move` TINYINT ( 3 ) UNSIGNED NOT NULL DEFAULT '0' COMMENT '移动速度',
+	`speed_attack` SMALLINT ( 5 ) UNSIGNED NOT NULL DEFAULT '0' COMMENT '攻击速度',
+	`speed_skill` SMALLINT ( 5 ) UNSIGNED NOT NULL DEFAULT '0' COMMENT '技能施放速度',
+	`str` SMALLINT ( 5 ) UNSIGNED NOT NULL DEFAULT '0' COMMENT '力量',
+	`intel` INT ( 10 ) UNSIGNED NOT NULL DEFAULT '0' COMMENT '智力',
+	`dex` INT ( 10 ) UNSIGNED NOT NULL DEFAULT '0' COMMENT '身法',
+	`life` INT ( 10 ) UNSIGNED NOT NULL DEFAULT '0' COMMENT '体质',
+	`aim` INT ( 10 ) UNSIGNED NOT NULL DEFAULT '0' COMMENT '精准',
+	`luck` INT ( 10 ) UNSIGNED NOT NULL DEFAULT '0' COMMENT '福缘',
+	`attr` INT ( 10 ) UNSIGNED NOT NULL DEFAULT '0' COMMENT '魅力',
+	`dp` INT ( 10 ) UNSIGNED NOT NULL DEFAULT '0' COMMENT '物攻',
+	`ap` INT ( 10 ) UNSIGNED NOT NULL DEFAULT '0' COMMENT '魔攻',
+	`hc` INT ( 10 ) UNSIGNED NOT NULL DEFAULT '0' COMMENT '精力',
+	`hd` INT ( 10 ) UNSIGNED NOT NULL DEFAULT '0' COMMENT '体力',
+	`hp` INT ( 10 ) UNSIGNED NOT NULL DEFAULT '0' COMMENT 'hp',
+	`mp` INT ( 10 ) UNSIGNED NOT NULL DEFAULT '0' COMMENT 'mp',
+	`maxhp` INT ( 10 ) UNSIGNED NOT NULL DEFAULT '0' COMMENT '最大hp',
+	`maxmp` INT ( 10 ) UNSIGNED NOT NULL DEFAULT '0' COMMENT '最大mp',
+	`mount` INT ( 10 ) UNSIGNED NOT NULL DEFAULT '0' COMMENT '坐骑',
+	`weapon` INT ( 10 ) UNSIGNED NOT NULL DEFAULT '0' COMMENT '武器',
+	`head` INT ( 10 ) UNSIGNED NOT NULL DEFAULT '0' COMMENT '头部',
+	`clothes` INT ( 10 ) UNSIGNED NOT NULL DEFAULT '0' COMMENT '上衣',
+	`pants` INT ( 10 ) UNSIGNED NOT NULL DEFAULT '0' COMMENT '下装',
+	`hand` INT ( 10 ) UNSIGNED NOT NULL DEFAULT '0' COMMENT '护手',
+	`foot` INT ( 10 ) UNSIGNED NOT NULL DEFAULT '0' COMMENT '鞋子',
+	`item` INT ( 10 ) UNSIGNED NOT NULL DEFAULT '0' COMMENT '道具',
+	`country` INT ( 10 ) UNSIGNED NOT NULL DEFAULT '0' COMMENT '国家',
+PRIMARY KEY ( `id` )
+) ENGINE = INNODB DEFAULT CHARSET = utf8mb4 ROW_FORMAT = DYNAMIC COMMENT = '人物表';
