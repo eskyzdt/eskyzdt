@@ -4,9 +4,25 @@ import org.junit.Test;
 
 import java.time.Instant;
 import java.time.OffsetDateTime;
+import java.time.ZoneId;
 import java.time.ZoneOffset;
 
 public class SimpleTest {
+
+    @Test
+    public void test1121() {
+        ZoneId of = ZoneId.of("+8");
+        ZoneId of2 = ZoneId.of("-2");
+        ZoneId mit = ZoneId.of("Asia/Ho_Chi_Minh");
+        System.out.println(of + "ddd" + of2 + "ddd" + mit);
+
+        OffsetDateTime now = OffsetDateTime.now(of);
+        OffsetDateTime now2 = OffsetDateTime.now(of2);
+        OffsetDateTime now3 = OffsetDateTime.now(mit);
+        System.out.println(now);
+        System.out.println(now2);
+        System.out.println(now3);
+    }
 
     @Test
     public void test1114() {
