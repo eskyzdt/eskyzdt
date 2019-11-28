@@ -28,6 +28,12 @@ public class TimTest {
     private UserService userService;
 
     @Test
+    public void test112601() {
+        String a = (String) null;
+        System.out.println(a);
+    }
+
+    @Test
     public void Test01() {
         Pic byId = userDao.findById2(1);
         //   User byId = userService.findById(1);

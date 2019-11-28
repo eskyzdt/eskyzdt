@@ -1,3 +1,5 @@
+
+-- 如果在ENGINE=InnoDB后面加上 AUTO_INCREMENT=10,那么主键会从10开始增加
 -- CREATE DATABASE timber;
 -- USE timber;
 -- drop table if exists `user`;
