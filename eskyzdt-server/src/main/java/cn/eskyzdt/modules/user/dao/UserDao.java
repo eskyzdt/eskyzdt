@@ -16,7 +16,7 @@ public interface UserDao {
    //这里的dao层用了别名,所以这里有红线
    User findById(@Param("id") Integer id);
 
-   Pic findById2(@Param("id") Integer id);
+   UserDto findById2(@Param("id") Integer id);
 
    boolean insertUser(User user);
 

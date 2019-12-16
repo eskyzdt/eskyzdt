@@ -1,16 +1,22 @@
 package cn.eskyzdt;
 
+import cn.afterturn.easypoi.excel.ExcelExportUtil;
+import cn.afterturn.easypoi.excel.entity.ExportParams;
+import cn.afterturn.easypoi.excel.entity.params.ExcelExportEntity;
 import cn.eskyzdt.modules.pic.entity.Pic;
 import cn.eskyzdt.modules.user.dao.UserDao;
 import cn.eskyzdt.modules.user.entity.User;
 import cn.eskyzdt.modules.user.entity.UserDto;
 import cn.eskyzdt.modules.user.service.UserService;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
@@ -20,6 +26,8 @@ import java.util.*;
 
 @SpringBootTest
 public class TimTest {
+
+    //第一次提交
 
     @Autowired
     private UserDao userDao;
@@ -31,14 +39,6 @@ public class TimTest {
     public void test112601() {
         String a = (String) null;
         System.out.println(a);
-    }
-
-    @Test
-    public void Test01() {
-        Pic byId = userDao.findById2(1);
-        //   User byId = userService.findById(1);
-        System.out.println(byId);
-
     }
 
     @Test
@@ -211,8 +211,7 @@ public class TimTest {
         UserDto u = new UserDto();
         u.setId(1);
         UserDto user = userService.findUser(u);
-        Date createTime = user.getCreateTime();
-
+     /*   Date createTime = user.getCreateTime();*/
     }
 
 
