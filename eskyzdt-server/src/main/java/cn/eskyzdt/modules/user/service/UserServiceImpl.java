@@ -3,6 +3,7 @@ package cn.eskyzdt.modules.user.service;
 import cn.eskyzdt.modules.user.dao.UserDao;
 import cn.eskyzdt.modules.user.entity.User;
 import cn.eskyzdt.modules.user.entity.UserDto;
+import com.baomidou.mybatisplus.extension.api.R;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,9 +21,27 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserDao userDao;
 
+    @Override
     public User findById(Integer id) {
         System.out.println("USerServicerun");
-        return userDao.findById(id);
+        User byId = userDao.findById(id);
+        R r = R.ok(byId);
+        return byId;
+    }
+
+    @Override
+    public R findByIdR(Integer id) {
+        System.out.println("USerServicerun");
+        UserDto byId = userDao.findById2(id);
+        R r = R.ok(byId);
+        return r;
+    }
+
+    @Override
+    public UserDto findById2(Integer id) {
+        System.out.println("USerServicerun");
+        UserDto byId2 = userDao.findById2(id);
+        return byId2;
     }
 
     @Override

@@ -41,7 +41,7 @@
         </where>
     </select>
 
-    <select id="findById2"  resultType="pic">
+    <select id="findById2"  resultType="userDto">
         select * from user
         <where>
             <if test="id!=null">

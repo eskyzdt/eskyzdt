@@ -6,8 +6,65 @@ import java.time.Instant;
 import java.time.OffsetDateTime;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class SimpleTest {
+
+    @Test
+    public void test120602() {
+        String match = "^.{0,50}$";
+        Pattern pattern = Pattern.compile(match);
+        Matcher matcher = pattern.matcher("222dsfdsbDFADF222222222D222222");
+        boolean matches = matcher.matches();
+        System.out.println(matches);
+
+        match = "^[0-9]{0,6}\\.[0-9]{0,2}|[0-9]{0,6}$";
+        Pattern pattern2 = Pattern.compile(match);
+        Matcher matcher2 = pattern2.matcher("123456.22");
+        boolean matches2 = matcher2.matches();
+        System.out.println(matches2);
+
+    }
+
+    @Test
+    public void test120601() {
+        String match = "^[A-Za-z0-9]{1,30}";
+        Pattern pattern = Pattern.compile(match);
+        Matcher matcher = pattern.matcher("222dsfdsbDFADF222222222D222222");
+        boolean matches = matcher.matches();
+        System.out.println(matches);
+    }
+
+    @Test
+    public void test120501() {
+        String match = "\\d{11}";
+        Pattern pattern = Pattern.compile(match);
+        Matcher matcher = pattern.matcher("222222222222");
+        boolean matches = matcher.matches();
+        System.out.println(matches);
+
+         matches = Pattern.compile(match).matcher("222222222222").matches();
+        System.out.println(matches);
+    }
+
+    @Test
+    public void test120402() {
+        for (int i = 0; i < 10; i++) {
+            if (i == 5) {
+                continue;
+            }
+            System.out.println(i);
+        }
+
+    }
+
+    @Test
+    public void test120401() {
+        int num = 2147483647 ;
+        long temp = num + 2L ;
+        System.out.println(num) ;
+    }
 
     @Test
     public void test1121() {
