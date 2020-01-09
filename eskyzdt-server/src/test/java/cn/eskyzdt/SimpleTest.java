@@ -2,14 +2,76 @@ package cn.eskyzdt;
 
 import org.junit.Test;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.OffsetDateTime;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
+import java.util.Date;
+import java.util.Random;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class SimpleTest {
+    class Base {
+
+        private String baseName = "base";
+
+        public Base() {
+
+            callName();
+
+        }
+
+        public void callName() {
+
+            System.out.println(baseName);
+
+        }
+
+    }
+
+
+    class Sub extends Base {
+
+        private String baseName = "sub";
+
+
+        public void callName() {
+
+            System.out.println(baseName);
+
+        }
+
+    }
+
+    @Test
+    public void test20200305() {
+        final DateFormat df = new SimpleDateFormat("yyyyMMdd,HHmmss");
+        ExecutorService ts = Executors.newFixedThreadPool(100);
+        for (; ; ) {
+            ts.execute(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        //生成随机数，格式化日期
+                        long l = new Random().nextLong();
+                        Date date = new Date(Math.abs(l));
+                        String format = df.format(date);
+                        System.out.println(format);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        System.exit(1);
+                    }
+                }
+            });
+        }
+
+    }
+
 
     @Test
     public void test120602() {
@@ -38,13 +100,13 @@ public class SimpleTest {
 
     @Test
     public void test120501() {
-        String match = "\\d{11}";
+        String match = "[0-9]{0,7}^9{7}|[0-9]{0,7}\\.[0-9]{0,9}";
         Pattern pattern = Pattern.compile(match);
-        Matcher matcher = pattern.matcher("222222222222");
+        Matcher matcher = pattern.matcher("9999998");
         boolean matches = matcher.matches();
         System.out.println(matches);
 
-         matches = Pattern.compile(match).matcher("222222222222").matches();
+        matches = Pattern.compile(match).matcher("222222222222").matches();
         System.out.println(matches);
     }
 
@@ -61,9 +123,9 @@ public class SimpleTest {
 
     @Test
     public void test120401() {
-        int num = 2147483647 ;
-        long temp = num + 2L ;
-        System.out.println(num) ;
+        int num = 2147483647;
+        long temp = num + 2L;
+        System.out.println(num);
     }
 
     @Test
@@ -96,7 +158,7 @@ public class SimpleTest {
 
         long t2 = offsetDateTime.toEpochSecond();
         System.out.println(t2);
-        System.out.println("两个时间相减为: " + (t2-t1));
+        System.out.println("两个时间相减为: " + (t2 - t1));
         System.out.println("不同时区的时间转换为epochsecond时,这两个数是相等的");
     }
 
