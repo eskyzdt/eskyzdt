@@ -17,6 +17,7 @@ public class User implements Serializable {
     private String password;
     private String phone;
     private String email;
+    private String dupq;
     @JsonFormat(pattern = "yyyy-MM")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @JSONField(format = "yyyyMM")

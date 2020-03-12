@@ -1,93 +1,15 @@
 package cn.eskyzdt;
 
-import org.apache.tomcat.jni.Local;
 import org.junit.Test;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.*;
-import java.util.Date;
-import java.util.Random;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.time.Instant;
+import java.time.OffsetDateTime;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class SimpleTest {
-    class Base {
-
-        private String baseName = "base";
-
-        public Base() {
-
-            callName();
-
-        }
-
-        public void callName() {
-
-            System.out.println(baseName);
-
-        }
-
-    }
-
-
-    class Sub extends Base {
-
-        private String baseName = "sub";
-
-
-        public void callName() {
-
-            System.out.println(baseName);
-
-        }
-
-    }
-
-    @Test
-    public void test20200312() {
-        LocalDateTime localDateTime = LocalDateTime.of(2020,3,12, 0,0,0);
-        long l = localDateTime.toEpochSecond(ZoneOffset.of("+8"));
-        System.out.println(localDateTime);
-        System.out.println(l);
-    }
-
-
-    @Test
-    public void test20200311() {
-        double random = Math.random();
-        int radom = (int) ((Math.random() * 9 + 1) * 100000);
-        System.out.println(random);
-        System.out.println(radom);
-    }
-
-
-    @Test
-    public void test20200305() {
-        final DateFormat df = new SimpleDateFormat("yyyyMMdd,HHmmss");
-        ExecutorService ts = Executors.newFixedThreadPool(100);
-        for (; ; ) {
-            ts.execute(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        //生成随机数，格式化日期
-                        long l = new Random().nextLong();
-                        Date date = new Date(Math.abs(l));
-                        String format = df.format(date);
-                        System.out.println(format);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        System.exit(1);
-                    }
-                }
-            });
-        }
-
-    }
-
 
     @Test
     public void test120602() {
@@ -116,14 +38,39 @@ public class SimpleTest {
 
     @Test
     public void test120501() {
-        String match = "[0-9]{0,7}^9{7}|[0-9]{0,7}\\.[0-9]{0,9}";
+        String match = "\\d{11}";
         Pattern pattern = Pattern.compile(match);
-        Matcher matcher = pattern.matcher("9999998");
+/*        Matcher matcher = pattern.matcher("222222222222");
         boolean matches = matcher.matches();
         System.out.println(matches);
+         matches = Pattern.compile(match).matcher("222222222222").matches();*/
 
-        matches = Pattern.compile(match).matcher("222222222222").matches();
-        System.out.println(matches);
+ /*       String match2 = "^([\\u4E00-\\u9FA5]|[.]|\\s){0,20}$";
+        Pattern pattern2 = Pattern.compile(match2);
+        Matcher matcher2 = pattern2.matcher("是是是是是 x     是是是.");
+        System.out.println(matcher2.matches());
+*/
+        /*
+        String match3 = "^.{0,20}$";
+        Pattern pattern3 = Pattern.compile(match3);
+        Matcher matcher3 = pattern3.matcher("是是是是是是是是是是是是是是");
+        System.out.println(matcher3.matches());*/
+
+       /* String match4 = "^.*[A-Za-z]+.*$";
+        Pattern pattern4 = Pattern.compile(match4);
+        Matcher matcher4 = pattern4.matcher("在的的");
+        System.out.println(matcher4.matches());*/
+
+  /*      String match5 = "^1[3-9]\\d{9}$";
+        Pattern pattern5 = Pattern.compile(match5);
+        Matcher matcher5 = pattern5.matcher("03999999999");
+        System.out.println(matcher5.matches());*/
+
+        String match2 = "[1-9][0-9]{0,6}";
+        Pattern pattern2 = Pattern.compile(match2);
+        Matcher matcher2 = pattern2.matcher("1122222");
+        System.out.println(matcher2.matches());
+
     }
 
     @Test
@@ -139,9 +86,9 @@ public class SimpleTest {
 
     @Test
     public void test120401() {
-        int num = 2147483647;
-        long temp = num + 2L;
-        System.out.println(num);
+        int num = 2147483647 ;
+        long temp = num + 2L ;
+        System.out.println(num) ;
     }
 
     @Test
@@ -160,7 +107,7 @@ public class SimpleTest {
     }
 
     @Test
-    public void test1114() {
+    public void test1114() throws InterruptedException {
         Instant now = Instant.now();
         System.out.println(now);
         OffsetDateTime offsetDateTime = now.atOffset(ZoneOffset.of("+8"));
@@ -168,13 +115,15 @@ public class SimpleTest {
         int hour = offsetDateTime.getHour();
         System.out.println(hour);
         long t1 = now.getEpochSecond();
+        Thread.sleep(1000);
         ZoneOffset offset = offsetDateTime.getOffset();
         System.out.println(t1);
         System.out.println(offset);
 
-        long t2 = offsetDateTime.toEpochSecond();
+        OffsetDateTime offsetDateTime2 = Instant.now().atOffset(ZoneOffset.of("+8"));
+        long t2 = offsetDateTime2.toEpochSecond();
         System.out.println(t2);
-        System.out.println("两个时间相减为: " + (t2 - t1));
+        System.out.println("两个时间相减为: " + (t2-t1));
         System.out.println("不同时区的时间转换为epochsecond时,这两个数是相等的");
     }
 
@@ -191,5 +140,13 @@ public class SimpleTest {
                 count = 0;
             }
         }
+    }
+
+    @Test
+    public void test0224(){
+        String a = new String("3.33");
+        Integer integer = Integer.valueOf(a);
+        System.out.println(integer);
+
     }
 }

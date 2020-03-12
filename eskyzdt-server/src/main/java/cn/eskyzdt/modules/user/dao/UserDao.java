@@ -27,4 +27,8 @@ public interface UserDao {
     UserDto findUser(UserDto userDto);
 
    boolean insertUserDto(UserDto user);
+
+    List<User> findUserList(@Param("username") String userName);
+
+    boolean insertUserDup(User user);
 }

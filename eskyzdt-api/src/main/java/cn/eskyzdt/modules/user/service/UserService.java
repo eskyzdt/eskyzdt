@@ -3,6 +3,7 @@ package cn.eskyzdt.modules.user.service;
 import cn.eskyzdt.modules.user.entity.User;
 import cn.eskyzdt.modules.user.entity.UserDto;
 import com.baomidou.mybatisplus.extension.api.R;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;
@@ -17,7 +18,11 @@ public interface UserService {
 
     UserDto findUser(UserDto userDto);
 
+    List<User> findUserList(String username);
+
     boolean insertUser (User user);
+
+    boolean insertUserDup (User user);
 
     boolean insertUser (UserDto user);
 
