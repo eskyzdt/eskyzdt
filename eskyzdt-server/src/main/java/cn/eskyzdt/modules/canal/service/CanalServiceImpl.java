@@ -23,7 +23,7 @@ public class CanalServiceImpl {
         int emptyCount = 0;
         try {
             connector.connect();
-            connector.subscribe("timber.user,timber.hero");
+            connector.subscribe("timber\\.user,timber\\.www_333");
             connector.rollback();
             int totalEmptyCount = 120;
             while (emptyCount < totalEmptyCount) {
@@ -32,14 +32,14 @@ public class CanalServiceImpl {
                 int size = message.getEntries().size();
                 if (batchId == -1 || size == 0) {
                     emptyCount++;
-                    System.out.println("empty count : " + emptyCount);
+                    System.out.println("empty count : " + emptyCount + "batchId : " + batchId);
                     try {
                         Thread.sleep(1000);
                     } catch (InterruptedException e) {
                     }
                 } else {
                     emptyCount = 0;
-                    // System.out.printf("message[batchId=%s,size=%s] \n", batchId, size);
+                    System.out.printf("message[batchId=%s,size=%s] \n", batchId, size);
                     printEntry(message.getEntries());
                 }
 

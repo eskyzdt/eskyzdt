@@ -1,13 +1,11 @@
 package cn.eskyzdt;
 
+import org.apache.tomcat.jni.Local;
 import org.junit.Test;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.time.OffsetDateTime;
-import java.time.ZoneId;
-import java.time.ZoneOffset;
+import java.time.*;
 import java.util.Date;
 import java.util.Random;
 import java.util.concurrent.ExecutorService;
@@ -47,6 +45,24 @@ public class SimpleTest {
         }
 
     }
+
+    @Test
+    public void test20200312() {
+        LocalDateTime localDateTime = LocalDateTime.of(2020,3,12, 0,0,0);
+        long l = localDateTime.toEpochSecond(ZoneOffset.of("+8"));
+        System.out.println(localDateTime);
+        System.out.println(l);
+    }
+
+
+    @Test
+    public void test20200311() {
+        double random = Math.random();
+        int radom = (int) ((Math.random() * 9 + 1) * 100000);
+        System.out.println(random);
+        System.out.println(radom);
+    }
+
 
     @Test
     public void test20200305() {

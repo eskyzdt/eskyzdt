@@ -18,3 +18,5 @@ spring:
     password: admin
     virtual-host: cms.host
     connection-timeout: 0
+
+fugai.sss: eee
