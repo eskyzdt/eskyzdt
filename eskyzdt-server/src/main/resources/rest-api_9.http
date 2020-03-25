@@ -1,0 +1,422 @@
+POST http://127.0.0.1:80/msg
+Content-Type: application/json
+Cache-Control: no-cache
+Accept: */*
+
+
+###
+GET http://127.0.0.1:80/index2
+Content-Type: application/json
+Cache-Control: no-cache
+Accept: */*
+
+###
+POST http://127.0.0.1:80/amqp/send
+Content-Type: application/json
+Cache-Control: no-cache
+Accept: */*
+
+
+###
+POST http://127.0.0.1:16027/iWaybill/createPreAdditional
+Content-Type: application/json
+Cache-Control: no-cache
+Accept: */*
+
+{
+  "cargo": {
+    "cargoName": "54645",
+    "cargoPrice": 0,
+    "quantity": 0,
+    "unit": "",
+    "volume": 4564564,
+    "weight": 54654
+  },
+  "payment": {
+    "serviceRateCreate": 0.06,
+    "totalFreightAmount": 5000
+  },
+  "waybill": {
+    "carId": "76",
+    "carNumber": "皖KR0872",
+    "customerId": "1cc909bd9c0223be68971c810f7a1473",
+    "customizedNo": "",
+    "dispatchType": "1",
+    "driverId": "fede99a16b697ccbd4def8758da42db1",
+    "driverName": "林乙裳",
+    "id": "25d240e5be3851a338bbfa2b36972974",
+    "isReceipt": "0",
+    "lineId": "e936ebbc724a4d160961385d256a0b41",
+    "node": "0-11",
+    "planDispatchTime": "2020-01-10 18:05:00",
+    "projectId": "fd3acc2b3fa638b6349c3f6f31121212",
+    "receiptRemark": "",
+    "receiverCity": "北京市",
+    "receiverCityId": "110100",
+    "receiverCompany": "南京村鸟",
+    "receiverContactName": "",
+    "receiverContactPhone": "15888888888",
+    "receiverDetail": "",
+    "receiverDistrict": "房山区",
+    "receiverDistrictId": "110111",
+    "receiverName": "ww",
+    "receiverProvince": "北京",
+    "receiverProvinceId": "110000",
+    "remark": "",
+    "senderCity": "北京市",
+    "senderCityId": "110100",
+    "senderCompany": "北京东路",
+    "senderContactName": "",
+    "senderContactPhone": "15555555551",
+    "senderDetail": "1",
+    "senderDistrict": "东城区",
+    "senderDistrictId": "110101",
+    "senderName": "z",
+    "senderProvince": "北京",
+    "senderProvinceId": "110000",
+    "uid": "5d689a6999080a1c5cf6d0e6"
+  }
+}
+
+###
+
+POST http://localhost:16027/iWaybill/createPre
+Content-Type: application/json
+Cache-Control: no-cache
+Accept: */*
+
+{
+  "waybill": {
+    "waybillNo": "qqqwwweeeeerr2rrrr",
+    "isReceipt": 1,
+    "remark": 33,
+    "senderProvinceId": 11,
+    "senderProvince": 11,
+    "senderCityId": 11,
+    "senderCity": 11,
+    "senderDistrictId": 33,
+    "senderDistrict": "342",
+    "senderDetail": "",
+    "senderName": "234",
+    "senderContactPhone": "234324",
+    "receiverName": "23",
+    "receiverProvinceId": "23",
+    "receiverProvince": "23",
+    "receiverCityId": "32",
+    "receiverCity": "23",
+    "receiverDistrictId": "32",
+    "receiverDistrict": "323",
+    "receiverDetail": "32",
+    "receiverContactPhone": "23423",
+    "customerId": "333",
+    "projectId": "234234",
+    "driverId": "39",
+    "carId": "16",
+    "planDispatchTime": "2019-12-28 02:02:00"
+  },
+  "cargo": {
+    "cargoName": "肆",
+    "weight": "234",
+    "volume": "423",
+    "quantity": "5325",
+    "unit": "在在",
+    "cargoPrice": "653"
+  },
+  "payment": {
+    "totalFreightAmount": "32278.99",
+    "serviceRateCreate": "0.06"
+  }
+}
+
+### 三段
+
+POST http://127.0.0.1:16027/iWaybill/createWaybill
+Content-Type: application/json
+Cache-Control: no-cache
+Accept: */*
+
+{
+  "waybill": {
+    "isReceipt": 1,
+    "remark": 33,
+    "senderProvinceId": 11,
+    "senderProvince": 11,
+    "senderCityId": 11,
+    "senderCity": 11,
+    "senderDistrictId": 33,
+    "senderDistrict": "342",
+    "senderDetail": "",
+    "senderName": "234",
+    "senderContactPhone": "234324",
+    "receiverName": "23",
+    "receiverProvinceId": "23",
+    "receiverProvince": "23",
+    "receiverCityId": "32",
+    "receiverCity": "23",
+    "receiverDistrictId": "32",
+    "receiverDistrict": "323",
+    "receiverDetail": "32",
+    "receiverContactPhone": "23423",
+    "customerId": "0e42a3b7b77400973abd714c2c986bb8",
+    "projectId": "234234",
+    "driverId": "39",
+    "carId": "16",
+    "planDispatchTime": "2020-12-28 02:02:00"
+  },
+  "cargo": {
+    "cargoName": "肆",
+    "weight": "234",
+    "volume": "423",
+    "quantity": "5325",
+    "unit": "在在",
+    "cargoPrice": "653"
+  },
+  "payment": {
+    "totalFreightAmount": "32278.99",
+    "serviceRateCreate": "0.06",
+    "arriveAmount": "23423"
+  }
+}
+
+###
+## 整段
+POST http://127.0.0.1:16027/iWaybill/createWaybill
+Content-Type: application/json
+Cache-Control: no-cache
+Accept: */*
+
+{
+  "waybill":{"carId":"73",
+    "carNumber":"苏H99910",
+    "customerId":"c3c48f997caffa8f38ba6aa7be4c32b2",
+    "customizedNo":"","dispatchType":"2",
+    "driverId":"0a2b9d98d1cb2c36463df35968f3388e",
+    "driverLeaderId":"9","driverName":"阿福",
+    "id":"","isReceipt":"1","planDispatchTime":"2020-01-09 15:17:00",
+    "projectId":"fd3acc2b3fa638b6349c3f6f31121212",
+    "receiptRemark":"","receiverCity":"北京市","receiverCityId":"110100",
+    "receiverCompany":"","receiverContactName":"",
+    "receiverContactPhone":"15555555555",
+    "receiverDetail":"","receiverDistrict":"东城区","receiverDistrictId":"110101",
+    "receiverName":"","receiverProvince":"北京","receiverProvinceId":"110000",
+    "remark":"","senderCity":"北京市","senderCityId":"110100","senderCompany":"",
+    "senderContactName":"","senderContactPhone":"15555555555","senderDetail":"",
+    "senderDistrict":"东城区","senderDistrictId":"110101","senderName":"","senderProvince":"北京",
+    "senderProvinceId":"110000"},
+  "cargo": {
+    "cargoName": "肆",
+    "weight": "500",
+    "volume": "423",
+    "quantity": "5325",
+    "unit": "在在",
+    "cargoPrice": "653"
+  },
+  "payment": {
+    "totalFreightAmount": "32278.99",
+    "serviceRateCreate": "0.06"
+  }
+}
+
+###createAdditional
+POST http://127.0.0.1:16027/iWaybill/createAdditional
+Content-Type: application/json
+Cache-Control: no-cache
+Accept: */*
+
+{
+  "cargo": {
+    "cargoName": "333",
+    "cargoPrice": 0,
+    "quantity": 0,
+    "unit": "",
+    "volume": 3333,
+    "weight": 33333
+  },
+  "payment": {
+    "serviceRateCreate": 0.06,
+    "totalFreightAmount": 5555
+  },
+  "waybill": {
+    "carId": "1",
+    "carNumber": "苏A12365",
+    "customerId": "1cc909bd9c0223be68971c810f7a1473",
+    "customizedNo": "",
+    "dispatchType": "1",
+    "driverId": "0a2b9d98d1cb2c36463df35968f3388e",
+    "driverName": "阿福",
+    "id": "",
+    "isReceipt": "1",
+    "lineId": "e936ebbc724a4d160961385d256a0b41",
+    "loadTime": "2020-01-09 17:24:00",
+    "node": "0-11",
+    "projectId": "fd3acc2b3fa638b6349c3f6f31121212",
+    "receiptRemark": "",
+    "receiverCity": "北京市",
+    "receiverCityId": "110100",
+    "receiverCompany": "南京村鸟",
+    "receiverContactName": "",
+    "receiverContactPhone": "15888888888",
+    "receiverDetail": "",
+    "receiverDistrict": "房山区",
+    "receiverDistrictId": "110111",
+    "receiverName": "ww",
+    "receiverProvince": "北京",
+    "receiverProvinceId": "110000",
+    "remark": "",
+    "senderCity": "北京市",
+    "senderCityId": "110100",
+    "senderCompany": "北京东路",
+    "senderContactName": "",
+    "senderContactPhone": "15555555551",
+    "senderDetail": "1",
+    "senderDistrict": "东城区",
+    "senderDistrictId": "110101",
+    "senderName": "z",
+    "senderProvince": "北京",
+    "senderProvinceId": "110000",
+    "uid": "5d689a6999080a1c5cf6d0e6",
+    "unloadTime": "2020-01-10 17:24:00"
+  }
+}
+
+###
+POST http://localhost:16027/iWaybill/uploadAbnormal?waybillId=a080a87786a5e72ba6043d379e1a19&abnormalPic=23423&abnormalRemark=1
+Content-Type: application/json
+Cache-Control: no-cache
+Accept: */*
+
+###
+
+POST http://127.0.0.1:16027/queryWaybill/queryWaybillDetail?waybillId=52f0895c5c45baa61cefe0726c4ce114
+Content-Type: application/json
+Cache-Control: no-cache
+Accept: */*
+
+###  侧边查询
+
+POST http://localhost:16027/queryWaybill/queryPrePage
+Content-Type: application/json
+Cache-Control: no-cache
+Accept: */*
+
+
+###
+
+POST http://localhost:16027/v4/ttmscustomer/queryRate
+Content-Type: application/json
+Cache-Control: no-cache
+Accept: */*
+
+customerId=0ad748c7495eec23665a115b895cab75
+
+###
+
+POST http://127.0.0.1:16027/queryWaybill/queryPrePage?condition=
+Content-Type: application/json
+Cache-Control: no-cache
+Accept: */*
+
+###
+
+POST http://localhost:16027/iWaybill/queryPreDetail?waybillId=0e0aad93154dae29e0de79e1b3ad596f
+Content-Type: application/json
+Cache-Control: no-cache
+Accept: */*
+
+###
+
+POST http://127.0.0.1:16027/queryWaybill/queryWaybillDetail?waybillId=a080a87786a5e72ba6043d379e1a19
+Content-Type: application/json
+Cache-Control: no-cache
+Accept: */*
+
+
+###
+
+POST http://192.168.14.84:16027/iWaybill/destroyById?waybillId=1b4fbb2c39b2d8f592b430acfda702c3
+Content-Type: application/json
+Cache-Control: no-cache
+Accept: */*
+
+###
+
+POST http://192.168.14.84:16027/iWaybill/deleteById?waybillId=0e0aad93154dae29e0de79e1b3ad596f
+Content-Type: application/json
+Cache-Control: no-cache
+Accept: */*
+
+### 导出excel
+POST http://127.0.0.1:16027/iWaybill/outputCreate
+Content-Type: application/json
+{}
+
+###
+GET http://127.0.0.1:16027/captcha/get_image_code
+Content-Type: application/json
+Accept: */*
+Cache-Control: no-cache
+### 登陆 1
+POST http://127.0.0.1:16027/account/login?phone=13888888888&password=000000&code=5mdg
+Content-Type: application/json
+Accept: */*
+Cache-Control: no-cache
+
+### 登陆 2
+POST http://127.0.0.1:16027/account/getCompany
+Content-Type: application/json
+Accept: */*
+Cache-Control: no-cache
+
+### 登陆 3
+POST http://127.0.0.1:16027/account/choose?chooseUid=5d689a6999080a1c5cf6d0e6
+Content-Type: application/json
+Accept: */*
+Cache-Control: no-cache
+
+###
+
+POST http://127.0.0.1:16027/queryWaybill/queryOrganization
+Content-Type: application/json
+Accept: */*
+Cache-Control: no-cache
+
+###
+
+POST http://127.0.0.1:16027/v4/project/selectAllProject?customerId=1cc909bd9c0223be68971c810f7a1473
+Content-Type: application/json
+Accept: */*
+Cache-Control: no-cache
+
+###
+POST http://127.0.0.1:16027/line/selectLocation?location
+Content-Type: application/json
+Accept: */*
+Cache-Control: no-cache
+
+###
+
+
+POST http://127.0.0.1:16027/senderReceiver/edit
+Content-Type: application/x-www-form-urlencoded
+Accept: */*
+Cache-Control: no-cache
+
+name=大华&company=北京啦啦啦啦回公司&provinceId=110000&province=北京&cityId=110100&city=北京市&districtId=110102&district=西城区&addressDetail=&contactPhone=13098988898&contactName=232323&type=2&id=38527bd5dc96cb8d3ed2800e6a258392
+
+###
+POST http://127.0.0.1:16027/senderReceiver/edit?name=大华&company=北京啦啦啦啦回公司&provinceId=110000&province=北京&cityId=110100&city=北京市&districtId=110102&district=西城区&addressDetail=~~~~~~~~~~~~~~~&contactPhone=13098988898&contactName=232323&type=2&id=38527bd5dc96cb8d3ed2800e6a258392
+
+Content-Type: application/x-www-form-urlencoded
+Accept: */*
+Cache-Control: no-cache
+
+name=大华&company=北京啦啦啦啦回公司&provinceId=110000&province=北京&cityId=110100&city=北京市&districtId=110102&district=西城区&addressDetail=~~~~~~~~~~~~~~~&contactPhone=13098988898&contactName=232323&type=2&id=38527bd5dc96cb8d3ed2800e6a258392
+
+###
+
+POST http://127.0.0.1:16027/queryWaybill/queryTrace?waybillId=b18e9c46abd6c955c8a4733336f6b477
+Content-Type: application/x-www-form-urlencoded
+Accept: */*
+Cache-Control: no-cache
+
+###

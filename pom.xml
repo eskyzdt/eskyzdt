@@ -4,6 +4,15 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <!--
+    对于maven的install
+    install：翻译：安装。将包安装至本地仓库，以让其它项目依赖。
+    该命令包含了package命令功能，不但会在项目路径下生成class文件和jar包，
+    同时会在你的本地maven仓库生成jar文件，供其他项目使用（如果没有设置过maven本地仓库，
+    一般在用户/.m2目录下。如果a项目依赖于b项目，那么install b项目时，
+    会在本地仓库同时生成pom文件和jar文件，解决了上面打包package出错的问题）。
+    -->
+
     <groupId>cn.timber</groupId>
     <artifactId>eskyzdt</artifactId>
     <packaging>pom</packaging>
@@ -20,6 +29,10 @@
     </parent>
     <dependencyManagement>
         <dependencies>
+            <!--provided意味着打包的时候可以不用包进去，别的设施(Web Container)会提供。事实上该依赖理论上可以参与编译，
+            测试，运行等周期。相当于compile，但是在打包阶段做了exclude的动作。
+            比如这里写成provide,那么把项目打成war包时,项目中就不会自带tomcat了,但因为我打的是jar包,而spring-boot默认提供内嵌的tomcat,
+            所以虽然把tomcat去掉了,但打包后还是会有-->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-tomcat</artifactId>

@@ -6,10 +6,20 @@ import java.time.Instant;
 import java.time.OffsetDateTime;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class SimpleTest {
+
+    @Test
+    public void test0318() {
+        List<String> s = new LinkedList<>();
+        s.add(0,"sa");
+        s.set(0,"sb");
+        System.out.println(s);
+    }
 
     @Test
     public void test120602() {

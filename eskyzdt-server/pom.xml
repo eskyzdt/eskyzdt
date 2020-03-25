@@ -25,9 +25,15 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
-            <scope>provided</scope>
+            <!--只在测试时使用,不随项目发布-->
+            <scope>test</scope>
         </dependency>
-
+        <!--fastjson-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.62</version>
+        </dependency>
         <!--amqp依赖,集成了rabbitMQ-->
         <dependency>
             <groupId>org.springframework.boot</groupId>

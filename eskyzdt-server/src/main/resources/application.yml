@@ -1,3 +1,6 @@
+# mybatis-plus输出所有打印语句的配置
+# mybatis-plus.configuration.log-impl=org.apache.ibatis.logging.stdout.StdOutImpl
+
 spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
@@ -20,7 +23,7 @@ server:
   port: 80
 
 rabbitmq:
-  zeusexchange: zeus_waybill_exchange
+  exchange: zeus.exchange
 
 oss:
   endpoint: oss-cn-shanghai.aliyuncs.com

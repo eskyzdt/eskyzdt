@@ -37,7 +37,7 @@
         <p>时间测试:<input type="text" name="createTime"/></p>
 
         <a href="#/regist" style="color: #999999">注册</a>
-        <router-link to="/login" tag="button">二号注册按钮</router-link>
+        <router-link to="/login" tag="button">按钮</router-link>
         <input type="submit" value="登陆"/>
     </form>
 
@@ -55,9 +55,11 @@
 <script src="vue-router.js"></script>
 
 <script>
+
+
     //组件的模板对象
     var regist = {
-        template: '<h1>注册组件</h1> '
+        template: '<h1>注册组件1</h1> '
     };
 
     var regist2 = {
@@ -65,14 +67,14 @@
     };
 
     var show1 = Vue.extend({
-        template: '<h1>创建的第一个组件</h1>'
+        template: '<h1>组件1</h1>'
     });
 
     //下面定义了一个组件com1
     Vue.component('com', show1);
 
     //第二种方式,一步完成
-    Vue.component('com1', Vue.extend({template: '<h2>创建的第二个组件</h2>'}))
+    Vue.component('com1', Vue.extend({template: '<h2>组件2</h2>'}))
 
     //注意这个也需要放在new Vue的前面
     var routerObj = new VueRouter({
@@ -103,7 +105,6 @@
         methods: {},
         router: routerObj
     });
-
 
 </script>
 
