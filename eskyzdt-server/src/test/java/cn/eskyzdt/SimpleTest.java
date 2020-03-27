@@ -15,6 +15,10 @@ public class SimpleTest {
 
     @Test
     public void test0318() {
+        String loadTime = "2020-12-11 12:11:11";
+        String substring = loadTime.substring(0, loadTime.length() - 2);
+        System.out.println(substring);
+
         List<String> s = new LinkedList<>();
         s.add(0,"sa");
         s.set(0,"sb");
@@ -34,9 +38,7 @@ public class SimpleTest {
         Matcher matcher2 = pattern2.matcher("123456.22");
         boolean matches2 = matcher2.matches();
         System.out.println(matches2);
-
     }
-
     @Test
     public void test120601() {
         String match = "^[A-Za-z0-9]{1,30}";
