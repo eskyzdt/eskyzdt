@@ -8,12 +8,15 @@ mybatis:
   configuration:
     map-underscore-to-camel-case: true
 
+
 # rabbitMQ
-#spring:
-#  rabbitmq:
-#    host: 127.0.0.1
-#    port: 5672
-#    username: guest
-#    password: guest
-#    virtual-host:
-#    connection-timeout:
+spring:
+  rabbitmq:
+    host: rabbitmq.cunniao.top
+    port: 25672
+    username: cms_mess
+    password: cms_mess
+    virtual-host: cms.host
+    connection-timeout: 0
+
+fugai.sss: eee

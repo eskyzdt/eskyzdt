@@ -14,7 +14,7 @@ spring:
       username: root
       password: roottoor
   profiles:
-    active: zeus
+    active: dev
   mvc:
     view:
       suffix: .html

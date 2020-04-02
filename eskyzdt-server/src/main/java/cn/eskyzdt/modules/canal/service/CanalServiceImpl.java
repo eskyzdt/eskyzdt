@@ -14,10 +14,14 @@ import java.util.List;
 public class CanalServiceImpl {
 
 
+
+
     public static void main(String args[]) {
         // 创建链接
+/*      CanalConnector connector = CanalConnectors.newSingleConnector(new InetSocketAddress("49.235.24.173",
+                11111), "example", "root", "Gz9a0hm2xUCvRtA5g67uow4SZDiJ");*/
         CanalConnector connector = CanalConnectors.newSingleConnector(new InetSocketAddress("49.235.24.173",
-                11111), "example", "root", "Gz9a0hm2xUCvRtA5g67uow4SZDiJ");
+                11111), "example", "root", "E3619321C1A937C46A0D8BD1DAC39F93B27D4458");
         /* 这里的port是canal的默认端口, destination是example, 是默认的实例对象*/
         int batchSize = 1000;
         int emptyCount = 0;
@@ -93,6 +97,9 @@ public class CanalServiceImpl {
         for (Column column : columns) {
             System.out.println(column.getName() + " : " + column.getValue() + "    update=" + column.getUpdated());
         }
+        /**
+         *
+         */
     }
 
 

@@ -27,17 +27,26 @@ public class ExceptionOneController {
      */
 
     /**
-     * 1 让checked例外也回滚：在整个方法前加上 @Transactional(rollbackFor=Exception.class)
+     * 1 让checked(捕获)例外也回滚：在整个方法前加上 @Transactional(rollbackFor=Exception.class)
+     *  不加也行,默认也是回滚的
      *
-     * 2 让unchecked例外不回滚： @Transactional(notRollbackFor=RunTimeException.class)
+     * 2 让unchecked(未捕获)例外不回滚： @Transactional(noRollbackFor=RunTimeException.class)
+     *      注意如果这里设置不回滚,而且catch (Exception e) {后面不抛异常不回滚的话,由于
+     *      exceptionOne.exception();中设置的是回滚,那么此时整个程序会报错,并且会回滚
+     *      如果想不回滚那么可以把exceptionOne.exception();中的事务传播逻辑设置为nested,
+     *      或者exceptionOne.exception();中不回滚
+     *
+     *      其原理是因为默认的事务传播规则是required,将其内外视为一个事务
+     *      那么既然这个事务一方面要被回滚,另一方面又不要回滚,产生了冲突,导致该bug产生
+     *
      *
      * 3 不需要事务管理的(只查询的)方法：@Transactional(propagation=Propagation.NOT_SUPPORTED)
      */
-    @Transactional(rollbackFor = Exception.class)
+    @Transactional(noRollbackFor = RuntimeException.class)
     public void exceptionOneCon() {
         try {
             User user = new User();
-            user.setUsername("out11");
+            user.setUsername("fuck");
             userService.insertUser(user);
             String name = Thread.currentThread().getName();
             System.out.println("主线程名" + name);
@@ -45,7 +54,7 @@ public class ExceptionOneController {
             try {
                 exceptionOne.exception();
             } catch (Exception e) {
-                e.printStackTrace();
+               // e.printStackTrace();
                 throw e;
             }
             System.out.println("主线程睡10s");
@@ -66,7 +75,7 @@ public class ExceptionOneController {
             System.out.println("=========================");
             System.out.println("e.getMessage()" + e.getMessage());
             // 手动回滚,页面不会报错
-            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+            // TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
             System.out.println("exe");
         }
     }

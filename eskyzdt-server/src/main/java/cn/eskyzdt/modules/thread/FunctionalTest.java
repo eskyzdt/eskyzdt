@@ -1,7 +1,7 @@
 package cn.eskyzdt.modules.thread;
 
 @FunctionalInterface
-public interface FunctionalTest {
+public interface FunctionalTest{
 
     /**
      * 一个函数式接口中仅能包含一个抽象方法

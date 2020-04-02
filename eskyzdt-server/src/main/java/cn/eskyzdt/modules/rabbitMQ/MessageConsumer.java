@@ -19,7 +19,7 @@ import java.util.Iterator;
 import java.util.Map;
 
 @Component
-//@RabbitListener(queues = "zeus.add")
+@RabbitListener(queues = "zeus.add")
 public class MessageConsumer {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -38,25 +38,25 @@ public class MessageConsumer {
         if (encrypt != null) {
             String status =(String) encrypt.get("status");
             switch (status) {
-                case "上传回单":
-                    Map<String, Object> params = new HashMap<>(encrypt);
-                    params.put("receiptPic", params.get("imageObj"));
-                    params.put("waybillNo", params.get("waybillNumber"));
-                    break;
+        case "上传回单":
+            Map<String, Object> params = new HashMap<>(encrypt);
+            params.put("receiptPic", params.get("imageObj"));
+            params.put("waybillNo", params.get("waybillNumber"));
+            break;
 
-                default:
+        default:
 
-            }
-
-
-
-        } else {
-        }
-*/
-        //logger.error("dsfsdfsdfsdfsdfs");
     }
 
-   @RabbitHandler
+
+
+} else {
+        }
+        */
+        //logger.error("dsfsdfsdfsdfsdfs");
+        }
+
+@RabbitHandler
     public void process(JSONObject content) {
         logger.info("接收处理队列A当中的String消息： " + content);
         //logger.error("dsfsdfsdfsdfsdfs");

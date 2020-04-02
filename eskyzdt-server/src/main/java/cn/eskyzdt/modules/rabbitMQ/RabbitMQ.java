@@ -32,9 +32,18 @@ public class RabbitMQ {
     public void sendObj() {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("aaa","ddd");
-        String a = "{\"encrypt\":{\"driverPhone\":\"18666820812\",\"id\":85,\"imageObj\":\"etdy@-@jwrwe\",\"remarks\":\"路上\",\"status\":\"异常上报\",\"waybillNumber\":\"F20200316100044518720\",\"receiptTime\":\"2009-12-12 11:11:11\"}}";
+        String a = "{\"encrypt\":{\"driverPhone\":\"18666820812\",\"id\":85,\"imageObj\":\"etdy@-@jwrwe\",\"remarks\":\"路上\",\"status\":\"异常上报\",\"waybillNumber\":\"F20200320141348521920\",\"receiptTime\":\"2009-12-12 11:11:11\"}}";
         rabbitTemplate.convertAndSend( "cms.queue.zeus.report",a);
     }
+
+    @RequestMapping("/sendObj2")
+    public void sendObj2() {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("aaa","ddd");
+        String a = "{\"encrypt\":{\"driverPhone\":\"18666820812\",\"id\":85,\"imageObj\":\"etdy@-@jwrwe\",\"remarks\":\"路上\",\"status\":\"上传回单\",\"waybillNumber\":\"F20200320141348521920\",\"receiptTime\":\"2009-12-12 11:11:11\"}}";
+        rabbitTemplate.convertAndSend( "cms.queue.zeus.report",a);
+    }
+
      @RequestMapping("/sendUPT")
     public void sendUPT() {
         JSONObject jsonObject = new JSONObject();

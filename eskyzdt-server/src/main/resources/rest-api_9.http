@@ -1,4 +1,14 @@
-POST http://127.0.0.1:80/msg
+POST http://127.0.0.1:80/validate
+Content-Type: application/json
+Cache-Control: no-cache
+Accept: */*
+
+{
+  "name": "33232",
+  "tomorrow": "2022-12-12 11:11:11"
+}
+###
+POST http://127.0.0.1:80/exe
 Content-Type: application/json
 Cache-Control: no-cache
 Accept: */*
@@ -11,7 +21,7 @@ Cache-Control: no-cache
 Accept: */*
 
 ###
-POST http://127.0.0.1:80/amqp/send
+POST http://127.0.0.1:80/amqp/sendObj2
 Content-Type: application/json
 Cache-Control: no-cache
 Accept: */*
