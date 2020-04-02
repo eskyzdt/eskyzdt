@@ -6,6 +6,7 @@ import java.time.Instant;
 import java.time.OffsetDateTime;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -13,7 +14,13 @@ import java.util.regex.Pattern;
 
 public class SimpleTest {
 
+        @Test
+        public void test0402() {
+            List a = new LinkedList();
+            List b = new ArrayList();
+            boolean b1 = a instanceof List;
 
+        }
 
         @Test
         public void test0318(){
