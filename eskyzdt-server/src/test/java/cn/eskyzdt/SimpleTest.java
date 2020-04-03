@@ -19,7 +19,7 @@ public class SimpleTest {
             List a = new LinkedList();
             List b = new ArrayList();
             boolean b1 = a instanceof List;
-
+////////////////////////////////
         }
 
         @Test
