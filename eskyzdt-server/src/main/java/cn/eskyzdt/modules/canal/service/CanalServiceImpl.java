@@ -21,13 +21,13 @@ public class CanalServiceImpl {
 /*      CanalConnector connector = CanalConnectors.newSingleConnector(new InetSocketAddress("49.235.24.173",
                 11111), "example", "root", "Gz9a0hm2xUCvRtA5g67uow4SZDiJ");*/
         CanalConnector connector = CanalConnectors.newSingleConnector(new InetSocketAddress("49.235.24.173",
-                11111), "example", "root", "E3619321C1A937C46A0D8BD1DAC39F93B27D4458");
+                11111), "example", "", "");
         /* 这里的port是canal的默认端口, destination是example, 是默认的实例对象*/
         int batchSize = 1000;
         int emptyCount = 0;
         try {
             connector.connect();
-            connector.subscribe("timber\\.user,timber\\.www_333");
+            connector.subscribe();
             connector.rollback();
             int totalEmptyCount = 120;
             while (emptyCount < totalEmptyCount) {

@@ -35,6 +35,16 @@ public class SnowflakeDistributeId {
      */
     private final long datacenterIdBits = 5L;
 
+    /*
+    1 0000 0001  原
+    1 1111 1111  补
+
+    1 1110 0000  左移5位
+
+    异或操作后
+
+    0 0001 1111 变为最大值*/
+
     /**
      * 支持的最大机器id，结果是31 (这个移位算法可以很快的计算出几位二进制数所能表示的最大十进制数)
      */

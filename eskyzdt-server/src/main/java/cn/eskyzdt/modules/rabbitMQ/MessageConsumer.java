@@ -19,7 +19,7 @@ import java.util.Iterator;
 import java.util.Map;
 
 @Component
-@RabbitListener(queues = "zeus.add")
+//@RabbitListener(queues = "zeus.add")
 public class MessageConsumer {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -28,7 +28,7 @@ public class MessageConsumer {
     // @RabbitListener(queues = "zeus_waybill_queue")
     //@RabbitListener(queues = "zeus.delete")
     //@RabbitListener(queues = "cms.queue.zeus.report")
-    @RabbitHandler
+   // @RabbitHandler
     public void process(String content) {
         System.out.println(content);
         //Object parse = JSONObject.parse(content);
@@ -56,7 +56,7 @@ public class MessageConsumer {
         //logger.error("dsfsdfsdfsdfsdfs");
         }
 
-@RabbitHandler
+  //  @RabbitHandler
     public void process(JSONObject content) {
         logger.info("接收处理队列A当中的String消息： " + content);
         //logger.error("dsfsdfsdfsdfsdfs");
