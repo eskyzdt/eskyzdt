@@ -15,8 +15,13 @@ import java.time.LocalDateTime;
 @Controller
 public class ValidateController {
 
+    /**
+     * 这里如果不注释掉,在打开主页时会报一个请求体为空的bug,原因未知
+     * 所以@Validated 慎用
+     *
+     */
 
-    @ResponseBody
+/*    @ResponseBody
     @RequestMapping(name = "/validate")
     public String validateTest(@Validated @RequestBody ValidateEntity entity) {
 
@@ -27,6 +32,6 @@ public class ValidateController {
         );
         System.out.println(tomorrow);
         return name;
-    }
+    }*/
 
 }
