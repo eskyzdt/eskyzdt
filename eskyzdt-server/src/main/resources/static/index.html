@@ -31,13 +31,19 @@
         <img :src="url"/>
     </div>
 
-    <form action="/user/annoTest" enctype="text/plain" id="formA">
+ <!--   <form action="/user/annoTest" enctype="text/plain" id="formA">
         <p>用户名:<input type="text" name="username"/></p>
         <p>&emsp;密码:<input type="text" name="password"/></p>
         <p>时间测试:<input type="text" name="createTime"/></p>
-
         <a href="#/regist" style="color: #999999">注册</a>
         <router-link to="/login" tag="button">按钮</router-link>
+        <input type="submit" value="登陆"/>
+    </form>-->
+
+    <form action="/user/annoTest" enctype="text/plain" id="formA">
+        <p>用户名:<input type="text" name="username"/></p>
+        <p>&emsp;密码:<input type="text" name="password"/></p>
+        <router-link to="/login" tag="button">注册</router-link>
         <input type="submit" value="登陆"/>
     </form>
 
@@ -66,17 +72,16 @@
         template: '<h1>注册组件2</h1> '
     };
 
-    var show1 = Vue.extend({
+/*    var show1 = Vue.extend({
         template: '<h1>组件1</h1>'
     });
+    //定义了一个组件com1
+    Vue.component('com', show1);*/
 
-    //下面定义了一个组件com1
-    Vue.component('com', show1);
-
-    //第二种方式,一步完成
+    // 第二种方式,一步完成
     Vue.component('com1', Vue.extend({template: '<h2>组件2</h2>'}))
 
-    //注意这个也需要放在new Vue的前面
+    // 注意这个也需要放在new Vue的前面
     var routerObj = new VueRouter({
         routes:
             [

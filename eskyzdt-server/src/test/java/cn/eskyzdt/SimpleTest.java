@@ -7,15 +7,47 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.web.client.RestTemplate;
 
-import java.time.Instant;
-import java.time.OffsetDateTime;
-import java.time.ZoneId;
-import java.time.ZoneOffset;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class SimpleTest {
+
+    @Test
+    public void test041302() {
+        Map<String, Object> keyMap = new LinkedHashMap<>();
+        LocalDate date = LocalDate.now();
+        for (int i = 0; i < 12; i++) {
+            DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM");
+            keyMap.put(date.format(dateTimeFormatter) , "0");
+            date = date.minusMonths(1);
+        }
+
+        System.out.println(keyMap);
+
+    }
+
+
+    @Test
+    public void test0413() {
+        LinkedList<Map<String, Object>> keyList = new LinkedList<>();
+        Map<String, Object> keyMap = new HashMap<>();
+        keyMap.put("count", "0");
+        List<Map<String, Object>> firstMem = new LinkedList<>();
+        List<Map<String, Object>> secondMem = new LinkedList<>();
+        List<Map<String, Object>> customer = new LinkedList<>();
+
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM");
+        LocalDate date = LocalDate.now();
+        for (int i = 0; i < 12; i++) {
+            keyMap.put("date", date.format(dateTimeFormatter));
+            date = date.minusMonths(1);
+            keyList.add(new HashMap<>(keyMap));
+        }
+        System.out.println(keyList);
+    }
 
     @Test
     public void test0408() {
