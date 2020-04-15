@@ -31,6 +31,12 @@
         VALUES
             (#{id}, #{username}, #{password}, #{phone}, #{email},#{createTime} );
     </insert>
+    <insert id="insertUserDup">
+        INSERT INTO user ( <include refid="Base_Column"/>, dupq)
+        VALUES
+        (#{id}, #{username}, #{password}, #{phone}, #{email},#{createTime},#{dupq} );
+
+    </insert>
 
     <select id="findById"  resultType="user">
         select * from user
@@ -60,13 +66,50 @@
             <foreach collection="id" item="param" separator="," open="(" close=")">
                 #{param}
             </foreach>
+
         </where>
     </select>
     <select id="findUser" resultType="cn.eskyzdt.modules.user.entity.UserDto">
         select <include refid="Base_Column"/>
         from user
         <where>
-            id = #{id}
+            <if test="id != null and id !=''">
+                or id = #{id}
+            </if>
+            <if test="username != null and username !=''">
+                or username = #{username}
+            </if>
+        </where>
+    </select>
+    <select id="findUserList" resultType="cn.eskyzdt.modules.user.entity.User">
+        select <include refid="Base_Column"/> from user
+        <where>
+            <if test="username != null and username !=''">
+                username = #{username}
+            </if>
+        </where>
+    </select>
+
+
+    <select id="" parameterType="map" resultType="java.util.Map">
+        SELECT
+        count( CASE WHEN ( w.`status` = '1' AND w.isDeleted = '0') THEN 'x' END ) '待配载',
+        count( CASE WHEN ( w.`status` = '2' AND w.isDeleted = '0') THEN 'x' END ) '待卸货',
+        count( CASE WHEN ( w.receiptStatus = '0' AND w.isReceipt = '1' AND w.isDeleted = '0' ) THEN 'x' END ) '回单待处理',
+        count( CASE WHEN ( w.isSign = '0' AND w.isDeleted = '0' ) THEN 'x' END ) '签单待处理',
+        count( CASE WHEN w.isDeleted = '1' THEN 'x' END ) '已作废'
+        FROM
+        waybill w
+        <where>
+            <if test="uid != null and uid != ''">
+                AND uid = #{uid}
+            </if>
+            <if test="node != null and node != ''">
+                AND node LIKE #{node}
+            </if>
+            <if test="customerId != null and customerId != ''">
+                AND customerId = #{customerId}
+            </if>
         </where>
     </select>
 </mapper>

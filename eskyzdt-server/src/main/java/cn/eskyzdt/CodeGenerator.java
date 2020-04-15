@@ -21,7 +21,7 @@ public class CodeGenerator {
          * <p>
          * 读取控制台内容
          * </p>
-         */
+         */ 
         public static String scanner(String tip) {
             Scanner scanner = new Scanner(System.in);
             StringBuilder help = new StringBuilder();
@@ -49,13 +49,22 @@ public class CodeGenerator {
             // gc.setSwagger2(true); 实体属性 Swagger2 注解
             mpg.setGlobalConfig(gc);
 
-            // 数据源配置
+/*            // 数据源配置
             DataSourceConfig dsc = new DataSourceConfig();
             dsc.setUrl("jdbc:mysql://193.168.1.215:3306/zeus4.0?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=CTT");
             // dsc.setSchemaName("public");
             dsc.setDriverName("com.mysql.jdbc.Driver");
             dsc.setUsername("root");
             dsc.setPassword("1234");
+            mpg.setDataSource(dsc);*/
+
+            // 数据源配置
+            DataSourceConfig dsc = new DataSourceConfig();
+            dsc.setUrl("jdbc:mysql://49.235.24.173:3306/timber?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=CTT");
+            // dsc.setSchemaName("public");
+            dsc.setDriverName("com.mysql.jdbc.Driver");
+            dsc.setUsername("root");
+            dsc.setPassword("roottoor");
             mpg.setDataSource(dsc);
 
             // 包配置

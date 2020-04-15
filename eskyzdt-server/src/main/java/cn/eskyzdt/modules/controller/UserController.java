@@ -5,6 +5,7 @@ import cn.eskyzdt.modules.user.entity.UserDto;
 import cn.eskyzdt.modules.user.service.UserService;
 import com.baomidou.mybatisplus.extension.api.R;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 
@@ -45,6 +46,26 @@ public class UserController {
         UserDto user = userService.findUser(u);
         boolean b = userService.insertUser(userDto);
         return user;
+    }
+
+    @RequestMapping(value = "/dupq",method = RequestMethod.GET)
+    public String dupq(String username){
+        User u = new User();
+        u.setUsername(username);
+        u.setDupq("aaa");
+        try {
+            userService.insertUserDup(u);
+        } catch (DuplicateKeyException e) {
+            Throwable cause = e.getCause();
+            String message = cause.getMessage();
+            String[] trim = message.split("'");
+            String s = trim[1];
+            System.out.println(s);
+            System.out.println(message);
+            e.printStackTrace();
+        }
+        boolean b = userService.insertUser(u);
+        return "a";
     }
 
 

@@ -1,0 +1,22 @@
+mybatis:
+  ## 这里不知道为啥,不能用通配符
+  ## 这里alias别名可以是User,也可以是user,也就是说第一个字母不区分大小写
+  type-aliases-package: cn.eskyzdt.modules.user.entity, cn.eskyzdt.modules.pic.entity
+  mapper-locations: classpath*:mapper/*Dao.xml
+  ## 配置驼峰是为了让mybatis的sql查出的数据,能够准确的封装到对象中,注意是查出的数据, 不匹配也
+  ## 仅仅是无法封装进对象而已,并不会报错
+  configuration:
+    map-underscore-to-camel-case: true
+
+
+# rabbitMQ
+spring:
+  rabbitmq:
+    host: 193.168.1.214
+    port: 5672
+    username: admin
+    password: admin
+    virtual-host: cms.host
+    connection-timeout: 0
+
+fugai.sss: eee

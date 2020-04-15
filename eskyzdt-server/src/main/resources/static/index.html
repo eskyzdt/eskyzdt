@@ -19,6 +19,10 @@
         #formA {
             text-align: center;
         }
+
+        .centerType {
+            text-align: center;
+        }
     </style>
 
 </head>
@@ -31,13 +35,19 @@
         <img :src="url"/>
     </div>
 
-    <form action="/user/annoTest" enctype="text/plain" id="formA">
+ <!--   <form action="/user/annoTest" enctype="text/plain" id="formA">
         <p>用户名:<input type="text" name="username"/></p>
         <p>&emsp;密码:<input type="text" name="password"/></p>
         <p>时间测试:<input type="text" name="createTime"/></p>
-
         <a href="#/regist" style="color: #999999">注册</a>
-        <router-link to="/login" tag="button">二号注册按钮</router-link>
+        <router-link to="/login" tag="button">按钮</router-link>
+        <input type="submit" value="登陆"/>
+    </form>-->
+
+    <form action="/user/annoTest" enctype="text/plain" id="formA">
+        <p>用户名:<input type="text" name="username"/></p>
+        <p>&emsp;密码:<input type="text" name="password"/></p>
+        <router-link to="/login" tag="button">注册</router-link>
         <input type="submit" value="登陆"/>
     </form>
 
@@ -55,26 +65,27 @@
 <script src="vue-router.js"></script>
 
 <script>
+
+
     //组件的模板对象
-    var regist = {
-        template: '<h1>注册组件</h1> '
+    var show01 = {
+        template: '<h1 class="centerType">展示1</h1>'
     };
 
-    var regist2 = {
-        template: '<h1>注册组件2</h1> '
+    var show02 = {
+        template: '<h1 class="centerType">展示2</h1> '
     };
 
-    var show1 = Vue.extend({
-        template: '<h1>创建的第一个组件</h1>'
+/*    var show1 = Vue.extend({
+        template: '<h1>组件1</h1>'
     });
-
-    //下面定义了一个组件com1
+    //定义了一个组件com1
     Vue.component('com', show1);
 
-    //第二种方式,一步完成
-    Vue.component('com1', Vue.extend({template: '<h2>创建的第二个组件</h2>'}))
+    // 第二种方式,一步完成
+    Vue.component('com1', Vue.extend({template: '<h2>组件2</h2>'}))*/
 
-    //注意这个也需要放在new Vue的前面
+    // 注意这个也需要放在new Vue的前面
     var routerObj = new VueRouter({
         routes:
             [
@@ -83,12 +94,12 @@
                     redirect: '/login'
                 }, {
                 path: '/regist',        //这个表示监听哪个路由的链接地址
-                component: regist           //表示如果匹配到了,那么就展示component属性对应的那个组件
+                component: show01           //表示如果匹配到了,那么就展示component属性对应的那个组件
                 //注意component 里面的这个regist必须是一个直接的模板对象
             },
                 {
                     path: '/login',        //这个表示监听哪个路由的链接地址
-                    component: regist2           //表示如果匹配到了,那么就展示component属性对应的那个组件
+                    component: show02           //表示如果匹配到了,那么就展示component属性对应的那个组件
                     //注意component 里面的这个regist必须是一个直接的模板对象
                 }]
     });
@@ -103,7 +114,6 @@
         methods: {},
         router: routerObj
     });
-
 
 </script>
 

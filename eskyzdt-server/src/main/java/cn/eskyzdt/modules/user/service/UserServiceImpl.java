@@ -50,8 +50,20 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<User> findUserList(String userName) {
+        return userDao.findUserList(userName);
+    }
+
+    @Override
+    @Transactional
     public boolean insertUser(User user) {
         return userDao.insertUser(user);
+    }
+
+    @Override
+    @Transactional
+    public boolean insertUserDup(User user) {
+        return userDao.insertUserDup(user);
     }
 
     @Override

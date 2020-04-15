@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>canal配置顺序</title>
+</head>
+<body>
+<p>
+    1.在数据库中新建用户 canal/canal 并赋与权限
+    CREATE USER canal IDENTIFIED BY 'canal';
+
+    GRANT SELECT, REPLICATION SLAVE, REPLICATION CLIENT ON *.* TO 'canal'@'%';
+
+    FLUSH PRIVILEGES;
+    2.修改canal文件夹下的配置文件
+    Canal/deployer/conf/xxx
+    Xxx是所配置的实例,宙斯为zeus4,本地开发用zeusdev
+    修改instance.properties
+
+    canal.instance.master.address=193.168.1.215:3306
+    canal.instance.dbUsername=数据库用户名 canal
+    canal.instance.dbPassword=数据库密码 canal
+    canal.instance.filter.regex=zeus4\\.waybill,zeus4\\.waybill_payment_info
+    用户名和密码配置为canal,是为了数据安全,需要注意的是filter是双反斜杠,canal用户在mysql中需要有权限
+
+    3.在bin中执行  startup.sh即可运行canal
+    4. 在logs中可以查看日志
+
+    canal的控制台 193.168.1.213:8089   admin/123456
+
+</p>
+
+
+</body>
+</html>
