@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Computer implements Product{
+public class Computer implements Product {
 
     private String CPU;
 
@@ -17,6 +17,6 @@ public class Computer implements Product{
 
     @Override
     public Product make() {
-        return new Computer("i7","16G" , "17cun");
+        return new Computer("i7", "16G", "17cun");
     }
 }
