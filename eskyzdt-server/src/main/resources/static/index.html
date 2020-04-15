@@ -6,13 +6,19 @@
     <!-- import Vue before Element -->
     <style>
         .head {
-            color: #66CCFF;
+            /*color: #66CCFF;*/
             text-align: center;
         }
 
         .footer {
             color: #999;
             size: A4;
+            text-align: center;
+        }
+
+        /*天依蓝*/
+        .vocal {
+            color: #66CCFF;
             text-align: center;
         }
 
@@ -30,7 +36,7 @@
 
 <!--vue-->
 <div id="app">
-    <div class="head"> {{head}}</div>
+    <h1 class="head"> {{head}}</h1>
     <div class="head">
         <img :src="url"/>
     </div>
@@ -45,9 +51,10 @@
     </form>-->
 
     <form action="/user/annoTest" enctype="text/plain" id="formA">
-        <p>用户名:<input type="text" name="username"/></p>
-        <p>&emsp;密码:<input type="text" name="password"/></p>
-        <router-link to="/login" tag="button">注册</router-link>
+        <p class="">用户名:<input type="text" name="username"/></p>
+        <p class="">&emsp;密码:<input type="text" name="password"/></p>
+        <!--点一下注册按钮则展示show01的内容,默认是到login,展示show02-->
+        <router-link to="/regist" tag="button">注册</router-link>
         <input type="submit" value="登陆"/>
     </form>
 
@@ -69,11 +76,12 @@
 
     //组件的模板对象
     var show01 = {
-        template: '<h1 class="centerType">展示1</h1>'
+        template: '<p class="centerType">点此跳转至jenkins自动化部署页:' +
+            '<br><a href="http://www.eskyzdt.cn:8080">www.eskyzdt.cn:8080</a></p>'
     };
 
     var show02 = {
-        template: '<h1 class="centerType">展示2</h1> '
+        template: '<p class="vocal">点击注册按钮</p> '
     };
 
 /*    var show1 = Vue.extend({
