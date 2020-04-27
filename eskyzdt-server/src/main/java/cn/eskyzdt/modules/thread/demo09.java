@@ -15,7 +15,17 @@ public class demo09 {
 
     synchronized void t2() {
         System.out.println("bbb");
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         t1();
+    }
+
+    public static void main(String[] args) {
+        demo09 demo09 = new demo09();
+        demo09.t1();
     }
 
 

@@ -23,7 +23,7 @@ import cn.eskyzdt.modules.designmodule.prototypepattern.entitysecond.RealityClas
 public class PrototypeTest {
 
     public static void main(String args[]) {
-        test02();
+        test01();
 
 
     }

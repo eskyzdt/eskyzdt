@@ -8,11 +8,11 @@ public interface FunctionalTest{
      */
     public void Th1();
 
-    default void defaultMethod(){
+    public default void defaultMethod(){
         System.out.println("aaa");
     }
 
-    static void staticMethod(){
+    public static void staticMethod(){
         System.out.println("a");
     }
 

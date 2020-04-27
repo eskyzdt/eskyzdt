@@ -16,6 +16,38 @@ import java.util.regex.Pattern;
 public class SimpleTest {
 
     @Test
+    public void test042302() {
+         boolean b = false;
+        int count = 0;
+
+            new Thread(() -> {
+                while (true){
+                    if(b == !b){
+                        System.out.println(new Date()+":"+count);
+                    }
+                }
+            }).start();
+            new Thread(() -> {
+                while (true)
+                {
+                 //   b=!b;
+                }
+            }
+            ).start();
+    }
+
+    @Test
+    public void test042301() {
+        String imageObj = "http://cn-cms.oss-cn-beijing.aliyuncs.com/images/202004231056/tmp_bdcc73027c6c04e34af83bb78c6b1e8d28f0249ad8873941.jpg,http://cn-cms.oss-cn-beijing.aliyuncs.com/images/202004231056/tmp_0a9d2800915f1cf2d95cec04da5d46a2c038673b94122b80.jpg,http://cn-cms.oss-cn-beijing.aliyuncs.com/images/202004231056/tmp_6d371083bfec63be788b17beca111adf2e7d7d4cf63575d6.jpg,http://cn-cms.oss-cn-beijing.aliyuncs.com/images/202004231056/tmp_43ec30c864249fe9690ca673c1724e8d5dff20d36f29daf4.jpg";
+        imageObj = imageObj.replaceAll(",", "@-@");
+        System.out.println(imageObj);
+    }
+
+    /**
+     * java8的 forEach语法糖
+     *
+     */
+    @Test
     public void test041302() {
         Map<String, Object> keyMap = new LinkedHashMap<>();
         LocalDate date = LocalDate.now();
@@ -24,8 +56,21 @@ public class SimpleTest {
             keyMap.put(date.format(dateTimeFormatter) , "0");
             date = date.minusMonths(1);
         }
+        keyMap.forEach( (x,y) -> {
+            System.out.print(x);
+            System.out.print(":");
+            System.out.print(y);
+            System.out.println();
+        });
 
-        System.out.println(keyMap);
+        TreeSet<String> strings = new TreeSet<>();
+        strings.add("1");
+        strings.add("2");
+        // 这两个效果一样
+        strings.forEach(System.out::println);
+        strings.forEach(x -> System.out.println(x));
+
+        // System.out.println(keyMap);
 
     }
 

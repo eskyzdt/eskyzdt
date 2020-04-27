@@ -8,8 +8,6 @@ import cn.eskyzdt.modules.designmodule.factorymethod.ProductA;
  */
 public interface ProtoInterface extends Cloneable {
 
-    String name = "daafsdaf";
-
     public final static ProductA productA = new ProductA();
 
     public abstract ProtoInterface clone();

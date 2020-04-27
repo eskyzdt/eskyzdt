@@ -46,7 +46,7 @@ public class ExceptionOneController {
     public void exceptionOneCon() {
         try {
             User user = new User();
-            user.setUsername("fuck");
+            user.setUsername("fuck2");
             userService.insertUser(user);
             String name = Thread.currentThread().getName();
             System.out.println("主线程名" + name);
@@ -61,7 +61,8 @@ public class ExceptionOneController {
             Thread.sleep(10000);
             System.out.println("主线程结束");
         } catch (Exception e) {
-            /** 如果不加下面这一行,返回值会返回spring自动回滚的信息
+            /** 如果不加下面这一行,控制台和页面会显示spring自动回滚的信息(因为自动回滚了,给我们开发人员一个提示),而且数据库没有插入数据(因为自动回滚了)
+             * 加上下面这一行,则是手动回滚,系统不提示
             TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
              返回的结果:
            Wed Feb 19 18:48:40 CST 2020

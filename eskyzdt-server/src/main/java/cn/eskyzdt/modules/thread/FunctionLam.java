@@ -41,4 +41,13 @@ interface FunctionLam {
     @Override
     boolean equals(Object obj);
 
+    /**
+     * 必须是Object类中修饰符为public的才可以
+     * 而clone()是protected类的,所以不可以
+     *
+     * @return
+     */
+    @Override
+    int hashCode();
+
 }
