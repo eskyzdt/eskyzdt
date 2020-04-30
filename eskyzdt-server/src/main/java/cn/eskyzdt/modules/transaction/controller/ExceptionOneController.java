@@ -42,6 +42,13 @@ public class ExceptionOneController {
      *
      * 3 不需要事务管理的(只查询的)方法：@Transactional(propagation=Propagation.NOT_SUPPORTED)
      */
+    /**
+     * @Transactional(rollbackFor=RuntimeException.class)
+     * 默认情况,即不写时是上面这种
+     * 在不写trycatch的时候,error和runtimeException都回滚
+     * 如果写了trycatch,那么事务就不会回滚了
+     * 所以如果用trycatch,那么就要手动回滚一波
+     */
     @Transactional(noRollbackFor = RuntimeException.class)
     public void exceptionOneCon() {
         try {
