@@ -7,6 +7,8 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.web.client.RestTemplate;
 
+import java.io.File;
+import java.io.IOException;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -14,6 +16,42 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class SimpleTest {
+
+    @Test
+    public void test0512() {
+        String load_weight = "43.234KGsdf";
+        String regEx="[0-9]*\\.[0-9]*|[0-9]*";
+        Pattern p = Pattern.compile(regEx);
+        Matcher matcher = p.matcher(load_weight);
+        // 获取数字后的单位
+        String unit = matcher.replaceAll("");
+        // 把单位替换掉
+        load_weight = load_weight.replace(unit, "");
+    }
+
+    @Test
+    public void test050901() {
+        try {
+            System.out.println(File.createTempFile("df","dd"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void test0509() {
+        String path = "";
+        File test0509 = new File(path, "test0509.jpg22");
+        String absolutePath = test0509.getAbsolutePath();
+        System.out.println(absolutePath);
+        try {
+            test0509.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+    }
 
     @Test
     public void test0429() {

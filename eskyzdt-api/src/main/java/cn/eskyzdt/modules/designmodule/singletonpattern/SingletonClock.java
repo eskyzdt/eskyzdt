@@ -16,7 +16,10 @@ public class SingletonClock {
     public SingletonClock getInstance() {
         if (singletonClock == null) {
             synchronized (SingletonClock.class) {
-                singletonClock = new SingletonClock();
+                // 注意这里也要加判断,不然高并发有可能new两次
+                if (singletonClock == null) {
+                    singletonClock = new SingletonClock();
+                }
             }
         }
         return singletonClock;
