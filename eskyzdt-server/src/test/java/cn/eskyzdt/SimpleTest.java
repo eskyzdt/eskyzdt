@@ -18,6 +18,29 @@ import java.util.regex.Pattern;
 public class SimpleTest {
 
     @Test
+    public void test051202() {
+
+
+
+        String lfwsrxsj1K1F11024 = "LFWSRXSJ1K1F11024";
+        int i = lfwsrxsj1K1F11024.hashCode();
+        System.out.println(i);
+    }
+
+    @Test
+    public void test051201() {
+        Date date = new Date(System.currentTimeMillis());
+        System.out.println(date);
+        String a = date.toString();
+       Map m = new HashMap();
+       m.put("d", date);
+        System.out.println(m);
+    }
+
+    /**
+     * 正则的知识点,如果加上^和$说明是匹配整个字符串是否符合,如果不加^和$那么会匹配字符串中的每一个
+     */
+    @Test
     public void test0512() {
         String load_weight = "43.234KGsdf";
         String regEx="[0-9]*\\.[0-9]*|[0-9]*";
@@ -191,7 +214,7 @@ public class SimpleTest {
 
     @Test
     public void test120602() {
-        String match = "^.{0,100}$";
+     /*   String match = "^.{0,100}$";
         Pattern pattern = Pattern.compile(match);
         Matcher matcher = pattern.matcher("221222222222122222");
         boolean matches = matcher.matches();
@@ -201,7 +224,22 @@ public class SimpleTest {
         Pattern pattern2 = Pattern.compile(match);
         Matcher matcher2 = pattern2.matcher("123456.22");
         boolean matches2 = matcher2.matches();
-        System.out.println(matches2);
+        System.out.println(matches2);*/
+
+        String fiftyWords = "^[()a-zA-Z\\u4e00-\\u9fa5]{0,50}$";
+        Pattern pattern3 = Pattern.compile(fiftyWords);
+        Matcher matcher3 = pattern3.matcher("jd(是在");
+        boolean matches3 = matcher3.matches();
+        System.out.println(matches3);
+
+        String fiftyWords4 = "^.{0,50}$";
+        Pattern pattern4 = Pattern.compile(fiftyWords4);
+        Matcher matcher4= pattern4.matcher("jd(是在afdacdc21d23d23d23d23f3123");
+        boolean matches4 = matcher4.matches();
+        System.out.println(matches4);
+
+
+
     }
 
     @Test

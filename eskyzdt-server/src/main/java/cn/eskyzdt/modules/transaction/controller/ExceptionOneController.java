@@ -4,7 +4,6 @@ import cn.eskyzdt.modules.transaction.service.ExceptionOne;
 import cn.eskyzdt.modules.user.entity.User;
 import cn.eskyzdt.modules.user.service.UserService;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.transaction.interceptor.TransactionAspectSupport;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -49,11 +48,14 @@ public class ExceptionOneController {
      * 如果写了trycatch,那么事务就不会回滚了
      * 所以如果用trycatch,那么就要手动回滚一波
      */
-    @Transactional(noRollbackFor = RuntimeException.class)
+    @Transactional(rollbackFor = Exception.class)
     public void exceptionOneCon() {
         try {
             User user = new User();
             user.setUsername("fuck2");
+            // 这里是个数据库操作,如果插入时失败那么必然会回滚(因为没有插入成功),所以如果这里报错且不回滚的话会报下面的错误
+            // UnexpectedRollbackException:  Transaction rolled back because it has been marked as rollback-only] with root cause
+            // 此时noRollbackFor不生效
             userService.insertUser(user);
             String name = Thread.currentThread().getName();
             System.out.println("主线程名" + name);

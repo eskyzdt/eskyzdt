@@ -1,11 +1,9 @@
 package cn.eskyzdt.modules.transaction.service;
 
 import cn.eskyzdt.modules.user.entity.User;
-import cn.eskyzdt.modules.user.entity.UserDto;
 import cn.eskyzdt.modules.user.service.UserService;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
@@ -22,7 +20,7 @@ public class ExceptionOneImpl implements ExceptionOne  {
     // nested：内部的事务不影响外部
     // @Transactional(propagation = Propagation.NESTED)
     // 如果什么都不加,默认是required,内外都是一个事务
-    @Transactional
+    @Transactional(rollbackFor = RuntimeException.class)
     /**
      * 在有事务的情况下@Async注解是没用的,程序会依然顺序执行
      */

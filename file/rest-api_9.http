@@ -1,3 +1,11 @@
+POST http://localhost:80/exe
+Content-Type: application/json
+Cache-Control: no-cache
+Accept: */*
+
+
+
+###
 POST http://localhost:16027/iWaybill/createPreAdditional
 Content-Type: application/json
 Cache-Control: no-cache

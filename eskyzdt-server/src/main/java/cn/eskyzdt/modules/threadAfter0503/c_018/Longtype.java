@@ -11,13 +11,17 @@ public class Longtype {
 
     /**
      * atomicXXX的原理就是CAS
+     * 对比synchronized和atomicInterger和longadder
+     * adtomic因为用的是CAS代替锁,相对来说效率要高一点,当然有时候syn高一些,不做讨论
      */
     static AtomicLong count2 = new AtomicLong();
 
     /**
      * longadder用了分段锁,所以在线程数量非常多的时候,速度会比较快
+     * 比如longadder会把字段分为3个部分,某200个线程锁part1,另200个锁part2....最后把3个部分加起来
+     * 所以线程特别多的情况下就比较快
      */
-    static LongAdder count3 = new LongAdder();
+    static LongAdder count3LongAdder = new LongAdder();
 
     static final Longtype lock = new Longtype();
 
@@ -30,7 +34,9 @@ public class Longtype {
     }
 
     public static void main(String[] args) {
+        test01();
         test02();
+        test03();
 
     }
 
@@ -91,6 +97,20 @@ public class Longtype {
         System.out.println("total 02 time use is " + (time02end -time02start));
         System.out.println("count2=" +count2);
 
+    }
+
+    public static void test03() {
+        long time03start = System.currentTimeMillis();
+        for (int i = 0; i < 100000; i++) {
+            new Thread(()->{
+                for (int j = 0; j < 10000; j++) {
+                    count3LongAdder.add(1);
+                }
+            }).start();
+        }
+        long time03end = System.currentTimeMillis();
+        System.out.println("total 03 time use is " + (time03end -time03start));
+        System.out.println("count3=" +count2);
     }
 
 }

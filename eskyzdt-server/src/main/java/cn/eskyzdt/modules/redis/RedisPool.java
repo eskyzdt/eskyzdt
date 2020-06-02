@@ -1,12 +1,9 @@
 package cn.eskyzdt.modules.redis;
 
-import cn.eskyzdt.modules.thread.FunctionalTest;
-import com.google.common.base.Function;
-import com.google.common.base.Supplier;
-import com.rabbitmq.client.UnblockedCallback;
 import redis.clients.jedis.Jedis;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.Callable;
 
 public class RedisPool {

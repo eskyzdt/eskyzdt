@@ -1,7 +1,5 @@
 package cn.eskyzdt.modules.lambda;
 
-import cn.eskyzdt.modules.thread.FunctionalTest;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.LinkedHashMap;
@@ -82,5 +80,20 @@ public class ForEach {
     private void getStr() {
         System.out.println("sdfsdfsdfsdf");
     }
+
+
+    /**
+     * removeIf语法糖
+     * 里面只能放一个语句
+     *
+     * 在lambda中的变量必需是effectively final
+     *
+     * effectively final的定义.. starting in Java SE 8, a local class can access local variables and parameters of the enclosing block that are final or
+     * effectively final. A variable or parameter whose value is never changed after it is initialized is effectively final.
+     *
+     *    list.removeIf(item->
+     *             item.getCarNumber() == null
+     *             );
+     */
 
 }

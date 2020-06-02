@@ -4,6 +4,15 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
+ * reentrantlock和synchronized的异同
+ * synchronized系统可以自动加解锁
+ * reentrantlock需要自己手动
+ *
+ * reentrantlock可以有不同的等待队列,syn不行
+ * re是cas的实现,而syn会进行锁升级
+ */
+
+/**
  * 可重入锁 since java1.5
  * 像synchronized就是可重入锁,这里不再说了
  * 只说ReentrantLock
@@ -16,6 +25,8 @@ import java.util.concurrent.locks.ReentrantLock;
  *  reentrantlock只是比synchronized好用点而已
  *  但是re可以做到拿到锁就处理,拿不到就走拿不到的逻辑
  *  这是比syn厉害的地方.syn是做不到这一点的
+ *
+ *  注意一定要在finally写unlock()
  */
 public class T {
     ReentrantLock lock = new ReentrantLock();

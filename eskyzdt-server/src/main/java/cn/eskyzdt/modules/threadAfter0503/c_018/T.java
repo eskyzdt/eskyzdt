@@ -6,6 +6,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class T {
 
     /**
+     * 锁可以被优化,把锁改成cas操作,可以达到锁一样的效果
+     *
      * 无锁优化CAS 自旋
      * CAS
      * Compare and Set/Swap
@@ -25,7 +27,8 @@ public class T {
      *  如果是引用类型,aba会产生问题
      *  对于引用类型,可以加上版本号,或者java有个类  AtomicStampedReference,用该类解决ABA问题,实际上是加个时间戳.
      *
-     *
+     * 那如果匹配上了,V和E都是对的,在赋值过程中,E发生改变怎么办?
+     * 答案是不会发生这种情况,cas操作是cpu级别的,不会被打断
      *
      *
      *
