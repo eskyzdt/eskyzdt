@@ -19,7 +19,7 @@ public class SimpleTest {
 
     @Test
     public void test051202() {
-
+        System.out.println();
 
 
         String lfwsrxsj1K1F11024 = "LFWSRXSJ1K1F11024";
@@ -32,8 +32,8 @@ public class SimpleTest {
         Date date = new Date(System.currentTimeMillis());
         System.out.println(date);
         String a = date.toString();
-       Map m = new HashMap();
-       m.put("d", date);
+        Map m = new HashMap();
+        m.put("d", date);
         System.out.println(m);
     }
 
@@ -43,7 +43,7 @@ public class SimpleTest {
     @Test
     public void test0512() {
         String load_weight = "43.234KGsdf";
-        String regEx="[0-9]*\\.[0-9]*|[0-9]*";
+        String regEx = "[0-9]*\\.[0-9]*|[0-9]*";
         Pattern p = Pattern.compile(regEx);
         Matcher matcher = p.matcher(load_weight);
         // 获取数字后的单位
@@ -55,7 +55,7 @@ public class SimpleTest {
     @Test
     public void test050901() {
         try {
-            System.out.println(File.createTempFile("df","dd"));
+            System.out.println(File.createTempFile("df", "dd"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -104,20 +104,19 @@ public class SimpleTest {
         boolean b = false;
         int count = 0;
 
-            new Thread(() -> {
-                while (true){
-                    if(b == !b){
-                        System.out.println(new Date()+":"+count);
-                    }
-                }
-            }).start();
-            new Thread(() -> {
-                while (true)
-                {
-                 //   b=!b;
+        new Thread(() -> {
+            while (true) {
+                if (b == !b) {
+                    System.out.println(new Date() + ":" + count);
                 }
             }
-            ).start();
+        }).start();
+        new Thread(() -> {
+            while (true) {
+                //   b=!b;
+            }
+        }
+        ).start();
     }
 
     @Test
@@ -129,7 +128,6 @@ public class SimpleTest {
 
     /**
      * java8的 forEach语法糖
-     *
      */
     @Test
     public void test041302() {
@@ -137,10 +135,10 @@ public class SimpleTest {
         LocalDate date = LocalDate.now();
         for (int i = 0; i < 12; i++) {
             DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM");
-            keyMap.put(date.format(dateTimeFormatter) , "0");
+            keyMap.put(date.format(dateTimeFormatter), "0");
             date = date.minusMonths(1);
         }
-        keyMap.forEach( (x,y) -> {
+        keyMap.forEach((x, y) -> {
             System.out.print(x);
             System.out.print(":");
             System.out.print(y);
@@ -234,10 +232,9 @@ public class SimpleTest {
 
         String fiftyWords4 = "^.{0,50}$";
         Pattern pattern4 = Pattern.compile(fiftyWords4);
-        Matcher matcher4= pattern4.matcher("jd(是在afdacdc21d23d23d23d23f3123");
+        Matcher matcher4 = pattern4.matcher("jd(是在afdacdc21d23d23d23d23f3123");
         boolean matches4 = matcher4.matches();
         System.out.println(matches4);
-
 
 
     }
