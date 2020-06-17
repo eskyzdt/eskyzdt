@@ -17,6 +17,22 @@ import java.util.regex.Pattern;
 
 public class SimpleTest {
 
+    private volatile char[] chars = new char[3];
+
+    @Test
+    public void test061301() {
+        // 打印数组时如果有个单独的\r,那么会导致打印时只打出一个\r,即回车
+        chars[1] = '在';
+        System.out.print(chars);
+        // 加上\r会打印不出来
+        chars[0] = '\r';
+        chars[2] = '\n';
+        System.out.println(chars);
+        // 控制台会在打印下面语句运行结束后才打印数组.
+        System.out.println("222222222222222222222222222222222222");
+        System.out.println('\r');
+    }
+
     @Test
     public void test051202() {
         System.out.println();

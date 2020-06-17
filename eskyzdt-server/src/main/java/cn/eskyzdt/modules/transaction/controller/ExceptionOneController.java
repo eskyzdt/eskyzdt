@@ -173,6 +173,7 @@ public class ExceptionOneController {
      *     倘若存在事务，则很有可能在事务管理器创建事务对象之前已经对数据库进行了操作。基于这种情况下事务管理器就不能冒昧的进行 commit 或者 rollback。
      *
      *     因此事务状态是可以用来决定事务管理器是否真实的去执行 commit 和 rollback 方法。有时候这个状态也被称之为“new”状态。
+     *
      */
 
 }
