@@ -20,6 +20,49 @@ public class SimpleTest {
     private volatile char[] chars = new char[3];
 
     @Test
+    public void test071302() {
+        int a = -3;
+        a = a >> 1;
+        System.out.println(a);
+    }
+
+    @Test
+    public void test0713() {
+        int arr[] = {3,234,23423,2314,-1,2,234,546,98,345,24,76,5678,67,587};
+        quickSort(arr, 0, arr.length - 1);
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + " ");
+        }
+    }
+
+    void quickSort(int ar[], int left, int right){
+        if (left >= right) {
+            return;
+        }
+        int key = ar[left];
+        int leftTem = left;
+        int rightTem = right;
+        while (leftTem < rightTem) {
+            while (ar[rightTem] >= key && rightTem > leftTem) {
+                rightTem--;
+            }
+            ar[leftTem] = ar[rightTem];
+            while (ar[leftTem] <= key && leftTem < rightTem) {
+                leftTem++;
+            }
+            ar[rightTem] = ar[leftTem];
+        }
+        ar[leftTem] = key;
+        quickSort(ar, left, leftTem - 1);
+        quickSort(ar, leftTem + 1, right);
+    }
+
+    @Test
+    public void test0711(){
+        System.out.println("dfsfe: %d" + 33);
+    }
+
+    @Test
     public void test061301() {
         // 打印数组时如果有个单独的\r,那么会导致打印时只打出一个\r,即回车
         chars[1] = '在';

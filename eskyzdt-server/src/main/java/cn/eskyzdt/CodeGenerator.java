@@ -70,7 +70,7 @@ public class CodeGenerator {
             // 包配置
             PackageConfig pc = new PackageConfig();
             pc.setModuleName(scanner("模块"));
-            pc.setParent("com.cunniao.waybill.v4");
+            pc.setParent("eskyzdt");
             mpg.setPackageInfo(pc);
 
             // 自定义配置

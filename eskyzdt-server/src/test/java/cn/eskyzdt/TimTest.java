@@ -14,6 +14,7 @@ import java.text.SimpleDateFormat;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 @RunWith(SpringRunner.class)
 
@@ -27,6 +28,18 @@ public class TimTest {
 
     @Autowired
     private UserService userService;
+
+    @Test
+    public void test0623() {
+        for (int i = 0; i < 200; i++) {
+            userService.threadTest();
+        }
+        try {
+            TimeUnit.SECONDS.sleep(40);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 
     @Test
     public void test112601() {

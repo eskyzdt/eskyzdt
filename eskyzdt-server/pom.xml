@@ -65,6 +65,13 @@
             <groupId>redis.clients</groupId>
             <artifactId>jedis</artifactId>
         </dependency>
+        <!--springDataredis是对jedis进行封装的包,所以上面的jedis也要引入-->
+        <!--引入这个包之后就可以用redistemplate了-->
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-redis</artifactId>
+            <version>2.2.5.RELEASE</version>
+        </dependency>
 
     </dependencies>
     <build>

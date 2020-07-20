@@ -3,20 +3,45 @@ package cn.eskyzdt.modules.user.service;
 import cn.eskyzdt.modules.user.dao.UserDao;
 import cn.eskyzdt.modules.user.entity.User;
 import cn.eskyzdt.modules.user.entity.UserDto;
+import com.alibaba.google.common.util.concurrent.ThreadFactoryBuilder;
 import com.baomidou.mybatisplus.extension.api.R;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Resource;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.*;
 
 @Service
 @Transactional  //这里要加事务的注解
 public class UserServiceImpl implements UserService {
 
-    @Autowired
+    private static ThreadFactory threadFactory = new ThreadFactoryBuilder().setNameFormat("insurance-thread-%d").build();
+
+    private ExecutorService insuExecutor = new ThreadPoolExecutor(
+            20,
+            500,
+            60L,
+            TimeUnit.SECONDS,
+            new ArrayBlockingQueue<Runnable>(20),
+            threadFactory,
+            new ThreadPoolExecutor.AbortPolicy());
+
+    @Resource
     private UserDao userDao;
+
+    @Override
+    public void threadTest() {
+            insuExecutor.submit(()->{
+                System.out.println(Thread.currentThread().getName());
+                try {
+                    TimeUnit.SECONDS.sleep(10);
+                } catch (InterruptedException e) {
+
+                }
+            });
+    }
 
     @Override
     public User findById(Integer id) {

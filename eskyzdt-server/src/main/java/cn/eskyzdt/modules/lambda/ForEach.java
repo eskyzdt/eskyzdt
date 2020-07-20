@@ -64,7 +64,7 @@ public class ForEach {
         ForEach forEach = new ForEach();
         // 2.因为getStr不是静态方法,所以要用new出来的forEach调用,如果是静态方法,那么可以直接用 ForEach::getStr
         // 注意这里::后面只需要方法名就可以了,不需要加括号
-        // 例: ForEach getStr = forEach::getStr; 报错,编译不通过
+        // 例: ForEach getStr = forEach::getStr(); 报错,编译不通过
         Runnable getStr = forEach::getStr;
         // 3.上面的返回值必须是个functional interface函数式接口,即必须有一个抽象方法,不然会报错
         // The target type of this expression must be a functional interface
