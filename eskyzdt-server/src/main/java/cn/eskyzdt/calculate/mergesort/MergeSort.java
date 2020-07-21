@@ -13,6 +13,8 @@ public class MergeSort {
     }
 
     private static void sort(int[] arr, int[] result, int start, int end) {
+        // 这里的判断条件我之前加了 len == 1 || ,实际上len为1时也会进行下一步排序(因为len=1说明有两个数据)
+        // ,只有等于时才是一个数据
         if (start >= end) {
             return;
         }
