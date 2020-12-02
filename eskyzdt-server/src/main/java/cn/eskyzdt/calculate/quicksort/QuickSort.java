@@ -10,7 +10,6 @@ public class QuickSort {
         }
     }
 
-
     static void quick(int[] arr, int start, int end){
         if (start >= end) {
             return;

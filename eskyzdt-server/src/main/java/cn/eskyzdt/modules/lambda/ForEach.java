@@ -74,6 +74,11 @@ public class ForEach {
         // 因为是用 forEach::getStr创建的
         getStr.run();
 
+        //5. ::new也可以创建一个Runnable
+        Runnable aNew = ForEach::new;
+        // 在run()方法运行时,会调用构造方法
+        aNew.run();
+
     }
 
 

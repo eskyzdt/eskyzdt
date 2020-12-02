@@ -21,6 +21,11 @@
             <artifactId>spring-boot-starter-tomcat</artifactId>
             <version>2.0.1.RELEASE</version>
         </dependency>
+        <!--springsecurity-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
         <!--测试包-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -67,11 +72,12 @@
         </dependency>
         <!--springDataredis是对jedis进行封装的包,所以上面的jedis也要引入-->
         <!--引入这个包之后就可以用redistemplate了-->
-        <dependency>
+        <!--但是要配置redis的相关连接,否则报错-->
+     <!--   <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-redis</artifactId>
             <version>2.2.5.RELEASE</version>
-        </dependency>
+        </dependency>-->
 
     </dependencies>
     <build>

@@ -27,8 +27,8 @@ rabbitmq:
 
 oss:
   endpoint: oss-cn-shanghai.aliyuncs.com
-  appKeyId: LTAI4Fum3pQ9Nzq5igRs1Qpo
-  appKeySecret: GPGk7vQGi2rZFCctsc88vXTR1Ji48B
+  appKeyId: LTAI4
+  appKeySecret: GPGk7
   bucketName: eskyzdt
 
 fugai.sss: ddd

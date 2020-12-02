@@ -44,7 +44,7 @@ public class IWaybillBatchController {
                 }
             }
             System.out.println(list);
-        } catch (Exception e ){
+        } catch (Exception e) {
             return new String("系统繁忙,请稍后再试" + e.toString());
         }
         return new String("ddd");

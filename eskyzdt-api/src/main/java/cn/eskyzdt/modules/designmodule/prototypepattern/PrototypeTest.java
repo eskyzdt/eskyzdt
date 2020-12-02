@@ -45,8 +45,8 @@ public class PrototypeTest {
         System.out.println(protoEntity.hashCode());
         System.out.println(protoEntity);
         System.out.println("==========================================");
-        System.out.println(clone);
         System.out.println(clone.hashCode());
+        System.out.println(clone);
     }
 
 
