@@ -13,6 +13,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.text.SimpleDateFormat;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAdjuster;
+import java.time.temporal.TemporalAdjusters;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
@@ -154,6 +156,17 @@ public class TimTest {
         System.out.println(LocalDateTime.MAX);//支持的最大时间
         System.out.println(  LocalDateTime.now().toEpochSecond(ZoneOffset.of("+8")));//把时间转为秒
 
+
+        /**
+         * 时间的调整器 TemporalAdjusters
+         */
+        LocalDate now = LocalDate.now();
+        // 获取上周四
+        TemporalAdjuster adjuster = TemporalAdjusters.previous(DayOfWeek.THURSDAY);
+        LocalDate lastThursday = now.with(adjuster);
+        LocalTime hourAndMinutes = LocalTime.of(9, 30);
+        LocalDateTime fromTime = LocalDateTime.of(lastThursday, hourAndMinutes);
+        LocalDateTime toTime = fromTime.plusWeeks(1);
     }
 
 

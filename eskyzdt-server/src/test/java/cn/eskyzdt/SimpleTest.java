@@ -1,10 +1,10 @@
 package cn.eskyzdt;
 
+import cn.eskyzdt.english.HighMath;
+import cn.eskyzdt.modules.test.TestModel;
 import com.alibaba.fastjson.JSONObject;
 import org.junit.Test;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
+import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.File;
@@ -18,6 +18,56 @@ import java.util.regex.Pattern;
 public class SimpleTest {
 
     private volatile char[] chars = new char[3];
+
+    @Test
+    public void test1211() {
+            String[] split1 = "q131213,234234,12321".split(",");
+            List<String> split = Arrays.asList(split1);
+
+            String remove = split.remove(1);
+
+            System.out.println(split.toString());
+
+            // java 8之后可能用removeif
+        // list.removeIf(next -> !isEmail(next));
+
+    }
+
+    @Test
+    public void test1209() {
+//        System.out.println(HighMath.BAOHAOXING.getKey());
+        System.out.println(HighMath.ss);
+    }
+
+    /**
+     * http返回值
+     */
+    @Test
+    public void test1207(){
+        ResponseEntity<String> s = new ResponseEntity<>("ssssssss", HttpStatus.NOT_FOUND);
+        System.out.println(s);
+        String body = s.getBody();
+        System.out.println(body);
+        HttpHeaders headers = s.getHeaders();
+        HttpStatus statusCode = s.getStatusCode();
+        int statusCodeValue = s.getStatusCodeValue();
+        boolean b = s.hasBody();
+        System.out.println(headers);
+        System.out.println(statusCode);
+        System.out.println(statusCodeValue);
+        System.out.println(b);
+    }
+
+    @Test
+    public void test1204(){
+//        assert false;
+//        System.out.println("a");
+
+        TestModel.timeout = 1;
+        TestModel.refreshMillis = 2;
+
+        System.out.println(TestModel.getRefreshMillis());
+    }
 
     @Test
     public void test071302() {
@@ -378,10 +428,39 @@ public class SimpleTest {
     }
 
     @Test
+    public void test20201210() throws InterruptedException {
+
+        Duration duration = Duration.between(null,LocalDateTime.now());
+        System.out.println(duration.toMillis());
+
+    }
+
+        @Test
     public void test1114() throws InterruptedException {
+
         Instant now = Instant.now();
         System.out.println(now);
+
         OffsetDateTime offsetDateTime = now.atOffset(ZoneOffset.of("+8"));
+
+        LocalDateTime before = LocalDateTime.of(2020,12,10,10,16);
+        Duration duration = Duration.between(before,offsetDateTime);
+        long days = duration.toDays(); //相差的天数
+        long hours = duration.toHours();//相差的小时数
+        long minutes = duration.toMinutes();//相差的分钟数
+        long millis = duration.toMillis();//相差毫秒数
+        long nanos = duration.toNanos();//相差的纳秒数
+        System.out.println("计算两个时间的差：");
+        System.out.println("起始时间："+ before);
+        System.out.println("结束时间："+ offsetDateTime);
+        System.out.println("相差天数" +days);
+        System.out.println("相差小时" + hours);
+
+
+
+
+
+
         System.out.println(offsetDateTime);
         int hour = offsetDateTime.getHour();
         System.out.println(hour);

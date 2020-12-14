@@ -27,6 +27,8 @@ public class LambdaStream {
         list.set(0,"3");
         list.set(1, "3");
 
+        // 对于一个list,可以用removeIf
+        list.removeIf(o->o.equals("111"));
 
         // 获得一个顺序流
         Stream<String> stream = list.stream();
