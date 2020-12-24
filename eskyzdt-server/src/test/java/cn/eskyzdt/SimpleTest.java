@@ -2,6 +2,7 @@ package cn.eskyzdt;
 
 import cn.eskyzdt.english.HighMath;
 import cn.eskyzdt.modules.test.TestModel;
+import cn.eskyzdt.modules.user.entity.User;
 import com.alibaba.fastjson.JSONObject;
 import org.junit.Test;
 import org.springframework.http.*;
@@ -14,10 +15,23 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class SimpleTest {
 
     private volatile char[] chars = new char[3];
+
+    @Test
+    public void test1218() {
+        ArrayList<User> objects = new ArrayList<>();
+        // 出来的不为null
+        Map<String, List<User>> collect = objects.stream().collect(Collectors.groupingBy(User::getEmail));
+        System.out.println(
+        );
+        collect.forEach((k,v)->{
+            System.out.println();
+        });
+    }
 
     @Test
     public void test1211() {

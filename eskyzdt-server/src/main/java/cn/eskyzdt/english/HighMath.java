@@ -18,6 +18,16 @@ public enum HighMath {
     private String key;
 
     private HighMath(String key) {
+
         this.key = key;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    @Override
+    public String toString() {
+        return key;
     }
 }

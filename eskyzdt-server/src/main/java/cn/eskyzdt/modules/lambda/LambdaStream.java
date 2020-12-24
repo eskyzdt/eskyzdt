@@ -14,6 +14,9 @@ import java.util.stream.Stream;
 public class LambdaStream {
 
     public static void main(String[] args) {
+        Runnable run = LambdaStream::gen;
+        run.run();
+
       /*  HashMap<String, Object> map = new HashMap<>();
         map.put("a", "1");
         map.put("b", "2");
@@ -50,6 +53,21 @@ public class LambdaStream {
         list2.add("1");
         List<Integer> objectStream = list2.stream().map(e->Integer.parseInt(e)).collect(Collectors.toList());
 
+    }
+
+    /**
+     * 三、方法引用（含构造方法引用）
+     *
+     * 通常与Lambda表达式联合使用，可以直接引用已有Java类或对象的方法。一般有四种不同的方法引用：
+     *
+     *     构造器引用。语法是Class::new，或者更一般的Class< T >::new，可无参，可有参数。方法签名保持一致；
+     *     静态方法引用。语法是Class::static_method，要求方法签名保持一致；
+     *     特定类的任意对象方法引用。它的语法是Class::method。要求方法签名保持一致；
+     *     特定对象的方法引用，它的语法是instance::method。要求方法签名保持一致。与3不同的地方在于，3是在列表元素上分别调用方法，而4是在某个对象上调用方法，将列表元素作为参数传入；
+     */
+    private static String gen() {
+        System.out.println("ccc");
+        return "ccc";
     }
 
 

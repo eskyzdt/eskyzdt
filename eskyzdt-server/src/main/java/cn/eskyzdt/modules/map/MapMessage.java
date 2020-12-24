@@ -12,6 +12,16 @@ public class MapMessage {
     }
 
     /**
+     * 用getOrDefault可以在值为null的时候获得一个默认值
+     */
+    private void getOrDefault() {
+//        HashMap<Long, CountDownScVo> map = new HashMap<>();
+//        CountDownScVo vo = map.getOrDefault(ownerNo, new CountDownScVo(ownerNo, tem.getOwnName(), tem.getDepName()));
+
+    }
+
+
+    /**
      * hashmap是允许null键和null值的
      */
     private static void createMap() {
