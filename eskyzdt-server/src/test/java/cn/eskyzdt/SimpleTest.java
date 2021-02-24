@@ -4,12 +4,15 @@ import cn.eskyzdt.english.HighMath;
 import cn.eskyzdt.modules.test.TestModel;
 import cn.eskyzdt.modules.user.entity.User;
 import com.alibaba.fastjson.JSONObject;
+import org.apache.commons.collections4.MapUtils;
 import org.junit.Test;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.File;
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -19,7 +22,45 @@ import java.util.stream.Collectors;
 
 public class SimpleTest {
 
+
+    @Test
+    public void test0120() {
+        BigDecimal bigDecimal = new BigDecimal("0.0006");
+        BigDecimal bigDecimal1 = bigDecimal.setScale(2, RoundingMode.HALF_UP);
+        System.out.println(bigDecimal1);
+
+
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("key", "4");
+        Integer accountTypeTem = MapUtils.getInteger(map, "key");
+        System.out.println(accountTypeTem);
+    }
+
+
     private volatile char[] chars = new char[3];
+
+    class TestObj {
+        private String var;
+
+        public String getVar() {
+            return var;
+        }
+
+        public void setVar(String var) {
+            this.var = var;
+        }
+    }
+
+    @Test
+    public void test210120() {
+        TestObj obj = new TestObj();
+        resolve(obj);
+        System.out.println(obj.var);
+    }
+
+    public void resolve(TestObj a) {
+        a.var = "333";
+    }
 
     @Test
     public void test1218() {
@@ -469,8 +510,7 @@ public class SimpleTest {
         System.out.println("结束时间："+ offsetDateTime);
         System.out.println("相差天数" +days);
         System.out.println("相差小时" + hours);
-
-
+        System.out.println("相差分钟" + minutes);
 
 
 

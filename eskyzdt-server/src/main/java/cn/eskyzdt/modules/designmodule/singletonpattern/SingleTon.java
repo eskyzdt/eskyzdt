@@ -14,7 +14,7 @@ public class SingleTon {
      *
      *
      *
-     * vilatile 只能保证可见性,不能保证原子性,所以如果用了volatiole,需要synchronized的时候也还是要用的
+     * volatile 只能保证可见性,不能保证原子性,所以如果用了volatile,需要synchronized的时候也还是要用的
      */
     private static SingleTon singleTon;
 

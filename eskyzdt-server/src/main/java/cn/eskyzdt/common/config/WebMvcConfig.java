@@ -76,13 +76,16 @@ import java.util.List;
  * 上述提到的三种方法各有什么不同呢？
  *
  *
- * 通过@Bean定义HttpMessageConverter是向项目中添加消息转换器最简便的办法，这类似于之前提到的添加Servlet Filters。如果Spring扫描到HttpMessageConverter类型的bean，就会将它自动添加到调用链中。推荐让项目中的WebConfiguration继承自WebMvcConfigurerAdapter。
+ * 通过@Bean定义HttpMessageConverter是向项目中添加消息转换器最简便的办法，这类似于之前提到的添加Servlet Filters。如果Spr
+ * ing扫描到HttpMessageConverter类型的bean，就会将它自动添加到调用链中。推荐让项目中的WebConfiguration继承自WebMvcConfigurerAdapter。
  *
  *
- * 通过重写configureMessageConverters方法添加自定义的转换器很方便，但有一个弱点：如果项目中存在多个WebMvcConfigurers的实例（我们自己定义的，或者Spring Boot默认提供的），不能确保重写后的configureMessageConverters方法按照固定顺序执行。
+ * 通过重写configureMessageConverters方法添加自定义的转换器很方便，但有一个弱点：如果项目中存在多个WebMvcConfigurers的实例
+ * （我们自己定义的，或者Spring Boot默认提供的），不能确保重写后的configureMessageConverters方法按照固定顺序执行。
  *
  *
- * 如果需要更精细的控制：清除其他消息转换器或者清楚重复的转换器，可以通过重写extendMessageConverters完成，仍然有这种可能：别的WebMvcConfigurer实例也可以重写这个方法，但是这种几率非常小。
+ * 如果需要更精细的控制：清除其他消息转换器或者清楚重复的转换器，可以通过重写extendMessageConverters完成，仍然有这种可能：
+ * 别的WebMvcConfigurer实例也可以重写这个方法，但是这种几率非常小。
  *
  *
  * Spring Boot 1.x系列
@@ -90,7 +93,6 @@ import java.util.List;
  *     Spring Boot的自动配置、Command-line-Runner 了解Spring Boot的自动配置 Spring Boot的@PropertySource注解在整合Redis中的使用
  *
  *
- * 本号（javaadu）专注于后端技术、JVM问题排查和优化、Java面试题、个人成长和自我管理等主题，为读者提供一线开发者的工作和成长经验，期待你能在这里有所收获。
  */
 //@Configuration
 public class WebMvcConfig extends WebMvcConfigurationSupport {

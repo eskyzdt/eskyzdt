@@ -34,7 +34,7 @@ import org.springframework.web.servlet.config.annotation.*;
  * 还可以直接从WebMvcConfigurationSupport这个配置“供应商“的手中获取配置途径。
  * WebMvcConfigurationSupport是一个提供了以Java编程方式来配置Web应用程序的配置主类，
  * 所以我们可以从这个配置供应商的手中获取Web应用程序的配置方式。方法很简单，
- * 只需要扩展此类并重写对应的方法即可。
+ * 只需要继承此类并重写对应的方法即可。
  *
  * 继承WebMvcConfigurationSupport
  * @see WebMvcConfig

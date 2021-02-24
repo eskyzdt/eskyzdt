@@ -1,6 +1,6 @@
 package cn.eskyzdt.modules.transaction.controller;
 
-import cn.eskyzdt.modules.transaction.service.ExceptionOne;
+import cn.eskyzdt.modules.transaction.service.ExceptionOneImpl;
 import cn.eskyzdt.modules.user.entity.User;
 import cn.eskyzdt.modules.user.service.UserService;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,12 +13,11 @@ import javax.annotation.Resource;
 public class ExceptionOneController {
 
     @Resource
-    private ExceptionOne exceptionOne;
+    private ExceptionOneImpl exceptionOne;
 
     @Resource
     private UserService userService;
 
-    @RequestMapping("/exe")
     /**
      * 非运行时异常是RuntimeException以外的异常，类型上都属于Exception类及其子类。
      * 如IOException、SQLException等以及用户自定义的Exception异常。
@@ -96,6 +95,7 @@ public class ExceptionOneController {
      * 如果写了trycatch,那么事务就不会回滚了
      * 所以如果用trycatch,那么就要手动回滚一波
      */
+    @RequestMapping("/exe")
     @Transactional(rollbackFor = Exception.class)
     public void exceptionOneCon() {
         try {
@@ -107,15 +107,14 @@ public class ExceptionOneController {
             userService.insertUser(user);
             String name = Thread.currentThread().getName();
             System.out.println("主线程名" + name);
-
             try {
+                // 对于这个异步线程, catch已经失效了, 因为执行catch的时候异步线程并未报错, 导致@transactional失效
                 exceptionOne.exception();
             } catch (Exception e) {
                // e.printStackTrace();
                 throw e;
             }
             System.out.println("主线程睡10s");
-            Thread.sleep(10000);
             System.out.println("主线程结束");
         } catch (Exception e) {
             /** 如果不加下面这一行,控制台和页面会显示spring自动回滚的信息(因为自动回滚了,给我们开发人员一个提示),而且数据库没有插入数据(因为自动回滚了)
@@ -129,13 +128,27 @@ public class ExceptionOneController {
             System.out.println("e.toString" + e.toString());
             System.out.println("e.getCause" + e.getCause());
             System.out.println("===================================");
-            e.printStackTrace();
+          //  e.printStackTrace();
             System.out.println("=========================");
             System.out.println("e.getMessage()" + e.getMessage());
             // 手动回滚,页面不会报错
             // TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
             System.out.println("exe");
         }
+    }
+
+
+    public static void main(String[] args) {
+    /*    String a = "[a-zA-Z0-9_-]+\\.[a-zA-Z0-9_-]+$";
+        Pattern pattern = Pattern.compile(a);
+        Matcher matcher = pattern.matcher("@#$@#");
+        if (matcher.find()) {
+            String group = matcher.group();
+            System.out.println(group);
+        }
+    */
+        String s = "www-白3地.sdfsdf.wervd.32".replaceFirst(".+?\\.", "op.");
+        System.out.println(s);
     }
 
 

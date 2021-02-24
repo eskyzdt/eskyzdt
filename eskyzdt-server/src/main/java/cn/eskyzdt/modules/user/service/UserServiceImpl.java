@@ -14,7 +14,7 @@ import java.util.Map;
 import java.util.concurrent.*;
 
 @Service
-@Transactional  //这里要加事务的注解
+//@Transactional  //这里要加事务的注解
 public class UserServiceImpl implements UserService {
 
     private static ThreadFactory threadFactory = new ThreadFactoryBuilder().setNameFormat("insurance-thread-%d").build();
