@@ -1,3 +1,12 @@
+
+GET http://money.finance.sina.com.cn/quotes_service/api/json_v2.php/CN_MarketData.getKLineData?symbol=sz300122&scale=30&ma=5&datalen=10
+
+###
+
+GET http://hq.sinajs.cn/list=sz300122
+
+
+###
 POST http://127.0.0.1:80/validate
 Content-Type: application/json
 Cache-Control: no-cache

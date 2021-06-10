@@ -2,9 +2,7 @@ package cn.eskyzdt.modules.lambda;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.TreeSet;
+import java.util.*;
 
 public class ForEach {
 
@@ -37,6 +35,11 @@ public class ForEach {
      *
      */
     public static void main(String[] args) {
+        List<String> list =  new ArrayList<>();
+        for (String s : list) {
+            System.out.println(s);
+        }
+
         Map<String, Object> keyMap = new LinkedHashMap<>();
         LocalDate date = LocalDate.now();
         for (int i = 0; i < 12; i++) {

@@ -1,0 +1,17 @@
+###
+POST {{host}}/companyAccount/query_receive_account
+Content-Type: application/json
+Cache-Control: no-cache
+Accept: */*
+Cookie: JSESSIONID={{session}}
+
+{"pageNo":1,"pageSize":10,"companyName":"业"}
+
+###
+POST {{host}}/companyAccount/query_receive_account
+Content-Type: application/json
+Cache-Control: no-cache
+Accept: */*
+Cookie: JSESSIONID={{session}}
+
+{"pageNo":1,"pageSize":10,"taxAreaId":39,"companyName":"企业"}

@@ -43,8 +43,15 @@ public class MapMessage {
      * 但是concurrentMap不允许
      */
     private static void createConcurrentHashMap() {
+
+
         ConcurrentHashMap<String, Object> map = new ConcurrentHashMap<>();
-        map.put("","");
+        map.put("111","");
+
+        System.out.println("获取不存在的值"  +map.get("1112"));
+
+
+
         map.put(null, "");
         map.forEach((k,v)->{
             System.out.println("key: " + k + "value: " + v);

@@ -22,13 +22,45 @@ import java.util.stream.Collectors;
 
 public class SimpleTest {
 
+    /**
+     * 数字的正则^[0-9]*\.*[0-9]*$
+     *
+     */
+    @Test
+    public void test0315() {
+        LocalDate localDate = LocalDate.of(2011, 12, 2);
+        LocalDate now = LocalDate.now();
+        boolean equal = localDate.isEqual(now);
+        System.out.println(equal);
+    }
+
+    @Test
+    public void test0309() {
+        LocalTime a = LocalTime.of(23,34);
+        int hour = a.getHour();
+        int minute = a.getMinute();
+
+        System.out.println("" + hour + minute);
+        LocalTime b = LocalTime.of(0, 13);
+
+        LocalDateTime now = LocalDateTime.now();
+        System.out.println("," +now);
+        String s = "2021-3-19 23:59:59";
+
+        DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-M-dd HH:mm:ss");
+        LocalDateTime parse = LocalDateTime.parse(s, df);
+
+        System.out.println(parse);
+        Duration between = Duration.between(a, b);
+        long l = between.toMinutes();
+        System.out.println(l);
+    }
 
     @Test
     public void test0120() {
         BigDecimal bigDecimal = new BigDecimal("0.0006");
         BigDecimal bigDecimal1 = bigDecimal.setScale(2, RoundingMode.HALF_UP);
         System.out.println(bigDecimal1);
-
 
         HashMap<String, Object> map = new HashMap<>();
         map.put("key", "4");
@@ -499,7 +531,12 @@ public class SimpleTest {
         OffsetDateTime offsetDateTime = now.atOffset(ZoneOffset.of("+8"));
 
         LocalDateTime before = LocalDateTime.of(2020,12,10,10,16);
-        Duration duration = Duration.between(before,offsetDateTime);
+
+            Period between = Period.between(before.toLocalDate(), offsetDateTime.toLocalDate());
+            int years = between.getYears();
+            System.out.println("period获取相差的年数"+ years);
+
+            Duration duration = Duration.between(before,offsetDateTime);
         long days = duration.toDays(); //相差的天数
         long hours = duration.toHours();//相差的小时数
         long minutes = duration.toMinutes();//相差的分钟数

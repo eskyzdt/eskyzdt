@@ -60,7 +60,7 @@ public class CodeGenerator {
 
             // 数据源配置
             DataSourceConfig dsc = new DataSourceConfig();
-            dsc.setUrl("jdbc:mysql://49.235.24.173:3306/crm?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=CTT");
+            dsc.setUrl("jdbc:mysql://8.133.180.12:3306/timber?serverTimezone=GMT%2B8&characterEncoding=utf-8&autoReconnect=true");
             // dsc.setSchemaName("public");
             dsc.setDriverName("com.mysql.jdbc.Driver");
             dsc.setUsername("root");
