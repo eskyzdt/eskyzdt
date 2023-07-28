@@ -16,6 +16,7 @@ public class MySQLGeneratorTest extends BaseGeneratorTest {
      * 数据源配置
      */
     private static final DataSourceConfig DATA_SOURCE_CONFIG = new DataSourceConfig
+            .Builder("jdbc:mysql://127.0.0.1:3306/mybatis-plus", "root", "123456")
             .build();
 
     public static void main(String[] args) {
