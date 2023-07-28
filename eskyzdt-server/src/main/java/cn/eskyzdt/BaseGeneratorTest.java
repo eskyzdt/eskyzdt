@@ -6,8 +6,6 @@ import com.baomidou.mybatisplus.generator.config.PackageConfig;
 import com.baomidou.mybatisplus.generator.config.StrategyConfig;
 import com.baomidou.mybatisplus.generator.config.TemplateConfig;
 
-import java.util.Collections;
-
 /**
  * 基础测试类
  *
@@ -15,12 +13,38 @@ import java.util.Collections;
  * @since 3.5.3
  */
 public class BaseGeneratorTest {
+    /**
+     * 处于com.xxx. . 这一级的包名 todo
+     */
+    public static final String PACKAGE_MODULE = ".user";
+
+    /**
+     * 子级的模块名 todo
+     */
+    public static final String FEATURE_MODULE = ".dosth";
+
 
     /**
      * 策略配置
      */
     protected static StrategyConfig.Builder strategyConfig() {
         StrategyConfig.Builder builder = new StrategyConfig.Builder();
+
+
+        // controller层
+        builder.controllerBuilder().enableRestStyle()
+                .enableFileOverride()
+                .enableHyphenStyle();
+        // service层
+        builder.serviceBuilder()
+                .convertServiceImplFileName(o->o + "Service")
+                .enableFileOverride();
+
+        // entity层
+        builder.entityBuilder().enableChainModel()
+                .enableLombok()
+                .addIgnoreColumns("who_created", "who_modified", "corp_id", "create_time", "update_time", "del_status")
+                .enableFileOverride();
         return builder;
     }
 
@@ -40,7 +64,13 @@ public class BaseGeneratorTest {
      */
     protected static PackageConfig.Builder packageConfig() {
         PackageConfig.Builder builder = new PackageConfig.Builder();
-        builder.controller("controller");
+        builder.parent("com.myy" + PACKAGE_MODULE);
+        builder.controller("controller" + FEATURE_MODULE);
+        builder.service("service" + FEATURE_MODULE);
+        builder.serviceImpl("service.impl" + FEATURE_MODULE);
+        builder.mapper("mapper" + FEATURE_MODULE);
+        builder.xml("resources.mapper");
+        builder.entity("mapper.po" + FEATURE_MODULE);
 
         return builder;
     }
@@ -50,7 +80,12 @@ public class BaseGeneratorTest {
      */
     protected static TemplateConfig.Builder templateConfig() {
         TemplateConfig.Builder builder = new TemplateConfig.Builder();
-        builder.controller("estyaaa/controller.java.vm");
+        builder.controller("mytemplate/controller.java.vm");
+        builder.service("mytemplate/service.java.vm");
+        builder.serviceImpl("mytemplate/serviceImpl.java.vm");
+        builder.mapper("mytemplate/mapper.java.vm");
+        builder.xml("mytemplate/mapper.xml.vm");
+        builder.entity("mytemplate/entity.java.vm");
         return builder;
     }
 

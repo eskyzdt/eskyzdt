@@ -2,9 +2,7 @@ package cn.eskyzdt;
 
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.config.DataSourceConfig;
-
-import static cn.eskyzdt.BaseGeneratorTest.globalConfig;
-import static cn.eskyzdt.BaseGeneratorTest.strategyConfig;
+import com.baomidou.mybatisplus.generator.config.StrategyConfig;
 
 /**
  * MySQL 代码生成
@@ -18,15 +16,21 @@ public class MySQLGeneratorTest extends BaseGeneratorTest {
      * 数据源配置
      */
     private static final DataSourceConfig DATA_SOURCE_CONFIG = new DataSourceConfig
-
             .build();
 
     public static void main(String[] args) {
         AutoGenerator generator = new AutoGenerator(DATA_SOURCE_CONFIG);
-        generator.strategy(strategyConfig().build());
+        // 策略配置(StrategyConfig)
+        StrategyConfig.Builder strategyConfigBuilder = strategyConfig();
+        // 配置要生成的表
+        strategyConfigBuilder.addInclude("cure_tooth_exam_follow");
+        generator.strategy(strategyConfigBuilder.build());
+        // 全局配置
         generator.global(globalConfig().build());
+        // 包的路径等
         generator.packageInfo(packageConfig().build());
-//        generator.injection(injectionConfig().build());
+        //  enerator.injection(injectionConfig().build());
+        // 模板配置
         generator.template(templateConfig().build());
         generator.execute();
     }

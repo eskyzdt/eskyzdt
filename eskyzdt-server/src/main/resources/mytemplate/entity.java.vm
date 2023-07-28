@@ -3,6 +3,7 @@ package ${package.Entity};
 #foreach($pkg in ${table.importPackages})
 import ${pkg};
 #end
+import com.myy.mybatis.plus.model.BaseModel;
 #if(${springdoc})
 import io.swagger.v3.oas.annotations.media.Schema;
 #elseif(${swagger})
@@ -10,8 +11,8 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 #end
 #if(${entityLombokModel})
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 #if(${chainModel})
 import lombok.experimental.Accessors;
 #end
@@ -26,14 +27,11 @@ import lombok.experimental.Accessors;
  * @since ${date}
  */
 #if(${entityLombokModel})
-@Getter
-@Setter
+@Data
+@EqualsAndHashCode(callSuper = true)
   #if(${chainModel})
 @Accessors(chain = true)
   #end
-#end
-#if(${table.convert})
-@TableName("${schemaName}${table.name}")
 #end
 #if(${springdoc})
 @Schema(name = "${entity}", description = "$!{table.comment}")
@@ -41,11 +39,11 @@ import lombok.experimental.Accessors;
 @ApiModel(value = "${entity}对象", description = "$!{table.comment}")
 #end
 #if(${superEntityClass})
-public class ${entity} extends ${superEntityClass}#if(${activeRecord})<${entity}>#end {
+public class ${entity} extends BaseModel {
 #elseif(${activeRecord})
 public class ${entity} extends Model<${entity}> {
 #elseif(${entitySerialVersionUID})
-public class ${entity} implements Serializable {
+public class ${entity} implements BaseModel {
 #else
 public class ${entity} {
 #end
