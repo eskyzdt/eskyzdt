@@ -114,60 +114,6 @@ public class TimTest {
     }
 
 
-    @Test
-    public void testFromInternet() {
-        LocalDateTime localDateTime = LocalDateTime.now();
-        System.out.println("系统当前日期+时间:" + localDateTime);
-        LocalDate localDate = LocalDate.now();
-        System.out.println("系统当期日期：" + localDate);
-        LocalTime localTime = LocalTime.now();
-        System.out.println("系统当前时间：" + localTime);
-        System.out.println("系统当前时间,去除毫秒：" + localTime.withNano(0));//0 为去除毫秒
-
-        System.out.println("指定年、月、日、时、分、秒：" + LocalDateTime.of(2016, 11, 23, 9, 07, 59));//返回一个指定年、月、日、时、分、秒的时间，不可变
-        System.out.println("指定年数的时间：" + localDateTime.withDayOfYear(1));//返回一个指定“一年中的天数,the day-of-year  ”的时间，不可变
-        System.out.println("指定天数的时间：" + localDateTime.withDayOfMonth(1));//返回一个指定“一月中的天数,day-of-month ”的时间，不可变
-        System.out.println("指定小时数的时间：" + localTime.withHour(1));//返回一个指定“一天中的小时数,the hour-of-day ”的时间，不可变
-        System.out.println("指定分钟数的时间：" + localTime.withMinute(1));//返回一个指定“一小时的分钟数,the minute-of-hour ”的时间，不可变
-        System.out.println("指定秒数的时间：" + localTime.withSecond(1));//返回一个指定“一分钟的秒数,the second-of-minute ”的时间，不可变
-        System.out.println("the hour-of-day, from 0 to 23：" + localTime.getHour());//取得一天中的小时数
-        System.out.println("minute-of-hour, from 0 to 59:" + localTime.getMinute());//取得一小时中的分钟数
-        System.out.println("the second-of-minute, from 0 to 59:" + localTime.getSecond());//取的一分钟的秒数
-        System.out.println("the nano-of-second, from 0 to 999,999,999:" + localTime.getNano());//取得一秒钟的纳秒数
-
-        //日期运算
-        System.out.println("系统当前时间减去1年：" + (localDate.minusYears(1)));
-        //看看闰年和平年的区别
-        LocalDateTime localDateTime1 = LocalDateTime.of(2016, 02, 29, 00, 00, 00);
-        System.out.println("闰年减去一年：" + localDateTime1.minusYears(1));//减去一年后是平年，注意结果
-        System.out.println("系统当前时间减去1天：" + (localDate.minusDays(1)));
-        System.out.println("系统当前时间减去23天：" + (localDate.minusDays(23)));
-        System.out.println("系统当前时间加上1年：" + (localDate.plusYears(1)));
-        System.out.println("系统当前时间加上1天：" + (localDate.plusDays(1)));
-        System.out.println("系统当前时间加上1分钟：" + (localDateTime.plusMinutes(1)));
-        System.out.println("系统当前时间加上1纳秒：" + (localDateTime.plusNanos(1)));
-        System.out.println("系统当前时间加上1周：" + (localDateTime.plusWeeks(1)));
-        System.out.println("localDateTime 转 localDate:" + localDateTime.toLocalDate());
-        System.out.println("localDateTime 转 localTime:" + localDateTime.toLocalTime());
-        //格式器
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyyMMdd HH:mm:ss");
-        System.out.println(LocalDateTime.parse("20111123 00:00:00", dateTimeFormatter));
-        System.out.println(LocalDateTime.MIN);//支持的最小时间
-        System.out.println(LocalDateTime.MAX);//支持的最大时间
-        System.out.println(  LocalDateTime.now().toEpochSecond(ZoneOffset.of("+8")));//把时间转为秒
-
-
-        /**
-         * 时间的调整器 TemporalAdjusters
-         */
-        LocalDate now = LocalDate.now();
-        // 获取上周四
-        TemporalAdjuster adjuster = TemporalAdjusters.previous(DayOfWeek.THURSDAY);
-        LocalDate lastThursday = now.with(adjuster);
-        LocalTime hourAndMinutes = LocalTime.of(9, 30);
-        LocalDateTime fromTime = LocalDateTime.of(lastThursday, hourAndMinutes);
-        LocalDateTime toTime = fromTime.plusWeeks(1);
-    }
 
 
     @Test

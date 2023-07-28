@@ -15,7 +15,8 @@ public enum Vocabulary {
     relevant("相关的 Do you have the relevant experience?"),
     resident("居民, 和president校长只差一个"),
     survey("调查"),
-    restricted("受限制的,保密的"),
+    district("区域 the district is under consideration for ..."),
+    restricted("受限制的,保密的"),  // I restrict myself to one cup of coffee a day
     journal("日报,日记"),
     alternative("可选择的,二选一的"),
     convention("社会习俗It's just a social convention that men don't wear skirts."),

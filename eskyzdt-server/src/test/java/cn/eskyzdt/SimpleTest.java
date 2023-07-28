@@ -3,7 +3,9 @@ package cn.eskyzdt;
 import cn.eskyzdt.english.HighMath;
 import cn.eskyzdt.modules.test.TestModel;
 import cn.eskyzdt.modules.user.entity.User;
+import cn.hutool.http.HttpUtil;
 import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import org.apache.commons.collections4.MapUtils;
 import org.junit.Test;
 import org.springframework.http.*;
@@ -15,12 +17,93 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAdjuster;
+import java.time.temporal.TemporalAdjusters;
 import java.util.*;
+import java.util.concurrent.LinkedBlockingDeque;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+import static cn.hutool.core.util.NumberUtil.add;
+
 public class SimpleTest {
+
+
+    @Test
+    public void test0628() {
+        BigDecimal bigDecimal = BigDecimal.valueOf(0);
+        BigDecimal bigDecimal1 = bigDecimal.setScale(2, RoundingMode.HALF_UP);
+        System.out.println(bigDecimal);
+        System.out.println(bigDecimal1);
+        System.out.println(bigDecimal1.toString());
+        System.out.println(bigDecimal.toString());
+
+
+        System.out.println( 5 / 2);
+        System.out.println(  5 / 3);
+
+    }
+
+    @Test
+    public void test0620() {
+        // 加入总进度
+        BigDecimal progressMath = new BigDecimal("9.95");
+    // 计算一下平均下载进度 eg. 20 50  100
+    // 先乘100
+        BigDecimal multiply = progressMath.multiply(new BigDecimal(100));
+        BigDecimal divide = multiply
+                // 再除以数量
+                .divide(BigDecimal.valueOf(10), 2, RoundingMode.HALF_UP);
+        String totalProgressAverage = divide.toString();
+        System.out.println(totalProgressAverage);
+    }
+
+    @Test
+    public void test0529() {
+        int coreSize =10;
+        ThreadPoolExecutor initTaskExecutor = new ThreadPoolExecutor(coreSize, coreSize, 100, TimeUnit.SECONDS, new LinkedBlockingDeque<>(128));
+            initTaskExecutor.execute(() -> HttpUtil.downloadFile("https://d90.gdl.netease.com/publish/green/yjwj_2023-04-28-15-20.zip", "D:\\"));
+            initTaskExecutor.execute(() -> HttpUtil.downloadFile("https://d90.gdl.netease.com/publish/green/yjwj_2023-04-28-15-20.zip", "D:\\1"));
+            initTaskExecutor.execute(() -> HttpUtil.downloadFile("https://d90.gdl.netease.com/publish/green/yjwj_2023-04-28-15-20.zip", "D:\\2"));
+            initTaskExecutor.execute(() -> HttpUtil.downloadFile("https://d90.gdl.netease.com/publish/green/yjwj_2023-04-28-15-20.zip", "D:\\3"));
+            initTaskExecutor.execute(() -> HttpUtil.downloadFile("https://d90.gdl.netease.com/publish/green/yjwj_2023-04-28-15-20.zip", "D:\\4"));
+            initTaskExecutor.execute(() -> HttpUtil.downloadFile("https://d90.gdl.netease.com/publish/green/yjwj_2023-04-28-15-20.zip", "D:\\5"));
+            initTaskExecutor.execute(() -> HttpUtil.downloadFile("https://d90.gdl.netease.com/publish/green/yjwj_2023-04-28-15-20.zip", "D:\\6"));
+            initTaskExecutor.execute(() -> HttpUtil.downloadFile("https://d90.gdl.netease.com/publish/green/yjwj_2023-04-28-15-20.zip", "D:\\7"));
+
+        Scanner scanner = new Scanner(System.in);
+        StringBuilder help = new StringBuilder();
+        help.append("请输入" + "：");
+        System.out.println(help.toString());
+        if (scanner.hasNext()) {
+            String ipt = scanner.next();
+            if (StringUtils.isNotEmpty(ipt)) {
+                System.out.println(ipt);
+            }
+        }
+    }
+
+    @Test
+    public void test0510() {
+        double a = 1;
+        String s = String.valueOf(a);
+        String format = String.format("%.2f", a);
+        System.out.println(s);
+        System.out.println(format);
+        BigDecimal totalProgress = BigDecimal.ZERO;
+
+        BigDecimal progressMath = new BigDecimal(1);
+        BigDecimal progressMath2 = new BigDecimal(1);
+        totalProgress = totalProgress.add(progressMath);
+        totalProgress = totalProgress.add(progressMath2);
+        String totalProgressAverage = totalProgress.multiply(new BigDecimal(100))
+                // 再除以数量
+                .divide(BigDecimal.valueOf(2), 0, RoundingMode.HALF_UP).toString();
+        System.out.println(totalProgressAverage);
+    }
 
     /**
      * 数字的正则^[0-9]*\.*[0-9]*$
@@ -590,4 +673,67 @@ public class SimpleTest {
         System.out.println(integer);
 
     }
+
+    @Test
+    public void testFromInternet() {
+        LocalDateTime localDateTime = LocalDateTime.now();
+        System.out.println("系统当前日期+时间:" + localDateTime);
+        LocalDate localDate = LocalDate.now();
+        System.out.println("系统当期日期：" + localDate);
+        LocalTime localTime = LocalTime.now();
+        System.out.println("系统当前时间：" + localTime);
+        System.out.println("系统当前时间,去除毫秒：" + localTime.withNano(0));//0 为去除毫秒
+
+        System.out.println("指定年、月、日、时、分、秒：" + LocalDateTime.of(2016, 11, 23, 9, 07, 59));//返回一个指定年、月、日、时、分、秒的时间，不可变
+        System.out.println("指定年数的时间：" + localDateTime.withDayOfYear(1));//返回一个指定“一年中的天数,the day-of-year  ”的时间，不可变
+        System.out.println("指定天数的时间：" + localDateTime.withDayOfMonth(1));//返回一个指定“一月中的天数,day-of-month ”的时间，不可变
+        System.out.println("指定小时数的时间：" + localTime.withHour(1));//返回一个指定“一天中的小时数,the hour-of-day ”的时间，不可变
+        System.out.println("指定分钟数的时间：" + localTime.withMinute(1));//返回一个指定“一小时的分钟数,the minute-of-hour ”的时间，不可变
+        System.out.println("指定秒数的时间：" + localTime.withSecond(1));//返回一个指定“一分钟的秒数,the second-of-minute ”的时间，不可变
+        System.out.println("the hour-of-day, from 0 to 23：" + localTime.getHour());//取得一天中的小时数
+        System.out.println("minute-of-hour, from 0 to 59:" + localTime.getMinute());//取得一小时中的分钟数
+        System.out.println("the second-of-minute, from 0 to 59:" + localTime.getSecond());//取的一分钟的秒数
+        System.out.println("the nano-of-second, from 0 to 999,999,999:" + localTime.getNano());//取得一秒钟的纳秒数
+
+        //日期运算
+        System.out.println("系统当前时间减去1年：" + (localDate.minusYears(1)));
+        //看看闰年和平年的区别
+        LocalDateTime localDateTime1 = LocalDateTime.of(2016, 02, 29, 00, 00, 00);
+        System.out.println("闰年减去一年：" + localDateTime1.minusYears(1));//减去一年后是平年，注意结果
+        System.out.println("系统当前时间减去1天：" + (localDate.minusDays(1)));
+        System.out.println("系统当前时间减去23天：" + (localDate.minusDays(23)));
+        System.out.println("系统当前时间加上1年：" + (localDate.plusYears(1)));
+        System.out.println("系统当前时间加上1天：" + (localDate.plusDays(1)));
+        System.out.println("系统当前时间加上1分钟：" + (localDateTime.plusMinutes(1)));
+        System.out.println("系统当前时间加上1纳秒：" + (localDateTime.plusNanos(1)));
+        System.out.println("系统当前时间加上1周：" + (localDateTime.plusWeeks(1)));
+        System.out.println("localDateTime 转 localDate:" + localDateTime.toLocalDate());
+
+        LocalDateTime now2 = LocalDateTime.now();
+        LocalDate localDate1 = now2.toLocalDate();
+        System.out.println(localDate1);
+        System.out.println("是否相等?");
+        System.out.println(localDate1.isEqual(LocalDate.now()));
+
+        System.out.println("localDateTime 转 localTime:" + localDateTime.toLocalTime());
+        //格式器
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyyMMdd HH:mm:ss");
+        System.out.println(LocalDateTime.parse("20111123 00:00:00", dateTimeFormatter));
+        System.out.println(LocalDateTime.MIN);//支持的最小时间
+        System.out.println(LocalDateTime.MAX);//支持的最大时间
+        System.out.println(  LocalDateTime.now().toEpochSecond(ZoneOffset.of("+8")));//把时间转为秒
+
+
+        /**
+         * 时间的调整器 TemporalAdjusters
+         */
+        LocalDate now = LocalDate.now();
+        // 获取上周四
+        TemporalAdjuster adjuster = TemporalAdjusters.previous(DayOfWeek.THURSDAY);
+        LocalDate lastThursday = now.with(adjuster);
+        LocalTime hourAndMinutes = LocalTime.of(9, 30);
+        LocalDateTime fromTime = LocalDateTime.of(lastThursday, hourAndMinutes);
+        LocalDateTime toTime = fromTime.plusWeeks(1);
+    }
+
 }

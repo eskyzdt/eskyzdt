@@ -2,12 +2,11 @@ package cn.eskyzdt.modules.user.service;
 
 import cn.eskyzdt.modules.user.entity.User;
 import cn.eskyzdt.modules.user.entity.UserDto;
-import com.baomidou.mybatisplus.extension.api.R;
 
 import java.util.List;
 import java.util.Map;
 
-public interface UserService {
+public interface UserService<R> {
 
 
     void threadTest();
