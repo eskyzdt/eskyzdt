@@ -5,6 +5,16 @@ import com.baomidou.mybatisplus.generator.config.InjectionConfig;
 import com.baomidou.mybatisplus.generator.config.PackageConfig;
 import com.baomidou.mybatisplus.generator.config.StrategyConfig;
 import com.baomidou.mybatisplus.generator.config.TemplateConfig;
+import com.baomidou.mybatisplus.generator.config.builder.CustomFile;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+import static cn.eskyzdt.MySQLGeneratorTest.FEATURE_MODULE;
+import static cn.eskyzdt.MySQLGeneratorTest.PACKAGE_MODULE;
 
 /**
  * 基础测试类
@@ -13,16 +23,6 @@ import com.baomidou.mybatisplus.generator.config.TemplateConfig;
  * @since 3.5.3
  */
 public class BaseGeneratorTest {
-    /**
-     * 处于com.xxx. . 这一级的包名 todo
-     */
-    public static final String PACKAGE_MODULE = ".user";
-
-    /**
-     * 子级的模块名 todo
-     */
-    public static final String FEATURE_MODULE = ".dosth";
-
 
     /**
      * 策略配置
@@ -37,13 +37,17 @@ public class BaseGeneratorTest {
                 .enableHyphenStyle();
         // service层
         builder.serviceBuilder()
-                .convertServiceImplFileName(o->o + "Service")
+                .convertServiceImplFileName(o -> o + "Service")
+                .enableFileOverride();
+
+        // mapper层
+        builder.mapperBuilder().enableBaseColumnList()
                 .enableFileOverride();
 
         // entity层
         builder.entityBuilder().enableChainModel()
                 .enableLombok()
-                .addIgnoreColumns("who_created", "who_modified", "corp_id", "create_time", "update_time", "del_status")
+                .addIgnoreColumns("id", "who_created", "who_modified", "corp_id", "create_time", "update_time", "del_status")
                 .enableFileOverride();
         return builder;
     }
@@ -54,8 +58,7 @@ public class BaseGeneratorTest {
     protected static GlobalConfig.Builder globalConfig() {
         String projectPath = System.getProperty("user.dir");
         GlobalConfig.Builder builder = new GlobalConfig.Builder().author("dongtian.zhang")
-                .outputDir(projectPath + "/src/main/java")
-                ;
+                .outputDir(projectPath + "/src/main/java");
         return builder;
     }
 
@@ -93,13 +96,21 @@ public class BaseGeneratorTest {
      * 注入配置
      */
     protected static InjectionConfig.Builder injectionConfig() {
-        // 测试自定义输出文件之前注入操作，该操作再执行生成代码前 debug 查看
-        return new InjectionConfig.Builder().beforeOutputFile((tableInfo, objectMap) -> {
-            System.out.println("tableInfo: " + tableInfo.getEntityName() + " objectMap: " + objectMap.size())
+        CustomFile fileOne = new CustomFile.Builder().fileName("/controller/req/req.java").templatePath("mytemplate/reqvo.java.vm").build();
+        CustomFile fileTwo = new CustomFile.Builder().fileName("/controller/res/res.java").templatePath("mytemplate/reqvo.java.vm").build();
+        ArrayList<CustomFile> customFiles = new ArrayList<>();
+        customFiles.add(fileOne);
+        customFiles.add(fileTwo);
 
-            ;
-        })
-//                .customFile(Collections.singletonMap("test.txt", "/estyaaa/controller.java.vm"))
+        InjectionConfig.Builder builder = new InjectionConfig.Builder()
+                .customFile(customFiles)
+                .beforeOutputFile((tableInfo, objectMap) -> {
+                    String entityName = tableInfo.getEntityName();
+                    System.out.println("tableInfo: " + entityName + " objectMap: " + objectMap.size());
+                })
+                .fileOverride()
                 ;
+
+        return builder;
     }
 }

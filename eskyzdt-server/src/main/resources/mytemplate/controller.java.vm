@@ -41,10 +41,10 @@ public class ${table.controllerName} {
     private ${table.serviceImplName} ${table.serviceImplName};
 
     /**
-     *
+     * 新增
      */
-    @PostMapping("//cer")
-    public RetBean<ObjectVO> add(@RequestBody @Validated ReqWrapper<Object> reqBean) {
+    @PostMapping("/-add/cer")
+    public RetBean<ObjectVO> add(@RequestBody @Validated ReqWrapper<${entity}ReqVO> reqBean) {
         checkParam(reqBean.getData());
         SmUserReqVO req = reqBean.getData();
         UserInfo user = UserUtil.getUser();
@@ -58,6 +58,20 @@ public class ${table.controllerName} {
     private void checkParam(Object reqBean) {
         AssertUtils.isTrue(reqBean != null, "请求参数不能为空", false);
     }
+
+    /**
+    * 修改
+    */
+    @PostMapping("/-update/cer")
+    public RetBean<ObjectVO> add(@RequestBody @Validated ReqWrapper<${entity}ReqVO> reqBean) {
+        checkParam(reqBean.getData());
+        SmUserReqVO req = reqBean.getData();
+        UserInfo user = UserUtil.getUser();
+
+        ObjectVO res = new ObjectVO();
+
+        return RetBean.<SmUserResVO>successDataBuilder().data(res).build();
+        }
 
 }
 #end
