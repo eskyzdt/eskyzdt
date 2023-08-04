@@ -11,14 +11,18 @@ import com.baomidou.mybatisplus.generator.config.StrategyConfig;
  * @since 3.5.3
  */
 public class MySQLGeneratorTest extends BaseGeneratorTest {
+
     /**
-     * 子级的模块名
+     * 处于com.xxx. . 这一级的包名 一般是项目名
      */
-    public static final String FEATURE_MODULE = ".dosth";
+    public static final String PACKAGE_MODULE = ".warehouse";
+
     /**
-     * 处于com.xxx. . 这一级的包名
+     * 子级的模块名 一般是功能名
      */
-    public static final String PACKAGE_MODULE = ".user";
+    public static final String FEATURE_MODULE = ".goodsimport";
+    public static final String FEATURE_MODULE_PATH = "/goodsimport";
+
     /**
      * 数据源配置
      */
@@ -30,7 +34,7 @@ public class MySQLGeneratorTest extends BaseGeneratorTest {
         // 策略配置(StrategyConfig)
         StrategyConfig.Builder strategyConfigBuilder = strategyConfig();
         // 配置要生成的表
-        strategyConfigBuilder.addInclude("cure_tooth_exam_follow");
+        strategyConfigBuilder.addInclude("wh_goods_repo");
         generator.strategy(strategyConfigBuilder.build());
         // 全局配置
         generator.global(globalConfig().build());

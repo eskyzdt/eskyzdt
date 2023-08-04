@@ -8,12 +8,9 @@ import com.baomidou.mybatisplus.generator.config.TemplateConfig;
 import com.baomidou.mybatisplus.generator.config.builder.CustomFile;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 import static cn.eskyzdt.MySQLGeneratorTest.FEATURE_MODULE;
+import static cn.eskyzdt.MySQLGeneratorTest.FEATURE_MODULE_PATH;
 import static cn.eskyzdt.MySQLGeneratorTest.PACKAGE_MODULE;
 
 /**
@@ -69,7 +66,8 @@ public class BaseGeneratorTest {
         PackageConfig.Builder builder = new PackageConfig.Builder();
         builder.parent("com.myy" + PACKAGE_MODULE);
         builder.controller("controller" + FEATURE_MODULE);
-        builder.service("service" + FEATURE_MODULE);
+        // service层改为repository层
+        builder.service("repository" + FEATURE_MODULE);
         builder.serviceImpl("service.impl" + FEATURE_MODULE);
         builder.mapper("mapper" + FEATURE_MODULE);
         builder.xml("resources.mapper");
@@ -84,7 +82,7 @@ public class BaseGeneratorTest {
     protected static TemplateConfig.Builder templateConfig() {
         TemplateConfig.Builder builder = new TemplateConfig.Builder();
         builder.controller("mytemplate/controller.java.vm");
-        builder.service("mytemplate/service.java.vm");
+        builder.service("mytemplate/repository.java.vm");
         builder.serviceImpl("mytemplate/serviceImpl.java.vm");
         builder.mapper("mytemplate/mapper.java.vm");
         builder.xml("mytemplate/mapper.xml.vm");
@@ -96,8 +94,8 @@ public class BaseGeneratorTest {
      * 注入配置
      */
     protected static InjectionConfig.Builder injectionConfig() {
-        CustomFile fileOne = new CustomFile.Builder().fileName("/controller/req/req.java").templatePath("mytemplate/reqvo.java.vm").build();
-        CustomFile fileTwo = new CustomFile.Builder().fileName("/controller/res/res.java").templatePath("mytemplate/reqvo.java.vm").build();
+        CustomFile fileOne = new CustomFile.Builder().fileName("/custom/req" +FEATURE_MODULE_PATH +"/req.java").templatePath("mytemplate/reqvo.java.vm").build();
+        CustomFile fileTwo = new CustomFile.Builder().fileName("/custom/res"+FEATURE_MODULE_PATH +"/res.java").templatePath("mytemplate/resvo.java.vm").build();
         ArrayList<CustomFile> customFiles = new ArrayList<>();
         customFiles.add(fileOne);
         customFiles.add(fileTwo);

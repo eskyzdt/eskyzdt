@@ -1,6 +1,5 @@
 package ${package.Entity};
 
-#foreach($pkg in ${table.importPackages})
 import ${pkg};
 #end
 import com.myy.mybatis.plus.model.BaseModel;
@@ -43,7 +42,7 @@ public class ${entity} extends BaseModel {
 #elseif(${activeRecord})
 public class ${entity} extends Model<${entity}> {
 #elseif(${entitySerialVersionUID})
-public class ${entity}ResVO implements BaseModel {
+public class ${entity}ResVO extends BaseModel {
 #else
 public class ${entity} {
 #end

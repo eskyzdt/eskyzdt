@@ -5,13 +5,18 @@ GET http://hq.sinajs.cn/list=sz300122
 GET http://money.finance.sina.com.cn/quotes_service/api/json_v2.php/CN_MarketData.getKLineData?symbol=sz300122&scale=30&ma=5&datalen=3
 
 
-###
+### 上传文件示例
 POST http://localhost:80/exe
-Content-Type: application/json
+Content-Type: multipart/form-data
 Cache-Control: no-cache
 Accept: */*
 
+--WebAppBoundary
+Content-Disposition: form-data; name="file"; filename="Kali-Linux.pdf"
+Content-Type: multipart/form-data
 
+< F:\Kali-Linux.pdf
+--WebAppBoundary--
 
 ###
 POST http://localhost:16027/iWaybill/createPreAdditional
