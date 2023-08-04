@@ -7,16 +7,17 @@ GET http://money.finance.sina.com.cn/quotes_service/api/json_v2.php/CN_MarketDat
 
 ### 上传文件示例
 POST http://localhost:80/exe
-Content-Type: multipart/form-data
+Content-Type: multipart/form-data; boundary=WebAppBoundary
 Cache-Control: no-cache
 Accept: */*
+access-token:
 
 --WebAppBoundary
-Content-Disposition: form-data; name="file"; filename="Kali-Linux.pdf"
-Content-Type: multipart/form-data
+Content-Disposition: form-data; name="file"; filename="xxx.xlsx"
 
-< F:\Kali-Linux.pdf
+< C:\Users\zxvl3\Downloads\xxx.xlsx
 --WebAppBoundary--
+
 
 ###
 POST http://localhost:16027/iWaybill/createPreAdditional
