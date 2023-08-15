@@ -43,7 +43,7 @@ public class ${entity} extends BaseModel {
 #elseif(${activeRecord})
 public class ${entity} extends Model<${entity}> {
 #elseif(${entitySerialVersionUID})
-public class ${entity} implements BaseModel {
+public class ${entity} extends BaseModel {
 #else
 public class ${entity} {
 #end

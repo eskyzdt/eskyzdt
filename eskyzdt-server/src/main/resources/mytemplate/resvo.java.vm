@@ -1,7 +1,6 @@
 package ${package.Entity};
 
 import ${pkg};
-#end
 import com.myy.mybatis.plus.model.BaseModel;
 #if(${springdoc})
 import io.swagger.v3.oas.annotations.media.Schema;
