@@ -15,6 +15,7 @@ import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.text.SimpleDateFormat;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAdjuster;
@@ -30,8 +31,112 @@ import java.util.stream.Collectors;
 import static cn.hutool.core.util.NumberUtil.add;
 
 public class SimpleTest {
+    @Test
+    public void test1117002() {
+        DateTimeFormatter LocalDateFormatter = DateTimeFormatter.ofPattern("yyyy.MM.dd");
+        Date activeTime = new Date();
+        ZoneId zoneId = ZoneId.systemDefault();
+        LocalDate localDate = activeTime.toInstant().atZone(zoneId).toLocalDate();
+        String format = localDate.format(LocalDateFormatter);
+        System.out.println(format);
+        String format1 = LocalDateFormatter.format(LocalDate.now());
+        System.out.println(format1);
+    }
+
+    @Test
+    public void test1117001() {
+
+        WxFansIdWorker wxFansIdWorker = new WxFansIdWorker();
+        int i = 0;
+        while (i < 100) {
+            String nextId = wxFansIdWorker.getNextId();
+            System.out.println(nextId);
+            i++;
+        }
+
+    }
+
+    @Test
+    public void test1115003() {
+        String bindPatientName = "dddddddddddddddd %s ";
+        NullPointerException nullPointerException = new NullPointerException();
+        String format = String.format(bindPatientName, "你好");
+        String format1 = String.format(bindPatientName, "你好", nullPointerException);
+        System.out.println(format);
+        System.out.println(format1);
+    }
+
+    @Test
+    public void test1115002() {
+        String bindPatientName = "*sdfsd****df 地在 ";
+        bindPatientName = bindPatientName.replaceAll("\\*", "");
+        System.out.println(bindPatientName);
+    }
 
 
+   @Test
+   public void test1115001() {
+       try {
+           long a =  24 - TimeUnit.MILLISECONDS.toHours(
+                   System.currentTimeMillis() -
+                           Instant.now().atZone(ZoneId.systemDefault()).toLocalDate()
+                                   .atStartOfDay(ZoneId.systemDefault()).toInstant().toEpochMilli());
+           System.out.println(a);
+       } catch (Exception e) {
+       }
+   }
+
+
+    @Test
+    public void test1109001() {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        long longTimeStamp = new Long("1688109352") * 1000;
+        Date date = new Date(longTimeStamp);
+        String dareString = simpleDateFormat.format(date);
+        System.out.println(dareString);
+    }
+
+
+//0..  .0.  ..
+    @Test
+    public void test0606002() {
+        String a = "..";
+        String[] split = a.split("\\.");
+        System.out.println(split);
+        System.out.println(split[0]);
+    }
+
+
+
+    /**
+     * 分组
+     */
+    @Test
+    public void test0606001() {
+        ArrayList<Integer> list = new ArrayList<>();
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.add(4);
+        list.add(5);
+        list.add(6);
+
+        int beforeEnd = 0;
+        for (int i = 4; i < list.size(); i = i + 4) {
+            List<Integer> strings = list.subList(i -4 , i);
+            System.out.println(strings);
+            beforeEnd = i;
+        }
+        List<Integer> integers = list.subList(beforeEnd, list.size());
+        System.out.println(integers);
+    }
+
+    @Test
+    public void test0831() {
+        LocalDate localDate = LocalDate.now().plusDays(1L);
+        System.out.println(localDate);
+
+    }
     @Test
     public void test0628() {
         BigDecimal bigDecimal = BigDecimal.valueOf(0);

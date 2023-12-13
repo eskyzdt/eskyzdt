@@ -3,6 +3,7 @@ package ${package.Controller};
 import com.myy.common.bean.RetBean;
 import com.myy.gateway.bean.UserInfo;
 import com.myy.gateway.util.UserUtil;
+import com.myy.common.bean.ReqWrapper;
 import org.springframework.web.bind.annotation.RequestMapping;
     #if(${restControllerStyle})
 import org.springframework.web.bind.annotation.RestController;
@@ -45,37 +46,42 @@ public class ${table.controllerName} {
     private ${table.serviceImplName} ${table.serviceImplName};
 
     /**
-     * 新增
+     * 新增或更新
      */
-    @PostMapping("/-add/cer")
-    public RetBean<ObjectVO> add(@RequestBody @Validated ReqWrapper<${entity}ReqVO> reqBean) {
-        checkParam(reqBean.getData());
-        SmUserReqVO req = reqBean.getData();
+    @PostMapping("/add/cer")
+    public RetBean<Boolean> addOrUpdate(@RequestBody @Validated ReqWrapper<${entity}ReqVO> reqBean) {
+        ${entity}ReqVO req = reqBean.getData();
         UserInfo user = UserUtil.getUser();
-
-        ObjectVO res = new ObjectVO();
-
-        return RetBean.<>successDataBuilder().data(res).build();
-    }
-
-
-    private void checkParam(Object reqBean) {
-        AssertUtils.isTrue(reqBean != null, "请求参数不能为空", false);
+        ${entity}ReqBO bo = ${entity}Converter.convertAddVoToBo(req);
+        Boolean res = ${table.serviceImplName}.addOrUpdate(bo, user)
+        return RetBean.<Boolean>successDataBuilder().data(res).build();
     }
 
     /**
     * 修改
     */
-    @PostMapping("/-update/cer")
-    public RetBean<ObjectVO> add(@RequestBody @Validated ReqWrapper<${entity}ReqVO> reqBean) {
-        checkParam(reqBean.getData());
+    @PostMapping("/update/cer")
+    public RetBean<Boolean> add(@RequestBody @Validated ReqWrapper<${entity}ReqVO> reqBean) {
         SmUserReqVO req = reqBean.getData();
         UserInfo user = UserUtil.getUser();
-
-        ObjectVO res = new ObjectVO();
-
-        return RetBean.<>successDataBuilder().data(res).build();
+        ${entity}ReqBO bo = ${entity}Converter.convertVoToBo(req);
+        Boolean res = ${table.serviceImplName}.add(bo, user)
+        return RetBean.<Boolean>successDataBuilder().data(res).build();
         }
 
-}
+    /**
+    * 查询
+    */
+    @PostMapping("/query/cer")
+    public RetBean<${entity}QueryResVO> query(@RequestBody @Validated ReqWrapper<MsHomeClinicQueryReqVO> reqBean) {
+        MsHomeClinicQueryReqVO req = reqBean.getData();
+        UserInfo user = UserUtil.getUser();
+        ${entity}QueryReqBO bo = ${entity}Converter.convertQueryVoToBo(req);
+        ${entity}QueryResBO resBO =${table.serviceImplName}.query(bo, user);
+        ${entity}QueryResVO res = ${entity}Converter.convertBoToVoQuery(resBO);
+        return RetBean.<${entity}QueryResVO>successDataBuilder().data(res).build();
+        }
+
+
+        }
 #end

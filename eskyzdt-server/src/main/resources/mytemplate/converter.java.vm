@@ -1,0 +1,61 @@
+package ${package.Entity};
+
+#foreach($pkg in ${table.importPackages})
+import ${pkg};
+#end
+import com.myy.mybatis.plus.model.BaseModel;
+#if(${springdoc})
+import io.swagger.v3.oas.annotations.media.Schema;
+#elseif(${swagger})
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+#end
+
+/**
+ * <p>
+ * $!{table.comment}转换器
+ * </p>
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+    #if(${entityLombokModel})
+    @Data
+    #end
+    #if(${springdoc})
+    @Schema(name = "${entity}", description = "$!{table.comment}")
+    #elseif(${swagger})
+    @ApiModel(value = "${entity}对象", description = "$!{table.comment}")
+    #end
+
+public class ${entity}Converter {
+
+    public static ${entity}ReqBO convertVoToBo(${entity}ReqVO req) {
+
+    }
+
+    public static ${entity} convertBoToDoAdd(${entity}ReqBO req, UserInfo user) {
+
+    }
+
+    public static ${entity} convertBoToDoUpdate(${entity}ReqBO req, UserInfo user) {
+
+    }
+
+    public static ${entity}QueryResBO convertDoToBoQuery(${entity} req) {
+       QueryResBO.setId(req.getId());
+    }
+
+    public static ${entity}QueryReqDO convertBoToDoQuery(${entity}QueryReqBO req, UserInfo user) {
+
+    }
+
+    public static ${entity}QueryResVO convertBoToVoQuery(${entity}QueryResBO resBO) {
+        QueryResVO.setId(resBO.getId());
+    }
+
+    public static ${entity}QueryReqBO convertQueryVoToBo(${entity}QueryReqVO req) {
+
+    }
+
+}

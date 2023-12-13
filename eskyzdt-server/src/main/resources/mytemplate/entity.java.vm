@@ -1,9 +1,11 @@
 package ${package.Entity};
 
+import com.baomidou.mybatisplus.annotation.FieldStrategy;
 #foreach($pkg in ${table.importPackages})
 import ${pkg};
 #end
 import com.myy.mybatis.plus.model.BaseModel;
+import com.baomidou.mybatisplus.annotation.TableField;
 #if(${springdoc})
 import io.swagger.v3.oas.annotations.media.Schema;
 #elseif(${swagger})
@@ -96,6 +98,7 @@ public class ${entity} {
 #if(${field.logicDeleteField})
     @TableLogic
 #end
+    @TableField(value = "${field.propertyName}____x", updateStrategy= FieldStrategy.IGNORED)
     private ${field.propertyType} ${field.propertyName};
 #end
 ## ----------  END 字段循环遍历  ----------

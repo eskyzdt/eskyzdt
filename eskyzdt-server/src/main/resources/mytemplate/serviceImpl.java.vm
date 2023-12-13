@@ -1,10 +1,13 @@
 package ${package.ServiceImpl};
 
-import ${package.Service}.${table.serviceName};
 import org.springframework.stereotype.Service;
+import com.myy.gateway.bean.UserInfo;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections4.CollectionUtils;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * <p>
@@ -19,6 +22,59 @@ import javax.annotation.Resource;
 public class ${table.serviceImplName} {
 
         @Resource
-        private ${entity}Repository goodsRepoRepository;
+        private ${entity}Repository ${entity}Repository;
 
+
+/**
+ * 新增
+ *
+ * @param req
+ * @param user
+ * @return
+ */
+public Boolean add(${entity}ReqBO req, UserInfo user) {
+        ${entity} boAdd = ${entity}Converter.convertBoToDoAdd(req, user);
+        return ${entity}Repository.add(boAdd);
+        }
+
+/**
+* 批量新增
+*
+* @param req
+* @param user
+* @return
+*/
+@Transactional(rollbackFor = Exception.class)
+public Boolean addList(List<${entity}ReqBO> req, UserInfo user) {
+        List<${entity}> doList = ${entity}Converter.convertBoToDoAddList(req, user);
+        // 先删除再新增
+        ${entity}Repository.deleteByCorpId(user.getCorpId());
+        if (CollectionUtils.isNotEmpty(doList)) {
+        return ${entity}Repository.addList(doList);
+        }
+        return true;
+        }
+
+/**
+ * 更新
+ * @param req
+ * @param user
+ * @return
+ */
+public Boolean update(${entity}ReqBO req, UserInfo user) {
+        ${entity} doUpdate = ${entity}Converter.convertBoToDoUpdate(req, user);
+        return ${entity}Repository.updateClinic(doUpdate);
+        }
+
+/**
+ * 查询
+ * @param req
+ * @param user
+ * @return
+ */
+public ${entity}QueryResBO query(${entity}QueryReqBO req, UserInfo user) {
+        ${entity}QueryReqDO reqDO = ${entity}Converter.convertBoToDoQuery(req, user);
+        ${entity} boRes = ${entity}Repository.queryByCorp(reqDO);
+        return ${entity}Converter.convertDoToBoQuery(boRes);
+        }
 }

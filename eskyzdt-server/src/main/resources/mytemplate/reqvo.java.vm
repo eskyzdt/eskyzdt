@@ -3,7 +3,6 @@ package ${package.Entity};
 #foreach($pkg in ${table.importPackages})
 import ${pkg};
 #end
-import com.myy.mybatis.plus.model.BaseModel;
 #if(${springdoc})
 import io.swagger.v3.oas.annotations.media.Schema;
 #elseif(${swagger})
@@ -28,10 +27,6 @@ import lombok.experimental.Accessors;
  */
 #if(${entityLombokModel})
 @Data
-@EqualsAndHashCode(callSuper = true)
-  #if(${chainModel})
-@Accessors(chain = true)
-  #end
 #end
 #if(${springdoc})
 @Schema(name = "${entity}", description = "$!{table.comment}")
@@ -43,7 +38,7 @@ public class ${entity} extends BaseModel {
 #elseif(${activeRecord})
 public class ${entity} extends Model<${entity}> {
 #elseif(${entitySerialVersionUID})
-public class ${entity}ReqVO extends BaseModel {
+public class ${entity}ReqVO {
 #else
 public class ${entity} {
 #end
@@ -51,6 +46,12 @@ public class ${entity} {
 
     private static final long serialVersionUID = 1L;
 #end
+
+    /**
+     * 主键ID
+     */
+    private String id;
+
 ## ----------  BEGIN 字段循环遍历  ----------
 #foreach($field in ${table.fields})
 

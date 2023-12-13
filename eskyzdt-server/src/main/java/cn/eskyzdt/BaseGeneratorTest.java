@@ -68,10 +68,10 @@ public class BaseGeneratorTest {
         builder.controller("controller" + FEATURE_MODULE);
         // service层改为repository层
         builder.service("repository" + FEATURE_MODULE);
-        builder.serviceImpl("service.impl" + FEATURE_MODULE);
+        builder.serviceImpl("service" + FEATURE_MODULE);
         builder.mapper("mapper" + FEATURE_MODULE);
         builder.xml("resources.mapper");
-        builder.entity("mapper.po" + FEATURE_MODULE);
+        builder.entity("mapper" + FEATURE_MODULE);
 
         return builder;
     }
@@ -96,9 +96,11 @@ public class BaseGeneratorTest {
     protected static InjectionConfig.Builder injectionConfig() {
         CustomFile fileOne = new CustomFile.Builder().fileName("/custom/req" +FEATURE_MODULE_PATH +"/req.java").templatePath("mytemplate/reqvo.java.vm").build();
         CustomFile fileTwo = new CustomFile.Builder().fileName("/custom/res"+FEATURE_MODULE_PATH +"/res.java").templatePath("mytemplate/resvo.java.vm").build();
+        CustomFile fileThree = new CustomFile.Builder().fileName("/custom/res"+FEATURE_MODULE_PATH +"/converter.java").templatePath("mytemplate/converter.java.vm").build();
         ArrayList<CustomFile> customFiles = new ArrayList<>();
         customFiles.add(fileOne);
         customFiles.add(fileTwo);
+        customFiles.add(fileThree);
 
         InjectionConfig.Builder builder = new InjectionConfig.Builder()
                 .customFile(customFiles)

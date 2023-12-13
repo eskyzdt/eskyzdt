@@ -1,6 +1,9 @@
 package ${package.Service};
 
-import ${package.Entity}.${entity};
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import org.springframework.transaction.annotation.Transactional;
+import com.myy.mybatis.plus.util.MybatisModelUtil;
+import com.myy.mybatis.plus.extension.service.impl.BaseRepository;
 import ${superServiceClassPackage};
 import org.springframework.stereotype.Service;
 
@@ -13,7 +16,31 @@ import org.springframework.stereotype.Service;
  * @since ${date}
  */
 @Service
-public class ${entity}Repository  extends BaseRepository<${table.mapperName}, ${entity}>()  {
+public class ${entity}Repository  extends BaseRepository<${table.mapperName}, ${entity}> {
 
+public Boolean add(${entity} reqDo) {
+        return this.save(reqDo);
+        }
+
+public Boolean update(${entity} reqDo) {
+        UpdateWrapper<${entity}> corpBaseUpdate = MybatisModelUtil.getCorpBaseUpdate(${entity}.class, reqDo.getCorpId());
+        return this.update(reqDo, corpBaseUpdate);
+        }
+
+public ${entity} queryListByCorp(${entity}QueryReqDO reqDO) {
+        QueryWrapper<${entity}> corpBaseQuery = MybatisModelUtil.getCorpBaseQuery(${entity}.class, reqDO.getCorpId());
+        return this.getOne(corpBaseQuery);
+        }
+
+        @Transactional(rollbackFor = Exception.class)
+        public void deleteListByCorpId(Integer corpId) {
+                QueryWrapper<${entity}> corpBaseQuery = MybatisModelUtil.getCorpBaseQuery(${entity}.class, corpId);
+                this.remove(corpBaseQuery);
+        }
+
+        @Transactional(rollbackFor = Exception.class)
+        public Boolean addList(List<${entity}> doList) {
+                return this.saveBatch(doList);
+        }
 }
 
