@@ -44,7 +44,6 @@ public Boolean add(${entity}ReqBO req, UserInfo user) {
 * @param user
 * @return
 */
-@Transactional(rollbackFor = Exception.class)
 public Boolean addList(List<${entity}ReqBO> req, UserInfo user) {
         List<${entity}> doList = ${entity}Converter.convertBoToDoAddList(req, user);
         // 先删除再新增
@@ -63,7 +62,7 @@ public Boolean addList(List<${entity}ReqBO> req, UserInfo user) {
  */
 public Boolean update(${entity}ReqBO req, UserInfo user) {
         ${entity} doUpdate = ${entity}Converter.convertBoToDoUpdate(req, user);
-        return ${entity}Repository.updateClinic(doUpdate);
+        return ${entity}Repository.update(doUpdate);
         }
 
 /**
@@ -73,7 +72,7 @@ public Boolean update(${entity}ReqBO req, UserInfo user) {
  * @return
  */
 public ${entity}QueryResBO query(${entity}QueryReqBO req, UserInfo user) {
-        ${entity}QueryReqDO reqDO = ${entity}Converter.convertBoToDoQuery(req, user);
+        ${entity} reqDO = ${entity}Converter.convertBoToDoQuery(req, user);
         ${entity} boRes = ${entity}Repository.queryByCorp(reqDO);
         return ${entity}Converter.convertDoToBoQuery(boRes);
         }

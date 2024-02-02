@@ -6,6 +6,7 @@ import cn.eskyzdt.modules.user.entity.User;
 import cn.hutool.http.HttpUtil;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.apache.commons.collections4.MapUtils;
 import org.junit.Test;
 import org.springframework.http.*;
@@ -31,6 +32,34 @@ import java.util.stream.Collectors;
 import static cn.hutool.core.util.NumberUtil.add;
 
 public class SimpleTest {
+
+    @Test
+    public void test240126001() {
+        ArrayList<String> list = new ArrayList<>();
+        boolean contains = list.contains("ddd");
+        System.out.println(contains);
+    }
+
+    @Test
+    public void test1221001() {
+        Boolean a = false;
+        if (a) {
+            System.out.println("if");
+        }
+        System.out.println("not");
+    }
+
+    @Test
+    public void test1219001() {
+        Date end =new Date();
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(end);
+            calendar.add(Calendar.DATE, 1);
+        System.out.println(end);
+        System.out.println(calendar.getTime());
+    }
+
+
     @Test
     public void test1117002() {
         DateTimeFormatter LocalDateFormatter = DateTimeFormatter.ofPattern("yyyy.MM.dd");

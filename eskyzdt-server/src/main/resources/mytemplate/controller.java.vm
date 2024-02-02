@@ -45,11 +45,24 @@ public class ${table.controllerName} {
     @Resource
     private ${table.serviceImplName} ${table.serviceImplName};
 
+/**
+* 查询
+*/
+@PostMapping("/query/cer")
+public RetBean<${entity}QueryResVO> query(@RequestBody @Validated ReqWrapper<${entity}QueryReqVO> reqBean) {
+    ${entity}QueryReqVO req = reqBean.getData();
+        UserInfo user = UserUtil.getUser();
+    ${entity}QueryReqBO bo = ${entity}Converter.convertQueryVoToBo(req);
+    ${entity}QueryResBO resBO =${table.serviceImplName}.query(bo, user);
+    ${entity}QueryResVO res = ${entity}Converter.convertBoToVoQuery(resBO);
+        return RetBean.<${entity}QueryResVO>successDataBuilder().data(res).build();
+        }
+
     /**
      * 新增或更新
      */
     @PostMapping("/add/cer")
-    public RetBean<Boolean> addOrUpdate(@RequestBody @Validated ReqWrapper<${entity}ReqVO> reqBean) {
+    public RetBean<Boolean> addOrUpdate(@RequestBody @Validated ReqWrapper<${entity}AddReqVO> reqBean) {
         ${entity}ReqVO req = reqBean.getData();
         UserInfo user = UserUtil.getUser();
         ${entity}ReqBO bo = ${entity}Converter.convertAddVoToBo(req);
@@ -61,25 +74,12 @@ public class ${table.controllerName} {
     * 修改
     */
     @PostMapping("/update/cer")
-    public RetBean<Boolean> add(@RequestBody @Validated ReqWrapper<${entity}ReqVO> reqBean) {
+    public RetBean<Boolean> add(@RequestBody @Validated ReqWrapper<${entity}UpdateReqVO> reqBean) {
         SmUserReqVO req = reqBean.getData();
         UserInfo user = UserUtil.getUser();
-        ${entity}ReqBO bo = ${entity}Converter.convertVoToBo(req);
+        ${entity}ReqBO bo = ${entity}Converter.convertUpdateVoToBo(req);
         Boolean res = ${table.serviceImplName}.add(bo, user)
         return RetBean.<Boolean>successDataBuilder().data(res).build();
-        }
-
-    /**
-    * 查询
-    */
-    @PostMapping("/query/cer")
-    public RetBean<${entity}QueryResVO> query(@RequestBody @Validated ReqWrapper<MsHomeClinicQueryReqVO> reqBean) {
-        MsHomeClinicQueryReqVO req = reqBean.getData();
-        UserInfo user = UserUtil.getUser();
-        ${entity}QueryReqBO bo = ${entity}Converter.convertQueryVoToBo(req);
-        ${entity}QueryResBO resBO =${table.serviceImplName}.query(bo, user);
-        ${entity}QueryResVO res = ${entity}Converter.convertBoToVoQuery(resBO);
-        return RetBean.<${entity}QueryResVO>successDataBuilder().data(res).build();
         }
 
 

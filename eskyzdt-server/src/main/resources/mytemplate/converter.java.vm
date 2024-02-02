@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 #end
+import lombok.Data;
 
 /**
  * <p>
@@ -27,7 +28,6 @@ import io.swagger.annotations.ApiModelProperty;
     #elseif(${swagger})
     @ApiModel(value = "${entity}对象", description = "$!{table.comment}")
     #end
-
 public class ${entity}Converter {
 
     public static ${entity}ReqBO convertVoToBo(${entity}ReqVO req) {
