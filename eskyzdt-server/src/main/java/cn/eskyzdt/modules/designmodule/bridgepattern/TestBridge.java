@@ -9,13 +9,12 @@ package cn.eskyzdt.modules.designmodule.bridgepattern;
  *
  *
  */
-public class BridgeClass  {
+public class TestBridge {
+
 
     public static void main(String[] args) {
-        Linux linux = new Linux(new MP4Type());
-        Windows windows = new Windows(new AVIType());
-        linux.run();
-        windows.run();
-
+        Knife knife = new Knife();
+        MainCharactor mainCharactor = new MainCharactor(knife);
+        mainCharactor.attackSth();
     }
 }
